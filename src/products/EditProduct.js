@@ -16,9 +16,11 @@ export default function EditProduct() {
   const onInputChange=(event)=>{
     setProduct({...product, [event.target.name]:event.target.value})
   };
+  
   useEffect(()=>{
-    loadProduct();
+    loadProduct(); // eslint-disable-next-line
   }, []);
+  
   const onSubmit=async(event)=>{
     event.preventDefault();
     await axios.put(`http://localhost:8080/product/${id}`,product);
