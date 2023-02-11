@@ -35,9 +35,9 @@ export default function Home() {
                 <tbody>
                     {
                         products.map((product,index)=>(
-                        <tr  key={product.id}>
-                            {/*use index+1 to label the data from 1 and up */}
-                            <th scope="row">{product.id}</th>   
+                        <tr  key={index+1}>
+                            {/*use product.id for actual product id that is stored in the DataBase*/}
+                            <th scope="row">{index+1}</th>   
                             <td>{product.name}</td>
                             <td>{product.price}</td>
                             <td>{product.image}</td>
