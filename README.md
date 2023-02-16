@@ -21,11 +21,11 @@ Then run to start a local server
 npm start
 ```
 
-#For Mac Users
+# For Mac Users
 https://dev.to/code_jedi/how-to-install-reactjs-on-macos-4hio
 
 
-#Using Bootstrap with React
+# Using Bootstrap with React
 
 React uses different syntax when it comes to bootstrap , but it is simpler than vanilla bootstrap so that is a plus
 
