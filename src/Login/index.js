@@ -14,7 +14,7 @@ function Login() {
       email: email,
       password: password,
     };
-    fetch("auth/login", {
+    fetch("http://172.105.133.208:8080/auth/login", {
       headers: {
         "Content-Type": "application/json",
       },
