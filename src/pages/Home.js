@@ -11,12 +11,12 @@ export default function Home() {
     },[]);
     
     const loadProducts=async()=>{
-        const result=await axios.get("http://172.105.133.208:8080/products");
+        const result=await axios.get("http://localhost:8080/products");
         setProducts(result.data);
     };
 
     const deleteProduct=async (id)=>{
-        await axios.delete(`http://172.105.133.208:8080/product/${id}`);
+        await axios.delete(`http://localhost:8080/product/${id}`);
         loadProducts();
     }
   return (

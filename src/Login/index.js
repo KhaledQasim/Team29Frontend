@@ -1,20 +1,32 @@
-import { useState } from "react";
+import { wait } from "@testing-library/user-event/dist/utils";
+import { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useLocalState } from "../util/useLocalStorage";
 
 function Login() {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [disabled, setDisabled] = useState(false);
+  const handleClick = (e) => {
+    setDisabled(true);
+    sendLoginRequest();
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1250);
+    
+    
+  }
 
   function sendLoginRequest() {
     const reqBody = {
       email: email,
-      password: password,
+      password: password
     };
-    fetch("http://172.105.133.208:8080/auth/login", {
+    fetch("auth/login", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -22,8 +34,11 @@ function Login() {
       body: JSON.stringify(reqBody),
     })
       .then((response) => {
-        if (response.status === 200) return Promise.all([response.json()]);
-        else return Promise.reject("Invalid Login!");
+        if (response.status === 200)
+          return Promise.all([response.json()]);
+        else
+        
+        return Promise.reject("Invalid Login!");
       })
       .then(([body]) => {
         setJwt(JSON.stringify(body).slice(10, -2));
@@ -59,7 +74,9 @@ function Login() {
         id="submit"
         variant="primary"
         type="button"
-        onClick={() => sendLoginRequest()}
+        disabled={disabled}
+        // onClick={() => sendLoginRequest()}
+        onClick={ handleClick}
       >
         Submit
       </Button>
