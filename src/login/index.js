@@ -1,14 +1,14 @@
-import { wait } from "@testing-library/user-event/dist/utils";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 import { useLocalState } from "../util/useLocalStorage";
+import jwt_decode from "jwt-decode";
 
 function Login() {
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [disabled, setDisabled] = useState(false);
   const handleClick = (e) => {
@@ -17,15 +17,16 @@ function Login() {
     setTimeout(() => {
       setDisabled(false);
     }, 1250);
-    
-    
-  }
+  };
+ 
+ 
 
   function sendLoginRequest() {
     const reqBody = {
       email: email,
-      password: password
+      password: password,
     };
+
     fetch("auth/login", {
       headers: {
         "Content-Type": "application/json",
@@ -34,17 +35,18 @@ function Login() {
       body: JSON.stringify(reqBody),
     })
       .then((response) => {
-        if (response.status === 200)
-          return Promise.all([response.json()]);
-        else
-        
+        if (response.status === 200) return Promise.all([response.json()]);
+        else setEmail("");
+        setPassword("");
         return Promise.reject("Invalid Login!");
       })
       .then(([body]) => {
         setJwt(JSON.stringify(body).slice(10, -2));
-        window.location.href = "admin";
+        window.location.href = "/";
       })
       .catch((message) => {
+        setEmail("");
+        setPassword("");
         alert(message);
       });
   }
@@ -76,9 +78,21 @@ function Login() {
         type="button"
         disabled={disabled}
         // onClick={() => sendLoginRequest()}
-        onClick={ handleClick}
+        onClick={handleClick}
       >
-        Submit
+        Login
+      </Button>
+      <Button
+        className="mx-2"
+        id="exit"
+        variant="secondary"
+        type="button"
+        // onClick={() => sendLoginRequest()}
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Cancel
       </Button>
     </Form>
   );

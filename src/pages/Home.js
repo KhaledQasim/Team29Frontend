@@ -6,6 +6,8 @@ export default function Home() {
 
     const [products,setProducts]=useState([]);
 
+   
+
     useEffect(() => {
         loadProducts();
     },[]);
@@ -44,7 +46,7 @@ export default function Home() {
                             <td>
                                 <Link className='btn btn-primary mx-2' to={`/ViewProduct/${product.id}`}>View</Link>
                                 <Link className='btn btn-outline-primary mx-2' to={`/EditProduct/${product.id}`}>Edit</Link>
-                                <button className="btn btn-danger mx-2" onClick={()=>deleteProduct(product.id)}>Delete</button>
+                                {/* <button className="btn btn-danger mx-2" onClick={()=>deleteProduct(product.id)}>Delete</button> */}
                             </td>
                         </tr>
                         ))
