@@ -149,15 +149,21 @@ function Register() {
           onChange={(event) => setUsername(event.target.value)}
         />
       </Form.Group>
-      <Container>
-        <Row>
-          <Col>
-            <div className="" style={{ color: "red", fontWeight: "bold" }}>
-                {errorMsg}
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      {
+        errorMsg ? (
+          <Container>
+            <Row className="justify-content-center mb-4">
+              <Col md="8" lg="6">
+                <div className="" style={{ color: "red", fontWeight: "bold" }}>
+                    {errorMsg}
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        ) : 
+        (<></>)
+      }
+      
       <Button
         id="submit"
         variant="primary"

@@ -40,7 +40,9 @@ export default function ViewProduct() {
                 </li>
                 <li className="list-group-item">
                   <b>Image: </b>
-                  {product.image}
+                  {/* "/HTML/we-WEAR-12.png" */}
+                  {console.log(product.image)}
+                  <img style={{resizeMode: 'contain',height: 100,width: 125,}} src={process.env.PUBLIC_URL + "/" + product.image} alt="product"/>
                 </li>
               </ul>
             </div>

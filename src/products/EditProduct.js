@@ -74,6 +74,7 @@ export default function EditProduct() {
               value={image}
               onChange={(event)=>onInputChange(event)}
               />
+              <img style={{resizeMode: 'contain',height: 100,width: 125,}} src={process.env.PUBLIC_URL + "/" + product.image} alt="product"/>
           </div>
           <button type='submit' className="btn btn-outline-primary">Submit</button>
           <Link className="btn btn-outline-danger mx-2" to={"/"}>Cancel</Link>

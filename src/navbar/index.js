@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import jwt_decode from "jwt-decode";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,7 +16,7 @@ function Navbarr() {
   const [isValid , setIsValid] = useState();
 
   useEffect(() => {
-    if (user.jwt || user){
+    if (user.jwt && user){
       ajax(`/auth/validate`, "get", user.jwt).then((isValid) => {
         setIsValid(isValid);
       });
@@ -66,6 +65,7 @@ function Navbarr() {
                     if (response.status === 200){
                       user.setJwt(null);
                       navigate("/")
+                      window.location.reload(); 
                     }
                   })
                 }}

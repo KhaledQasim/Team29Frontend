@@ -2,7 +2,7 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './navbar';
-import Home from './pages/Home';
+import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddProduct from './products/AddProduct';
 import EditProduct from './products/EditProduct';
@@ -13,9 +13,6 @@ import Test from './test';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
-import { useUser } from './userProvider';
-import { useEffect, useState } from 'react';
-import jwt_decode from "jwt-decode";
 
 function App() {
   // const [roles,setRoles] = useState([]);
