@@ -1,11 +1,15 @@
+import axios from "axios";
+import Cookies from "js-cookie";
 import { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import { useLocalState } from "../util/useLocalStorage";
+import { useUser } from "../userProvider";
+
 
 function Register() {
-  
+  const [errorMsg, setErrorMsg] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -13,52 +17,75 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const navigate = useNavigate()
-  const [jwt , setJwt] = useLocalState("", "jwt");
+  const user = useUser();
   const [disabled, setDisabled] = useState(false);
   const handleClick = (e) => {
     setDisabled(true);
-    sendLoginRequest();
+    axiosSendLoginRequest();
     setTimeout(() => {
       setDisabled(false);
     }, 1250);
     
     
   }
+  
+  // useEffect(() => {
+  //   if (user.jwt) navigate("/");
+  // }, [user]);
 
-  function sendLoginRequest() {
-    const reqBody = {
-      email: email,
-      password: password,
-      username: username,
-      firstname: firstName,
-      lastname: lastName
-    };
-    fetch("auth/register", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
-    })
-      .then((response) => {
-        if (response.status === 200)
-          return Promise.all([response.json()]);
-        else
-        setEmail("");
-        setPassword("");
-        setPassword2("");
-        return Promise.reject("Invalid Login!");
-      })
-      .then(([body]) => {
-        setJwt(JSON.stringify(body).slice(10, -2));
-        window.location.href = "admin";
-      })
-      .catch((message) => {
-        setEmail("");
-        setPassword("");
-        setPassword2("");
-        alert(message);
-      });
+  // function sendLoginRequest() {
+  //   const reqBody = {
+  //     email: email,
+  //     password: password,
+  //     username: username,
+  //     firstname: firstName,
+  //     lastname: lastName
+  //   };
+  //   fetch("auth/register", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     method: "post",
+  //     body: JSON.stringify(reqBody),
+  //   })
+  //     .then((response) => {
+  //       if (response.status === 200)
+  //         return Promise.all([response.json(), response.headers]);
+  //       else
+  //       setEmail("");
+  //       setPassword("");
+  //       setPassword2("");
+  //       console.log(JSON.stringify(response.json()));
+  //       return Promise.reject("response.json()");
+  //     })
+  //     .then(([body, headers]) => {
+  //       user.setJwt(Cookies.get("jwt"));
+  //     })
+  //     .catch((message) => {
+  //       setEmail("");
+  //       setPassword("");
+  //       setPassword2("");
+  //       alert(message)
+  //       // setErrorMsg(message);
+  //     });
+  //   }
+      function axiosSendLoginRequest() {
+        axios.post('auth/register',{
+          email: email,
+          password: password,
+          username: username,
+          firstname: firstName,
+          lastname: lastName
+        })
+        .then((res) => {
+          user.setJwt(Cookies.get("jwt"));
+          navigate("/")
+        })
+        .catch((error) =>{
+          setPassword("");
+          setPassword2("");
+          if(error.response) setErrorMsg(JSON.stringify(error.response.data).slice(17,-2));
+        });
   }
   return (
     <Form >
@@ -122,7 +149,15 @@ function Register() {
           onChange={(event) => setUsername(event.target.value)}
         />
       </Form.Group>
-
+      <Container>
+        <Row>
+          <Col>
+            <div className="" style={{ color: "red", fontWeight: "bold" }}>
+                {errorMsg}
+            </div>
+          </Col>
+        </Row>
+      </Container>
       <Button
         id="submit"
         variant="primary"
@@ -131,7 +166,7 @@ function Register() {
         // onClick={() => sendLoginRequest()}
         onClick={ handleClick}
       >
-        Login
+        Register
       </Button>
       <Button
         className="mx-2"

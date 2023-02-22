@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import { useLocalState } from "../util/useLocalStorage";
-import jwt_decode from "jwt-decode";
+import { useUser } from "../userProvider";
+import { Col, Container, Row } from "react-bootstrap";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [jwt, setJwt] = useLocalState("", "jwt");
+  const user = useUser();
   const [disabled, setDisabled] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const handleClick = (e) => {
     setDisabled(true);
     sendLoginRequest();
@@ -19,9 +21,8 @@ function Login() {
     }, 1250);
   };
  
- 
-
   function sendLoginRequest() {
+    setErrorMsg("");
     const reqBody = {
       email: email,
       password: password,
@@ -35,21 +36,23 @@ function Login() {
       body: JSON.stringify(reqBody),
     })
       .then((response) => {
-        if (response.status === 200) return Promise.all([response.json()]);
-        else setEmail("");
-        setPassword("");
-        return Promise.reject("Invalid Login!");
+        if (response.status === 200) return response.text();
+        else if (response.status === 401 || response.status === 403) {
+          setErrorMsg("Invalid username or password");
+        } else {
+          setErrorMsg(
+            "Something went wrong, try again later or reach out to us"
+          );
+        }
       })
-      .then(([body]) => {
-        setJwt(JSON.stringify(body).slice(10, -2));
-        window.location.href = "/";
-      })
-      .catch((message) => {
-        setEmail("");
-        setPassword("");
-        alert(message);
+      .then((data) => {
+        if (data) {
+          user.setJwt(data);
+          navigate("/");
+        }
       });
   }
+
   return (
     <Form>
       <Form.Group className="mb-3" controlId="email">
@@ -71,7 +74,19 @@ function Login() {
           onChange={(event) => setPassword(event.target.value)}
         />
       </Form.Group>
-
+      {errorMsg ? (
+        <Container>
+            <Row className="justify-content-center mb-4">
+              <Col md="8" lg="6">
+                <div className="" style={{ color: "red", fontWeight: "bold" }}>
+                  {errorMsg}
+                </div>
+              </Col>
+            </Row>
+        </Container>
+        ) : (
+          <></>
+        )}
       <Button
         id="submit"
         variant="primary"

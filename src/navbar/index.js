@@ -1,17 +1,30 @@
-import React, { useState } from "react";
-import { Button, NavItem } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import jwt_decode from "jwt-decode";
 
-import { Link } from "react-router-dom";
-import { useLocalState } from "../util/useLocalStorage";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useUser } from "../userProvider";
+import ajax from "../services/fetchService";
 
 function Navbarr() {
-  const [jwt, setJwt] = useLocalState("", "jwt");
-  const [logged, setLogged] = useState(false);
-  //jwt ? setLogged(true) : setLogged(false);
+  const user = useUser();
+  const navigate = useNavigate();
+  const [isValid , setIsValid] = useState();
+
+  useEffect(() => {
+    if (user.jwt || user){
+      ajax(`/auth/validate`, "get", user.jwt).then((isValid) => {
+        setIsValid(isValid);
+      });
+    };
+  }, [user, user.jwt]);
+
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -23,6 +36,9 @@ function Navbarr() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">
               Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/test">
+              Test
             </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -42,12 +58,16 @@ function Navbarr() {
             </Nav.Link>
           </Nav>
           <Nav className="me-auto">
-            {jwt ? (
+            {isValid ? (
               <Button
                 variant="secondary"
                 onClick={() => {
-                  setJwt("");
-                  window.location.href = "/";
+                  fetch("/auth/logout").then((response) => {
+                    if (response.status === 200){
+                      user.setJwt(null);
+                      navigate("/")
+                    }
+                  })
                 }}
               >
                 Logout

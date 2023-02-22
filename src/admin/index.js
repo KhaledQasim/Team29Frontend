@@ -1,13 +1,14 @@
 import React from 'react';
-import { useLocalState } from '../util/useLocalStorage';
+import { useUser } from '../userProvider';
+
 
 const Admin = () => {
-    const [ jwt, setJwt] = useLocalState("","jwt") 
+    const user = useUser();
     return (
         <div>
             {/* <div>Jwt is: {jwt}</div> */}
             <div>
-                jwt is {jwt}
+                jwt is {user.jwt}
             </div>
         </div>
     );
