@@ -19,7 +19,7 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const navigate = useNavigate()
-  const [jwt,setJwt] = useAtom(jwtAtom);
+  const [,setJwt] = useAtom(jwtAtom);
   const [disabled, setDisabled] = useState(false);
   const handleClick = (e) => {
     setDisabled(true);

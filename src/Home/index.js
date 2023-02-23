@@ -16,10 +16,10 @@ export default function Home() {
         setProducts(result.data);
     };
 
-    const deleteProduct=async (id)=>{
-        await axios.delete(`http://localhost:8080/product/${id}`);
-        loadProducts();
-    }
+    // const deleteProduct=async (id)=>{
+    //     await axios.delete(`http://localhost:8080/product/${id}`);
+    //     loadProducts();
+    // }
   return (
     <div className='container'>
         <div className='py-4'>

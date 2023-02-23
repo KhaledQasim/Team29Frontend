@@ -11,7 +11,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [jwt,setJwt] = useAtom(jwtAtom);
+  const [,setJwt] = useAtom(jwtAtom);
   const [disabled, setDisabled] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 

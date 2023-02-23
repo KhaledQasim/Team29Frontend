@@ -6,7 +6,7 @@ const Admin = () => {
     
     const [jwt , setJwt] = useAtom(jwtAtom);
     const clearJWT = () => {
-        setJwt("cleared")       
+        setJwt("")       
     }
     return (
         <div>

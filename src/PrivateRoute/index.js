@@ -8,7 +8,7 @@ const PrivateRoute = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isValid, setIsValid] = useState("");
     const { children} = props;
-    const [jwt,setJwt] = useAtom(jwtAtom);
+    const [jwt,] = useAtom(jwtAtom);
     
     if (jwt) {
       ajax(`/auth/validate`, "get", jwt).then((isValid) => {
