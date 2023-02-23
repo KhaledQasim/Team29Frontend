@@ -15,9 +15,10 @@ import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
+import Logout from './logout';
 
 export const jwtAtom = atom(Cookies.get("jwt"));
-
+export const Atomlogged = atom("");
 function App() {
   // const [roles,setRoles] = useState([]);
   // const user = useUser();
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/test" element={<Test/>}/>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
+            <Route exact path="/logout" element={<Logout />}/>
             <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
             <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
             <Route exact path="/login" element={<Login/>}/>

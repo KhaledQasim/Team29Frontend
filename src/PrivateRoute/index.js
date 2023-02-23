@@ -26,7 +26,7 @@ const PrivateRoute = (props) => {
       children
     ) : (
       
-      <Navigate to="/" />
+      <Navigate to="/logout" />
     );
   };
   

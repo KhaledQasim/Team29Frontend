@@ -37,7 +37,7 @@ const PrivateRouteAdmin = (props) => {
     ) : isValid === true ? (
       children
     ) : (
-      <Navigate to="/login" />
+      <Navigate to="/logout" />
     );
   };
   

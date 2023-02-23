@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 import { jwtAtom } from '../App';
+import jwt_decode from "jwt-decode";
 
 const Admin = () => {
+
+    const [jwt,] = useAtom(jwtAtom);
+   
     
-    const [jwt , setJwt] = useAtom(jwtAtom);
-    const clearJWT = () => {
-        setJwt("")       
-    }
+
+   
     return (
         <div>
-            {/* <div>Jwt is: {jwt}</div> */}
             <div>
-                jwt is {jwt}
+                email is {jwt_decode(jwt).sub}
             </div>
-            <button onClick={clearJWT}>clear jwt</button>
+            
         </div>
     );
 };

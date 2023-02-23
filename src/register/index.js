@@ -17,7 +17,6 @@ function Register() {
   const [password2, setPassword2] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
   const navigate = useNavigate()
   const [,setJwt] = useAtom(jwtAtom);
   const [disabled, setDisabled] = useState(false);
@@ -75,7 +74,6 @@ function Register() {
         axios.post('auth/register',{
           email: email,
           password: password,
-          username: username,
           firstname: firstName,
           lastname: lastName
         })
@@ -142,15 +140,7 @@ function Register() {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="username">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </Form.Group>
+     
       {
         errorMsg ? (
           <Container>
