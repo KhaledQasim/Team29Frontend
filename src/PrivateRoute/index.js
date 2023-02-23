@@ -1,16 +1,17 @@
+import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { jwtAtom } from '../App.js';
 import ajax from '../services/fetchService.js';
-import { useUser } from '../userProvider/index.js';
 
 const PrivateRoute = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isValid, setIsValid] = useState("");
     const { children} = props;
-    const user = useUser();
+    const [jwt,setJwt] = useAtom(jwtAtom);
     
-    if (user && user.jwt) {
-      ajax(`/auth/validate`, "get", user.jwt).then((isValid) => {
+    if (jwt) {
+      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
         setIsValid(isValid);
         setIsLoading(false);
       });

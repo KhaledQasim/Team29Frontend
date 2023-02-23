@@ -7,21 +7,23 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 import { Link, useNavigate } from "react-router-dom";
 
-import { useUser } from "../userProvider";
+
 import ajax from "../services/fetchService";
+import { useAtom } from "jotai";
+import { jwtAtom } from "../App";
 
 function Navbarr() {
-  const user = useUser();
+  
   const navigate = useNavigate();
   const [isValid , setIsValid] = useState();
-
+  const [jwt,setJwt] = useAtom(jwtAtom);
   useEffect(() => {
-    if (user.jwt && user){
-      ajax(`/auth/validate`, "get", user.jwt).then((isValid) => {
+    if (jwt){
+      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
         setIsValid(isValid);
       });
     };
-  }, [user, user.jwt]);
+  }, [jwt]);
 
 
   return (
@@ -63,7 +65,7 @@ function Navbarr() {
                 onClick={() => {
                   fetch("/auth/logout").then((response) => {
                     if (response.status === 200){
-                      user.setJwt(null);
+                      setJwt(null);
                       navigate("/")
                       window.location.reload(); 
                     }

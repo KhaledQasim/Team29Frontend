@@ -13,6 +13,10 @@ import Test from './test';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
+import { atom } from 'jotai';
+import Cookies from 'js-cookie';
+
+export const jwtAtom = atom(Cookies.get("jwt"));
 
 function App() {
   // const [roles,setRoles] = useState([]);

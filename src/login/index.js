@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../userProvider";
+
 import { Col, Container, Row } from "react-bootstrap";
+import { useAtom } from "jotai";
+import { jwtAtom } from "../App";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const user = useUser();
+  const [jwt,setJwt] = useAtom(jwtAtom);
   const [disabled, setDisabled] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -47,7 +49,7 @@ function Login() {
       })
       .then((data) => {
         if (data) {
-          user.setJwt(data);
+          setJwt(data);
           navigate("/");
         }
       });

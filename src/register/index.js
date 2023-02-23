@@ -1,11 +1,13 @@
 import axios from "axios";
+import { useAtom } from "jotai";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../userProvider";
+import { jwtAtom } from "../App";
+
 
 
 function Register() {
@@ -17,7 +19,7 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const navigate = useNavigate()
-  const user = useUser();
+  const [jwt,setJwt] = useAtom(jwtAtom);
   const [disabled, setDisabled] = useState(false);
   const handleClick = (e) => {
     setDisabled(true);
@@ -78,7 +80,7 @@ function Register() {
           lastname: lastName
         })
         .then((res) => {
-          user.setJwt(Cookies.get("jwt"));
+          setJwt(Cookies.get("jwt"));
           navigate("/")
         })
         .catch((error) =>{

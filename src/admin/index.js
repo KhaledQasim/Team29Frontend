@@ -1,15 +1,20 @@
 import React from 'react';
-import { useUser } from '../userProvider';
-
+import { useAtom } from 'jotai';
+import { jwtAtom } from '../App';
 
 const Admin = () => {
-    const user = useUser();
+    
+    const [jwt , setJwt] = useAtom(jwtAtom);
+    const clearJWT = () => {
+        setJwt("cleared")       
+    }
     return (
         <div>
             {/* <div>Jwt is: {jwt}</div> */}
             <div>
-                jwt is {user.jwt}
+                jwt is {jwt}
             </div>
+            <button onClick={clearJWT}>clear jwt</button>
         </div>
     );
 };

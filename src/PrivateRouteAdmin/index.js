@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import ajax from '../services/fetchService.js';
 import jwt_decode from "jwt-decode";
-import { useUser } from '../userProvider/index.js';
+import { useAtom } from 'jotai';
+import { jwtAtom } from '../App.js';
+
 const PrivateRouteAdmin = (props) => {
-    const user = useUser();
+    const [jwt,setJwt] = useAtom(jwtAtom);
     const [isLoading, setIsLoading] = useState(true);
     const [isValid, setIsValid] = useState("");
     const { children} = props;
@@ -17,21 +19,21 @@ const PrivateRouteAdmin = (props) => {
     // }, [user.jwt]);
 
     useEffect(() => {
-      if (user && user.jwt) {
+      if (jwt) {
         setRoles(getRolesFromJWT());
       }
-    }, [user, user.jwt]);
+    }, [jwt]);
 
     function getRolesFromJWT() {
-      if(user.jwt){
-        const decodedJwt = jwt_decode(user.jwt);
+      if(jwt){
+        const decodedJwt = jwt_decode(jwt);
         return JSON.stringify(decodedJwt.authorities);
       }
       return [];
     };
     
-    if (user.jwt && user && roles.includes("ADMIN")) {
-      ajax(`/auth/validate`, "get", user.jwt).then((isValid) => {
+    if (jwt && roles.includes("ADMIN")) {
+      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
         setIsValid(isValid);
         setIsLoading(false);
       });
