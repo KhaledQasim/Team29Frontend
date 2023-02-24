@@ -163,7 +163,7 @@ function App() {
       <MDBRow>
         <MDBCol md="12" lg="4" className="mb-4 mb-lg-0">
           <MDBCard>
-            {/* <div className="d-flex justify-content-between p-3">
+            <div className="d-flex justify-content-between p-3">
               <p className="lead mb-0">Today's Combo Offer</p>
               <div
                 className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
@@ -171,7 +171,7 @@ function App() {
               >
                 <p className="text-white mb-0 small">x4</p>
               </div>
-            </div> */}
+            </div>
             <MDBCardImage
               src={image}
               position="top"
@@ -211,7 +211,7 @@ function App() {
         </MDBCol>
         <MDBCol md="12" lg="4" className="mb-4 mb-lg-0">
           <MDBCard>
-            {/* <div className="d-flex justify-content-between p-3">
+            <div className="d-flex justify-content-between p-3">
               <p className="lead mb-0">Today's Combo Offer</p>
               <div
                 className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
@@ -219,7 +219,7 @@ function App() {
               >
                 <p className="text-white mb-0 small">x2</p>
               </div>
-            </div> */}
+            </div>
             <MDBCardImage
               src={image}
               position="top"
@@ -259,7 +259,7 @@ function App() {
         </MDBCol>
         <MDBCol md="12" lg="4" className="mb-4 mb-lg-0">
           <MDBCard>
-            {/* <div className="d-flex justify-content-between p-3">
+            <div className="d-flex justify-content-between p-3">
               <p className="lead mb-0">Today's Combo Offer</p>
               <div
                 className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
@@ -267,7 +267,7 @@ function App() {
               >
                 <p className="text-white mb-0 small">x3</p>
               </div>
-            </div> */}
+            </div>
             <MDBCardImage
               src={image}
               position="top"
