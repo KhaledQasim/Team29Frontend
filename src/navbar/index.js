@@ -38,6 +38,9 @@ function Navbarr() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/products">
+              Products
+            </Nav.Link>
             <Nav.Link as={Link} to="/test">
               Test
             </Nav.Link>
@@ -53,11 +56,11 @@ function Navbarr() {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav className="me-auto">
+          {/* <Nav className="me-auto">
             <Nav.Link as={Link} to="/AddProduct">
               Add Product
             </Nav.Link>
-          </Nav>
+          </Nav> */}
           <Nav className="me-auto">
             {isValid ? (
               <Button
