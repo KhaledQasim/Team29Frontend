@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,20 +10,22 @@ import { Link, useNavigate } from "react-router-dom";
 
 import ajax from "../services/fetchService";
 import { useAtom } from "jotai";
-import { jwtAtom } from "../App";
+import { Atomlogged, jwtAtom } from "../App";
 
 function Navbarr() {
   
   const navigate = useNavigate();
-  const [isValid , setIsValid] = useState();
+  // const [isValid , setIsValid] = useState("");
   const [jwt,setJwt] = useAtom(jwtAtom);
+  const [isLogged, setIsLogged] = useAtom(Atomlogged);
   useEffect(() => {
     if (jwt){
-      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
-        setIsValid(isValid);
+      ajax(`/auth/validate`, "get", jwt).then((isLogged) => {
+        // setIsValid(isValid);
+        setIsLogged(isLogged);
       });
     };
-  }, [jwt]);
+  }, [jwt, setIsLogged]);
 
 
   return (
@@ -62,15 +64,15 @@ function Navbarr() {
             </Nav.Link>
           </Nav> */}
           <Nav className="me-auto">
-            {isValid ? (
+            {isLogged ? (
               <Button
                 variant="secondary"
                 onClick={() => {
                   fetch("/auth/logout").then((response) => {
                     if (response.status === 200){
                       setJwt(null);
-                      navigate("/")
-                      window.location.reload(); 
+                      navigate("/");
+                      setIsLogged(false); 
                     }
                   })
                 }}
