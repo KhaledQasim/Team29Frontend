@@ -210,6 +210,7 @@ function Register() {
             <Form.Control
               type="email"
               placeholder="Email"
+              pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -225,6 +226,7 @@ function Register() {
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
+              minLength={8}
               type="password"
               placeholder="Password"
               required
@@ -232,7 +234,7 @@ function Register() {
               onChange={(event) => setPassword(event.target.value)}
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a password.
+              Please choose a password longer than 8 characters.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>   
@@ -262,14 +264,14 @@ function Register() {
         </Form.Group>
       </Row> */}
       
-      <Form.Group className="mb-3">
+      {/* <Form.Group className="mb-3">
         <Form.Check
           required
           label="Agree to terms and conditions"
           feedback="You must agree before submitting."
           feedbackType="invalid"
         />
-      </Form.Group>
+      </Form.Group> */}
       {errorMsg ? (
         <Container>
           <Row className="justify-content-center mb-4">
