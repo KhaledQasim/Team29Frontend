@@ -10,6 +10,7 @@ import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
 import Admin from './admin';
 import Test from './test';
+import Products from './products/Products';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
@@ -45,6 +46,7 @@ function App() {
             {/* <Route exact path="/admin" element={<Admin/>}/> */}
             <Route exact path="/test" element={<Test/>}/>
             <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/products" element={<Products/>}/>
             <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
             <Route exact path="/logout" element={<Logout />}/>
             <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
