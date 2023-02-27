@@ -27,24 +27,9 @@ export default function Home() {
     }
   return (
     <>
-  <meta charSet="UTF-8" />
-  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeWear Home</title>
-  {/* fontawesome cdn */}
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-    crossOrigin="anonymous"
-    referrerPolicy="no-referrer"
-  />
-  {/* bootstrap css */}
-  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
-  {/* custom css */}
-  {/* <link rel="stylesheet" href="assets/css/main.css" /> */}
-  {/* navbar */}
-  <nav className="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+  
+ 
+  {/* <nav className="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
     <div className="container">
       <a
         className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
@@ -107,7 +92,7 @@ export default function Home() {
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> */}
   {/* end of navbar */}
   {/* header */}
   <header
