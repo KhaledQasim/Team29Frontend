@@ -93,10 +93,10 @@ function Navbarr() {
       crossOrigin="anonymous"
       referrerPolicy="no-referrer"
     />
- 
-    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
     
-    <Navbar className="navbar navbar-expand-lg navbar-light bg-white py-4 ">
+    
+    
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top">
     <div className="container">
       <a
         className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
@@ -132,9 +132,9 @@ function Navbarr() {
       <div className="collapse navbar-collapse order-lg-1" id="navMenu">
         <ul className="navbar-nav mx-auto text-center">
           <li className="nav-item px-2 py-2">
-            <a className="nav-link text-uppercase text-dark" href="#header">
+            <Link className="nav-link text-uppercase text-dark" to="/">
               home
-            </a>
+            </Link>
           </li>
           <li className="nav-item px-2 py-2">
             <Link className="nav-link text-uppercase text-dark" to="/products">
@@ -188,7 +188,9 @@ function Navbarr() {
       </div>
     </div>
   </Navbar>
+  
   </>
+  
   );
 }
 export default Navbarr;

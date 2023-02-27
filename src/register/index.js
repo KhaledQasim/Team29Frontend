@@ -74,7 +74,7 @@ function Register() {
   };
   return (
    
-    <Form  noValidate validated={validated} onSubmit={handleSubmit} >
+    <Form  noValidate validated={validated} onSubmit={handleSubmit} style={{ paddingBottom: 250 , paddingTop: 30 }}>
       <Row className="mb-3">
 
         <Form.Group as={Col} md="4" controlId="firstName">
