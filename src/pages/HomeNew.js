@@ -4,6 +4,7 @@ import { Link, } from 'react-router-dom';
 import './Home.css';
 
 
+
 export default function Home() {
 
     const [products,setProducts]=useState([]);
@@ -93,9 +94,9 @@ export default function Home() {
             </a>
           </li>
           <li className="nav-item px-2 py-2 border-0">
-            <a className="nav-link text-uppercase text-dark" href="#Login">
+            <Link className="nav-link text-uppercase text-dark" to="/login">
               Login
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
