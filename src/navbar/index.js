@@ -132,9 +132,9 @@ function Navbarr() {
       <div className="collapse navbar-collapse order-lg-1" id="navMenu">
         <ul className="navbar-nav mx-auto text-center">
           <li className="nav-item px-2 py-2">
-            <a className="nav-link text-uppercase text-dark" href="/">
+            <Link className="nav-link text-uppercase text-dark" to="/">
               home
-            </a>
+            </Link>
           </li>
           <li className="nav-item px-2 py-2">
             <Link className="nav-link text-uppercase text-dark" to="/products">
