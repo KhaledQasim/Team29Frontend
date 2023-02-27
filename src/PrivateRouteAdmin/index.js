@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import ajax from '../services/fetchService.js';
-import { useLocalState } from '../util/useLocalStorage';
 import jwt_decode from "jwt-decode";
-const PrivateRouteAdmin = ({children}) => {
-    const [jwt,setJwt] = useLocalState("","jwt");
+import { useAtom } from 'jotai';
+import { jwtAtom } from '../App.js';
+
+const PrivateRouteAdmin = (props) => {
+    const [jwt,] = useAtom(jwtAtom);
     const [isLoading, setIsLoading] = useState(true);
     const [isValid, setIsValid] = useState("");
-    const [roles, setRoles] = useState(getRolesFromJWT());
+    const { children } = props;
+    const [role] = useState(getJwtAuth);
 
-    function getRolesFromJWT() {
-      if(jwt){
+    function  getJwtAuth () {
+      if (jwt) {
         const decodedJwt = jwt_decode(jwt);
         return JSON.stringify(decodedJwt.authorities);
       }
-       
+      
+      return[];
     };
+  
     
-    if ((jwt) && (roles.includes("ADMIN"))) {
-      ajax(`/auth/validate?token=${jwt}`, "get", jwt).then((isValid) => {
+    if (jwt && role.includes("ADMIN")) {
+      
+      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
         setIsValid(isValid);
         setIsLoading(false);
       });
@@ -31,7 +37,7 @@ const PrivateRouteAdmin = ({children}) => {
     ) : isValid === true ? (
       children
     ) : (
-      <Navigate to="/login" />
+      <Navigate to="/logout" />
     );
   };
   

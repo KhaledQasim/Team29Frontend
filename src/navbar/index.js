@@ -1,17 +1,33 @@
-import React, { useState } from "react";
-import { Button, NavItem } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 
-import { Link } from "react-router-dom";
-import { useLocalState } from "../util/useLocalStorage";
+import { Link, useNavigate } from "react-router-dom";
+
+
+import ajax from "../services/fetchService";
+import { useAtom } from "jotai";
+import { Atomlogged, jwtAtom } from "../App";
 
 function Navbarr() {
-  const [jwt, setJwt] = useLocalState("", "jwt");
-  const [logged, setLogged] = useState(false);
-  //jwt ? setLogged(true) : setLogged(false);
+  
+  const navigate = useNavigate();
+  // const [isValid , setIsValid] = useState("");
+  const [jwt,setJwt] = useAtom(jwtAtom);
+  const [isLogged, setIsLogged] = useAtom(Atomlogged);
+  useEffect(() => {
+    if (jwt){
+      ajax(`/auth/validate`, "get", jwt).then((isLogged) => {
+        // setIsValid(isValid);
+        setIsLogged(isLogged);
+      });
+    };
+  }, [jwt, setIsLogged]);
+
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -24,7 +40,15 @@ function Navbarr() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            <Nav.Link as={Link} to="/products">
+              Products
+            </Nav.Link>
+            {isLogged ? <Nav.Link as={Link} to="/profile">
+              My Profile
+            </Nav.Link>
+            : <></>
+            }
+            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -34,20 +58,25 @@ function Navbarr() {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
-          <Nav className="me-auto">
+          {/* <Nav className="me-auto">
             <Nav.Link as={Link} to="/AddProduct">
               Add Product
             </Nav.Link>
-          </Nav>
+          </Nav> */}
           <Nav className="me-auto">
-            {jwt ? (
+            {isLogged ? (
               <Button
                 variant="secondary"
                 onClick={() => {
-                  setJwt("");
-                  window.location.href = "/";
+                  fetch("/auth/logout").then((response) => {
+                    if (response.status === 200){
+                      setJwt(null);
+                      navigate("/");
+                      setIsLogged(false); 
+                    }
+                  })
                 }}
               >
                 Logout

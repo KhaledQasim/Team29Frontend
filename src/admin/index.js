@@ -1,14 +1,21 @@
-import React from 'react';
-import { useLocalState } from '../util/useLocalStorage';
+import React, { useState } from 'react';
+import { useAtom } from 'jotai';
+import { jwtAtom } from '../App';
+import jwt_decode from "jwt-decode";
 
 const Admin = () => {
-    const [ jwt, setJwt] = useLocalState("","jwt") 
+
+    const [jwt,] = useAtom(jwtAtom);
+   
+    
+
+   
     return (
         <div>
-            {/* <div>Jwt is: {jwt}</div> */}
             <div>
-                jwt is {jwt}
+                email is {jwt_decode(jwt).sub}
             </div>
+            
         </div>
     );
 };

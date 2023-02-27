@@ -1,149 +1,164 @@
+import axios from "axios";
+
+import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import { useState } from "react";
+import { Col, Container, InputGroup, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import { useLocalState } from "../util/useLocalStorage";
+import { jwtAtom } from "../App";
+
+
+
+
 
 function Register() {
-  
+  const [errorMsg, setErrorMsg] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const navigate = useNavigate()
-  const [jwt , setJwt] = useLocalState("", "jwt");
+  const navigate = useNavigate();
+  const [, setJwt] = useAtom(jwtAtom);
   const [disabled, setDisabled] = useState(false);
-  const handleClick = (e) => {
-    setDisabled(true);
-    sendLoginRequest();
-    setTimeout(() => {
-      setDisabled(false);
-    }, 1250);
-    
-    
-  }
+  // function handleSubmitz () {
+  //   setDisabled(true);
+  //   const form = e.currentTarget;
+  //   // axiosSendLoginRequest();
+    // setTimeout(() => {
+    //   setDisabled(false);
+    // }, 1250);
+  // };
+ 
 
-  function sendLoginRequest() {
-    const reqBody = {
+  // const [validated,setValidated] = useState(false);
+  function axiosSendLoginRequest() {
+ 
+  
+    axios
+    .post("auth/register", {
       email: email,
       password: password,
-      username: username,
       firstname: firstName,
-      lastname: lastName
-    };
-    fetch("auth/register", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
+      lastname: lastName,
     })
-      .then((response) => {
-        if (response.status === 200)
-          return Promise.all([response.json()]);
-        else
-        setEmail("");
-        setPassword("");
-        setPassword2("");
-        return Promise.reject("Invalid Login!");
-      })
-      .then(([body]) => {
-        setJwt(JSON.stringify(body).slice(10, -2));
-        window.location.href = "admin";
-      })
-      .catch((message) => {
-        setEmail("");
-        setPassword("");
-        setPassword2("");
-        alert(message);
-      });
+    .then((res) => {
+      setJwt(Cookies.get("jwt"));
+      navigate("/");
+    })
+    .catch((error) => {
+     
+      if (error.response)
+        setErrorMsg(JSON.stringify(error.response.data).slice(17, -2));
+    });
+    
+      
+    
+    
   }
+  const [validated, setValidated] = useState(false);
+  // const [done, setDone] = useState(false);
+  const handleSubmit = (event) => {
+    setDisabled(true);
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } 
+    setValidated(true);
+    axiosSendLoginRequest();
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1250);    
+  };
   return (
-    <Form >
-      <Form.Group className="mb-3" controlId="email">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          
-          type="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-      </Form.Group>
+   
+    <Form  noValidate validated={validated} onSubmit={handleSubmit} >
+      <Row className="mb-3">
 
-      <Form.Group className="mb-3" controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </Form.Group>
+        <Form.Group as={Col} md="4" controlId="firstName">
+          <Form.Label>First name</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="First name"
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+              Please choose a first name.
+            </Form.Control.Feedback>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="password2">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Confirm Password"
-          value={password2}
-          onChange={(event) => setPassword2(event.target.value)}
-        />
-      </Form.Group>
+        <Form.Group as={Col} md="4" controlId="lastName">
+          <Form.Label>Last name</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+              Please choose a last name.
+            </Form.Control.Feedback>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="firstName">
-        <Form.Label>Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Name"
-          value={firstName}
-          onChange={(event) => setFirstName(event.target.value)}
-        />
-      </Form.Group>
+        <Form.Group as={Col} md="4" controlId="email">
+          <Form.Label>Email</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please choose a valid email.
+            </Form.Control.Feedback>
+          </InputGroup>
+        </Form.Group>
+      </Row>
+      <Row className="mb-3">
+       <Form.Group as={Col} md="4" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              minLength={8}
+              type="password"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please choose a password longer than 8 characters.
+            </Form.Control.Feedback>
+          </InputGroup>
+        </Form.Group>     
+      </Row>
 
-      <Form.Group className="mb-3" controlId="lastName">
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Last Name"
-          value={lastName}
-          onChange={(event) => setLastName(event.target.value)}
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="username">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </Form.Group>
-
-      <Button
-        id="submit"
-        variant="primary"
-        type="button"
-        disabled={disabled}
-        // onClick={() => sendLoginRequest()}
-        onClick={ handleClick}
-      >
-        Login
-      </Button>
-      <Button
-        className="mx-2"
-        id="exit"
-        variant="secondary"
-        type="button"
-        // onClick={() => sendLoginRequest()}
-        onClick={() => {navigate("/")}}
-      >
-        Cancel
-      </Button>
+      {errorMsg ? (
+        <Container>
+          <Row className="justify-content-center mb-4">
+            <Col md="8" lg="6">
+              <div className="" style={{ color: "red", fontWeight: "bold" }}>
+                {errorMsg}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      ) : (
+        <></>
+      )}
+      <Button type="button" onClick={handleSubmit} disabled={disabled}>Register</Button>
     </Form>
+    
   );
 }
 
