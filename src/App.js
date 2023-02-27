@@ -12,7 +12,7 @@ import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
 import Admin from './admin';
 import UserProfile from './UserProfile';
-import Products from './products/Products';
+import Products from './products/Products.jsx';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
