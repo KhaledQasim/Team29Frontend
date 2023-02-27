@@ -2,6 +2,7 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './navbar';
+import Footer from './footer';
 import HomeNew from './pages/HomeNew';
 // import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -56,6 +57,7 @@ function App() {
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/register" element={<Register/>}/>
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );
