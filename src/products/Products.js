@@ -1,50 +1,28 @@
 import React from "react";
 import image from "../components/weWEAR-12.png";
-import { Button } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
+import "../App.css"
 
-function Products() {
+export default function Products() {
     return (
-        <><br></br><Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={image} />
+        <Row xs={1} md={2} className="g-4">
+      {Array.from({ length: 4 }).map((_, idx) => (
+        <Col>
+          <Card>
+            <Card.Img variant="top" src={image} style={{ width: "30rem" }} />
             <Card.Body>
-                <Card.Title>WeWear T-Shirt</Card.Title>
-                <Card.Text>
-                    Description of the clothing item, which includes
-                    material, size range, colour range, and add to basket
-                    options and the price.
-                </Card.Text>
-                <Button variant="primary">More Details</Button>
+              <Card.Title>T-Shirt</Card.Title>
+              <Card.Text>
+                Add description, colour range, size range, price, and two
+                options (e.g., Buy Now, Add to Basket) in this text component.
+              </Card.Text>
             </Card.Body>
-        </Card>
-        <br></br><Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>WeWear Jeans</Card.Title>
-                <Card.Text>
-                    Description of the clothing item, which includes
-                    material, size range, colour range, and add to basket
-                    options and the price.
-                </Card.Text>
-                <Button variant="primary">More Details</Button>
-            </Card.Body>
-        </Card>
-        <br></br><Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>WeWear Shorts</Card.Title>
-                <Card.Text>
-                    Description of the clothing item, which includes
-                    material, size range, colour range, and add to basket
-                    options and the price.
-                </Card.Text>
-                <Button variant="primary">More Details</Button>
-            </Card.Body>
-        </Card></>
+          </Card>
+        </Col>
+      ))}
+    </Row>
     );
 }
-
-export default Products;
 
 
 
