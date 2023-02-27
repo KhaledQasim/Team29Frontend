@@ -53,20 +53,20 @@ function Navbarr() {
        
     //       <Nav className="me-auto">
     //         {isLogged ? (
-    //           <Button
-    //             variant="secondary"
-    //             onClick={() => {
-    //               fetch("/auth/logout").then((response) => {
-    //                 if (response.status === 200){
-    //                   setJwt(null);
-    //                   navigate("/");
-    //                   setIsLogged(false); 
-    //                 }
-    //               })
-    //             }}
-    //           >
-    //             Logout
-    //           </Button>
+              // <Button
+              //   variant="secondary"
+              //   onClick={() => {
+              //     fetch("/auth/logout").then((response) => {
+              //       if (response.status === 200){
+              //         setJwt(null);
+              //         navigate("/");
+              //         setIsLogged(false); 
+              //       }
+              //     })
+              //   }}
+              // >
+              //   Logout
+              // </Button>
     //         ) : (
     //           <Nav className="me-auto">
     //             <Nav.Link as={Link} to="/login">
@@ -97,7 +97,7 @@ function Navbarr() {
  
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
     
-    <Navbar className="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-white py-4 ">
     <div className="container">
       <a
         className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
@@ -147,16 +147,44 @@ function Navbarr() {
               about us
             </a>
           </li>
-          <li className="nav-item px-2 py-2 border-0">
-            <Link className="nav-link text-uppercase text-dark" to="/login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item px-2 py-2 border-0">
-            <Link className="nav-link text-uppercase text-dark" to="/register">
-              Register
-            </Link>
-          </li>
+          {isLogged ?
+          <>
+            <li className="nav-item px-2 py-2 border-0">
+              <Link className="nav-link text-uppercase text-dark" to="/profile">
+                My Profile
+              </Link>
+            </li>
+            <Button
+                variant="secondary"
+                onClick={() => {
+                  fetch("/auth/logout").then((response) => {
+                    if (response.status === 200){
+                      setJwt(null);
+                      navigate("/");
+                      setIsLogged(false); 
+                    }
+                  })
+                }}
+              >
+                Logout
+            </Button>
+          </>
+          :
+          <>
+            <li className="nav-item px-2 py-2 border-0">
+              <Link className="nav-link text-uppercase text-dark" to="/login">
+                Login
+              </Link>
+            </li>
+          
+            <li className="nav-item px-2 py-2 border-0">
+              <Link className="nav-link text-uppercase text-dark" to="/register">
+                Register
+              </Link>
+            </li>
+          </>
+          }
+         
         </ul>
       </div>
     </div>
