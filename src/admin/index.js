@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAtom } from 'jotai';
 import { jwtAtom } from '../App';
 import jwt_decode from "jwt-decode";

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import style from "./style.css"
 import { useAtom } from "jotai";
 import Cookies from "js-cookie";
 import { useState } from "react";
@@ -8,12 +8,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { jwtAtom } from "../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+const eye = <FontAwesomeIcon icon={faEye} />;
 
 
 
 
 function Register() {
+  const [passwordShown, setPasswordShown] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +34,10 @@ function Register() {
     //   setDisabled(false);
     // }, 1250);
   // };
- 
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
 
   // const [validated,setValidated] = useState(false);
   function axiosSendLoginRequest() {
@@ -130,12 +137,14 @@ function Register() {
           <InputGroup hasValidation>
             <Form.Control
               minLength={8}
-              type="password"
+              type={passwordShown ? "text" : "password"}
               placeholder="Password"
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              
             />
+            <i id="register-eye" onClick={togglePasswordVisiblity} style= {style}>{eye}</i>
             <Form.Control.Feedback type="invalid">
               Please choose a password longer than 8 characters.
             </Form.Control.Feedback>

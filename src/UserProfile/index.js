@@ -15,7 +15,7 @@ const Profile = () => {
 
     return (
        
-        <Container>
+        <Container style={{ paddingBottom: 400 , paddingTop: 30 }}>
             <Row>
                 <div>
                     Hello {jwt_decode(jwt).sub}
