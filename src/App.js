@@ -9,7 +9,7 @@ import EditProduct from './products/EditProduct';
 import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
 import Admin from './admin';
-import Test from './test';
+import UserProfile from './UserProfile';
 import Products from './products/Products';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
@@ -44,7 +44,7 @@ function App() {
           <Routes>
             <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
             {/* <Route exact path="/admin" element={<Admin/>}/> */}
-            <Route exact path="/test" element={<Test/>}/>
+            <Route exact path="/profile" element={<UserProfile/>}/>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/products" element={<Products/>}/>
             <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
