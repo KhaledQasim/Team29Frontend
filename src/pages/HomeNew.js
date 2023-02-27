@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom';
@@ -40,7 +41,7 @@ export default function Home() {
   {/* bootstrap css */}
   <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
   {/* custom css */}
-  <link rel="stylesheet" href="assets/css/main.css" />
+  {/* <link rel="stylesheet" href="assets/css/main.css" /> */}
   {/* navbar */}
   <nav className="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
     <div className="container">
@@ -183,7 +184,7 @@ export default function Home() {
         <div className="collection-list mt-4 row gx-0 gy-3">
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 best">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src={process.env.PUBLIC_URL + 'HTML/we-WEAR-10.png'} className="w-100" alt='products'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -212,7 +213,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 feat">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
