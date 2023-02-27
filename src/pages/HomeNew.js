@@ -1,14 +1,15 @@
 /* eslint-disable no-useless-concat */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, } from 'react-router-dom';
+
 import './Home.css';
+import { Button } from 'react-bootstrap';
 
 
 
 export default function Home() {
 
-    const [products,setProducts]=useState([]);
+    const [,setProducts]=useState([]);
 
 
 
@@ -21,10 +22,10 @@ export default function Home() {
         setProducts(result.data);
     };
 
-    const deleteProduct=async (id)=>{
-        await axios.delete(`http://localhost:8080/product/${id}`);
-        loadProducts();
-    }
+    // const deleteProduct=async (id)=>{
+    //     await axios.delete(`http://localhost:8080/product/${id}`);
+    //     loadProducts();
+    // }
   return (
     <>
   
@@ -105,14 +106,14 @@ export default function Home() {
       <div className="text-center carousel-item active">
         <h2 className="text-capitalize text-white">WeWear collection</h2>
         <h1 className="text-uppercase py-2 fw-bold text-white">new arrivals</h1>
-        <a href="#" className="btn mt-3 text-uppercase">
+        <a href="/" className="btn mt-3 text-uppercase">
           shop now
         </a>
       </div>
       <div className="text-center carousel-item">
         <h2 className="text-capitalize text-white">WeWear Collection</h2>
         <h1 className="text-uppercase py-2 fw-bold text-white">new season</h1>
-        <a href="#" className="btn mt-3 text-uppercase">
+        <a href="/" className="btn mt-3 text-uppercase">
           buy now
         </a>
       </div>
@@ -150,13 +151,13 @@ export default function Home() {
           >
             All
           </button>
-          <button
+          <Button
             type="button"
             className="btn m-2 text-dark"
             data-filter=".best"
           >
             Best Sellers
-          </button>
+          </Button>
           <button
             type="button"
             className="btn m-2 text-dark"
@@ -233,7 +234,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 new">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -427,7 +428,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
@@ -442,7 +443,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
@@ -457,7 +458,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
@@ -472,7 +473,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
@@ -488,7 +489,7 @@ export default function Home() {
         <div className="offers-content">
           <span className="text-white">Discount Up To 40%</span>
           <h2 className="mt-2 mb-4 text-white">Student Offer!</h2>
-          <a href="#" className="btn">
+          <a href="/" className="btn">
             Shop Now
           </a>
         </div>
