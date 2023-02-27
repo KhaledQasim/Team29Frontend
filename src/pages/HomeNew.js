@@ -1,14 +1,15 @@
 /* eslint-disable no-useless-concat */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, } from 'react-router-dom';
+
 import './Home.css';
+import { Button } from 'react-bootstrap';
 
 
 
 export default function Home() {
 
-    const [products,setProducts]=useState([]);
+    const [,setProducts]=useState([]);
 
 
 
@@ -21,30 +22,15 @@ export default function Home() {
         setProducts(result.data);
     };
 
-    const deleteProduct=async (id)=>{
-        await axios.delete(`http://localhost:8080/product/${id}`);
-        loadProducts();
-    }
+    // const deleteProduct=async (id)=>{
+    //     await axios.delete(`http://localhost:8080/product/${id}`);
+    //     loadProducts();
+    // }
   return (
     <>
-  <meta charSet="UTF-8" />
-  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeWear Home</title>
-  {/* fontawesome cdn */}
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-    crossOrigin="anonymous"
-    referrerPolicy="no-referrer"
-  />
-  {/* bootstrap css */}
-  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
-  {/* custom css */}
-  {/* <link rel="stylesheet" href="assets/css/main.css" /> */}
-  {/* navbar */}
-  <nav className="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+  
+ 
+  {/* <nav className="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
     <div className="container">
       <a
         className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
@@ -85,7 +71,7 @@ export default function Home() {
             </a>
           </li>
           <li className="nav-item px-2 py-2">
-            <a className="nav-link text-uppercase text-dark" href="#collection">
+            <a className="nav-link text-uppercase text-dark" href="/products">
               collection
             </a>
           </li>
@@ -99,10 +85,15 @@ export default function Home() {
               Login
             </Link>
           </li>
+          <li className="nav-item px-2 py-2 border-0">
+            <Link className="nav-link text-uppercase text-dark" to="/register">
+              Register
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> */}
   {/* end of navbar */}
   {/* header */}
   <header
@@ -115,14 +106,14 @@ export default function Home() {
       <div className="text-center carousel-item active">
         <h2 className="text-capitalize text-white">WeWear collection</h2>
         <h1 className="text-uppercase py-2 fw-bold text-white">new arrivals</h1>
-        <a href="#" className="btn mt-3 text-uppercase">
+        <a href="/" className="btn mt-3 text-uppercase">
           shop now
         </a>
       </div>
       <div className="text-center carousel-item">
         <h2 className="text-capitalize text-white">WeWear Collection</h2>
         <h1 className="text-uppercase py-2 fw-bold text-white">new season</h1>
-        <a href="#" className="btn mt-3 text-uppercase">
+        <a href="/" className="btn mt-3 text-uppercase">
           buy now
         </a>
       </div>
@@ -160,13 +151,13 @@ export default function Home() {
           >
             All
           </button>
-          <button
+          <Button
             type="button"
             className="btn m-2 text-dark"
             data-filter=".best"
           >
             Best Sellers
-          </button>
+          </Button>
           <button
             type="button"
             className="btn m-2 text-dark"
@@ -243,7 +234,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 new">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -272,7 +263,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 best">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -301,7 +292,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 feat">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -330,7 +321,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 new">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -359,7 +350,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 best">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -388,7 +379,7 @@ export default function Home() {
           </div>
           <div className="col-md-6 col-lg-4 col-xl-3 p-2 feat">
             <div className="special-img collection-img position-relative">
-              <img src="images/we_WEAR-13.png" className="w-100" />
+              <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
               <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                 sale
               </span>
@@ -429,7 +420,7 @@ export default function Home() {
       <div className="special-list row g-0">
         <div className="col-md-6 col-lg-4 col-xl-3 p-2">
           <div className="special-img position-relative overflow-hidden">
-            <img src="images/we_WEAR-13.png" className="w-100" />
+            <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
             <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
               {/* <i class = "fas fa-heart"></i>//*/}
             </span>
@@ -437,14 +428,14 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
         </div>
         <div className="col-md-6 col-lg-4 col-xl-3 p-2">
           <div className="special-img position-relative overflow-hidden">
-            <img src="images/we_WEAR-13.png" className="w-100" />
+            <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
             <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
               {/* <i class = "fas fa-heart"></i>//*/}
             </span>
@@ -452,14 +443,14 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
         </div>
         <div className="col-md-6 col-lg-4 col-xl-3 p-2">
           <div className="special-img position-relative overflow-hidden">
-            <img src="images/we_WEAR-13.png" className="w-100" />
+            <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
             <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
               {/* <i class = "fas fa-heart"></i>//*/}
             </span>
@@ -467,14 +458,14 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
         </div>
         <div className="col-md-6 col-lg-4 col-xl-3 p-2">
           <div className="special-img position-relative overflow-hidden">
-            <img src="images/we_WEAR-13.png" className="w-100" />
+            <img src="images/we_WEAR-13.png" className="w-100" alt='product'/>
             <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
               {/* <i class = "fas fa-heart"></i>//*/}
             </span>
@@ -482,7 +473,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-capitalize mt-3 mb-1">WeWear Black Hoodie</p>
             <span className="fw-bold d-block">£77.77</span>
-            <a href="#" className="btn btn-primary mt-3">
+            <a href="/" className="btn btn-primary mt-3">
               Add to Cart
             </a>
           </div>
@@ -498,7 +489,7 @@ export default function Home() {
         <div className="offers-content">
           <span className="text-white">Discount Up To 40%</span>
           <h2 className="mt-2 mb-4 text-white">Student Offer!</h2>
-          <a href="#" className="btn">
+          <a href="/" className="btn">
             Shop Now
           </a>
         </div>
@@ -534,116 +525,7 @@ export default function Home() {
   </section>
   {/* end of newsletter */}
   {/* footer */}
-  <footer className="bg-dark py-5">
-    <div className="container">
-      <div className="row text-white g-4">
-        <div className="col-md-6 col-lg-3">
-          <a
-            className="text-uppercase text-decoration-none brand text-white"
-            href="index.html"
-          >
-            WeWear
-          </a>
-          <p className="text-white text-muted mt-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            mollitia quisquam veniam odit cupiditate, ullam aut voluptas velit
-            dolor ipsam?
-          </p>
-        </div>
-        <div className="col-md-6 col-lg-3">
-          <h5 className="fw-light">Links</h5>
-          <ul className="list-unstyled">
-            <li className="my-3">
-              <a
-                href="#"
-                className="text-white text-decoration-none text-muted"
-              >
-                <i className="fas fa-chevron-right me-1" /> Home
-              </a>
-            </li>
-            <li className="my-3">
-              <a
-                href="#"
-                className="text-white text-decoration-none text-muted"
-              >
-                <i className="fas fa-chevron-right me-1" /> Collection
-              </a>
-            </li>
-            <li className="my-3">
-              <a
-                href="#"
-                className="text-white text-decoration-none text-muted"
-              >
-                <i className="fas fa-chevron-right me-1" /> About us
-              </a>
-            </li>
-            <li className="my-3">
-              <a
-                href="#"
-                className="text-white text-decoration-none text-muted"
-              >
-                <i className="fas fa-chevron-right me-1" /> Login
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="col-md-6 col-lg-3">
-          <h5 className="fw-light mb-3">Contact Us</h5>
-          <div className="d-flex justify-content-start align-items-start my-2 text-muted">
-            <span className="me-3">
-              <i className="fas fa-map-marked-alt" />
-            </span>
-            <span className="fw-light">
-              Aston Street, Birmingham, B4 smth, United Kingdom
-            </span>
-          </div>
-          <div className="d-flex justify-content-start align-items-start my-2 text-muted">
-            <span className="me-3">
-              <i className="fas fa-envelope" />
-            </span>
-            <span className="fw-light">info@WeWear.com</span>
-          </div>
-          <div className="d-flex justify-content-start align-items-start my-2 text-muted">
-            <span className="me-3">
-              <i className="fas fa-phone-alt" />
-            </span>
-            <span className="fw-light">+4477777777</span>
-          </div>
-        </div>
-        <div className="col-md-6 col-lg-3">
-          <h5 className="fw-light mb-3">Follow Us</h5>
-          <div>
-            <ul className="list-unstyled d-flex">
-              <li>
-                <a
-                  href="#"
-                  className="text-white text-decoration-none text-muted fs-4 me-4"
-                >
-                  <i className="fab fa-facebook-f" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white text-decoration-none text-muted fs-4 me-4"
-                >
-                  <i className="fab fa-twitter" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white text-decoration-none text-muted fs-4 me-4"
-                >
-                  <i className="fab fa-instagram" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  
   {/* end of footer */}
   {/* jquery */}
   {/* isotope js */}
