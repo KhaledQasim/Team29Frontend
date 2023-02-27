@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom';
-import '/Users/momo/Desktop/team29frontend/src/assets/css/home.css';
+import './Home.css';
 
 
 export default function Home() {
