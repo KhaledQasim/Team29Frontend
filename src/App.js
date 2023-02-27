@@ -3,7 +3,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './navbar';
 import HomeNew from './pages/HomeNew';
-import Home from './Home';
+// import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddProduct from './products/AddProduct';
 import EditProduct from './products/EditProduct';
@@ -46,8 +46,8 @@ function App() {
           <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
           {/* <Route exact path="/admin" element={<Admin/>}/> */}
           <Route exact path="/profile" element={<UserProfile/>}/>
-          <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/homenew" element={<HomeNew/>}/>
+          <Route exact path="/" element={<HomeNew/>}/>
+          {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
           <Route exact path="/products" element={<Products/>}/>
           <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
           <Route exact path="/logout" element={<Logout />}/>
