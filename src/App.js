@@ -2,6 +2,7 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './navbar';
+import HomeNew from './pages/HomeNew';
 import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddProduct from './products/AddProduct';
@@ -41,19 +42,17 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-          <Routes>
-            <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
-            {/* <Route exact path="/admin" element={<Admin/>}/> */}
-            <Route exact path="/profile" element={<UserProfile/>}/>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/products" element={<Products/>}/>
-            <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
-            <Route exact path="/logout" element={<Logout />}/>
-            <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
-            <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-            <Route exact path="/login" element={<Login/>}/>
-            <Route exact path="/register" element={<Register/>}/>
-          </Routes>
+        <Routes>
+          <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
+          {/* <Route exact path="/admin" element={<Admin/>}/> */}
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/homenew" element={<HomeNew/>}/>
+          <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
+          <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
+          <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
+          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/register" element={<Register/>}/>
+        </Routes>
       </Router>
     </div>
   );
