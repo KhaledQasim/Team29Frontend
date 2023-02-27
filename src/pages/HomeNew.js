@@ -85,7 +85,7 @@ export default function Home() {
             </a>
           </li>
           <li className="nav-item px-2 py-2">
-            <a className="nav-link text-uppercase text-dark" href="#collection">
+            <a className="nav-link text-uppercase text-dark" href="/products">
               collection
             </a>
           </li>
@@ -97,6 +97,11 @@ export default function Home() {
           <li className="nav-item px-2 py-2 border-0">
             <Link className="nav-link text-uppercase text-dark" to="/login">
               Login
+            </Link>
+          </li>
+          <li className="nav-item px-2 py-2 border-0">
+            <Link className="nav-link text-uppercase text-dark" to="/register">
+              Register
             </Link>
           </li>
         </ul>
