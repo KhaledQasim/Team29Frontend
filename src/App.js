@@ -14,6 +14,10 @@ import Admin from './admin';
 import UserProfile from './UserProfile';
 import Products from './products/Products';
 import TShirts from './products/T-shirts';
+import Jumpers from './products/Jumpers';
+import Jeans from './products/Jeans';
+import Shorts from './products/Shorts';
+import Jackets from './products/Jackets';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
@@ -51,7 +55,11 @@ function App() {
           <Route exact path="/" element={<HomeNew/>}/>
           {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
           <Route exact path="/products" element={<Products/>}/>
-          <Route exact path="/products/t-shirts" element={<TShirts/>}/> 
+          <Route exact path="/products/t-shirts" element={<TShirts/>}/>
+          <Route exact path="/products/jumpers" element={<Jumpers/>}/>
+          <Route exact path="/products/jeans" element={<Jeans/>}/>
+          <Route exact path="/products/shorts" element={<Shorts/>}/>
+          <Route exact path="/products/jackets" element={<Jackets/>}/>
           <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
           <Route exact path="/logout" element={<Logout />}/>
           <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>

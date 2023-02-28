@@ -30,7 +30,7 @@ export default function Products() {
                 <Card.Text>
                     View all of our item in our WeWear Jumpers product category.
                 </Card.Text>
-                <Button variant="primary">View Jumpers</Button>
+                <Button onClick={() => {navigate("/products/jumpers");}} variant="primary">View Jumpers</Button>
             </Card.Body>
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
@@ -44,7 +44,7 @@ export default function Products() {
                 <Card.Text>
                     View all of our items in our WeWear Jeans product category.
                 </Card.Text>
-                <Button variant="primary">View Jeans</Button>
+                <Button onClick={() => {navigate("/products/jeans");}} variant="primary">View Jeans</Button>
             </Card.Body>
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
@@ -60,7 +60,7 @@ export default function Products() {
                 <Card.Text>
                     View all of our item in our WeWear Shorts product category.
                 </Card.Text>
-                <Button variant="primary">View Shorts</Button>
+                <Button onClick={() => {navigate("/products/shorts");}} variant="primary">View Shorts</Button>
             </Card.Body>
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
@@ -74,7 +74,7 @@ export default function Products() {
                 <Card.Text>
                     View all of our items in our WeWear Jackets product category.
                 </Card.Text>
-                <Button variant="primary">View Jackets</Button>
+                <Button onClick={() => {navigate("/products/jackets");}} variant="primary">View Jackets</Button>
             </Card.Body>
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
