@@ -12,7 +12,8 @@ import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
 import Admin from './admin';
 import UserProfile from './UserProfile';
-import Products from './products/Products.jsx';
+import Products from './products/Products';
+import TShirts from './products/T-shirts';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
@@ -50,14 +51,15 @@ function App() {
           <Route exact path="/" element={<HomeNew/>}/>
           {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
           <Route exact path="/products" element={<Products/>}/>
+          <Route exact path="/products/t-shirts" element={<TShirts/>}/> 
           <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
           <Route exact path="/logout" element={<Logout />}/>
           <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
           <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/login" element={<Login className="content-container"/>}/>
           <Route exact path="/register" element={<Register/>}/>
         </Routes>
-        <Footer/>
+        <Footer className="footer--pin"/>
       </Router>
     </div>
   );

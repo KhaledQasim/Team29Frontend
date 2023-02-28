@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
 import image from "../components/img/weWEAR-12.png";
 import style from "../App.css";
+import { Link } from "react-router-dom";
 
 export default function Products() {
     return (
@@ -13,7 +14,7 @@ export default function Products() {
                 <Card.Text>
                     View all of our items in our WeWear T-Shirts product category.
                 </Card.Text>
-                <Button variant="primary">View T-Shirts</Button>
+                <Button onClick={Link} href="/products/t-shirts" variant="primary">View T-Shirts</Button>
             </Card.Body>
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>

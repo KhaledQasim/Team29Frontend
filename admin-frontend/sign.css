@@ -1,0 +1,155 @@
+*:before,
+*:after{
+    padding: 0; margin: 0;
+box-sizing: border-box;
+}
+body{
+background-color: #080710;
+
+}
+.background{
+width: 430px;
+position: absolute;
+transform: translate (-50%, -50%);
+Left: 50%;
+Top: 50%; 
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute; border-radius: 50%;
+    }
+    .shape:first-child{
+        background:linear-gradient(to right, #98BDFF, #4B49AC ); 
+        right:  180px;
+        bottom: -80px;
+    }
+    form{
+    margin-left: 30%;
+    margin-bottom: 20%;
+    height:fit-content;
+    width: 500px;
+    background-color: rgba(255,255,255,0.13); position: absolute;
+    transform: translate (-50%, -50%); top: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur (10px);
+    border: 2px solid rgba(255, 255, 255,0.1); box-shadow: 0 0 40px rgba (8,7,16,0.6); padding: 50px 35px;
+    }
+    form *{
+        font-family: 'Poppins',sans-serif;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        outline: none;
+        border: none;
+        }
+        form h3{
+        font-size: 32px; font-weight: 500; line-height: 42px; text-align: center;
+        }
+        label{
+        display: block; margin-top: 20px; font-size: 16px; font-weight: 500;
+        }
+        input{
+        display: block;
+        height: 50px;
+        width: 100%;
+        margin-bottom: 2.5px;
+        background-color: rgba(255,255, 255, 0.07); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300;}
+          input[type=submit]{
+        margin-top: 20px;
+        width: 100%;
+        background-color: #98BDFF;
+        color: #080710;
+        padding: 15px 0; font-size: 18px; font-weight: 600; border-radius: 5px; cursor:pointer }
+        input[type=submit]:hover{
+            background-color: #4B49AC;
+        }
+        input[type=checkbox] {
+            /* Add if not using autoprefixer */
+            -webkit-appearance: none;
+            appearance: none;
+            /* For iOS < 15 to remove gradient background */
+            background-color: rgba(255, 255, 255,0.1);
+            /* Not removed via appearance */
+            margin: 0;
+          }
+          input[type=checkbox] {
+            appearance: none;
+            background-color: rgba(255, 255, 255,0.1);
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 0.15em solid currentColor;
+            border-radius: 0.15em;
+            transform: translateY(-0.075em);
+          }
+        input[type=checkbox] {
+            /* ...existing styles */
+            display: grid;
+            place-content: center;
+          }
+          
+          input[type=checkbox]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--form-control-color);
+          }
+          input[type=checkbox]:checked::before {
+            transform: scale(1);
+          }
+          input[type=checkbox]::before {
+            /* ...existing styles */
+          
+            /* Windows High Contrast Mode */
+            background-color: #4B49AC;
+          }
+          input[type=checkbox]::before {
+            /* ...existing styles */
+          
+            transform-origin: bottom left;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+          }
+          input[type=checkbox]:focus {
+            outline: max(2px, 0.15em) solid currentColor;
+            outline-offset: max(2px, 0.15em);
+          }
+          .error{
+            margin:10px 0;
+            background-color:rgba(255, 255, 255, 0.79);
+            color: #b72d2d;
+            border-radius: 5px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            text-align:center;
+          }
+          
+  form p .err{
+    color: #b72d2d;
+  }
+
+  .pass-strenght{
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+  }
+  .strenght.lable{
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .strenght.precent{
+    flex: 1;
+    height: 5px;
+    border-radius: 10px;
+    display: block ;
+    background: #eee;
+  }
+  .strenght.precent span{
+    display: block;
+    height: 10px;
+    transition: all 0.4s;
+    border-radius: 10px;
+  }

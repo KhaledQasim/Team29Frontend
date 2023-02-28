@@ -21,7 +21,7 @@ export default function Home() {
     //     loadProducts();
     // }
   return (
-    <div className='container'>
+    <div className='container content-container'>
         <div className='py-4'>
             <table className="table border shadow">
             <thead>

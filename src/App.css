@@ -53,3 +53,21 @@
   margin-bottom: 10px;
   width: 300px;
 }
+
+.content-container {
+    min-height: calc(100vh - 34px);
+    padding-top: 1%;
+}
+
+  
+.footer--pin {
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+.tshirt-price {
+  color: red;
+  font-size: x-large;
+}
+  

@@ -66,7 +66,7 @@ function Login() {
   return (
     <>
     
-      <Form style={{ paddingBottom: 300 , paddingTop: 30 }}>
+      <Form className="content-container">
       <Row className="mb-3">
       <Form.Group className="mb-3" controlId="email" as={Col} md="6">
         <Form.Label>Email address</Form.Label>

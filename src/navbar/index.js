@@ -94,8 +94,7 @@ function Navbarr() {
       referrerPolicy="no-referrer"
     />
  
-    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
-    
+   
     <Navbar className="navbar navbar-expand-lg navbar-light bg-white py-4 ">
     <div className="container">
       <a

@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import './Home.css';
 import { Button } from 'react-bootstrap';
+// import $ from 'jquery';
 
 
 
@@ -18,7 +19,7 @@ export default function Home() {
     },[]);
 
     const loadProducts=async()=>{
-        const result=await axios.get("http://localhost:8080/products");
+        const result=await axios.get("http://localhost:3000/products");
         setProducts(result.data);
     };
 
@@ -64,13 +65,7 @@ export default function Home() {
         <span className="navbar-toggler-icon" />
       </button>
       <div className="collapse navbar-collapse order-lg-1" id="navMenu">
-        <ul className="navbar-nav mx-auto text-center">
-          <li className="nav-item px-2 py-2">
-            <a className="nav-link text-uppercase text-dark" href="#header">
-              home
-            </a>
-          </li>
-          <li className="nav-item px-2 py-2">
+        <ul className="navbar-nav mx-aut•••••••••••y-2">
             <a className="nav-link text-uppercase text-dark" href="/products">
               collection
             </a>
@@ -96,12 +91,12 @@ export default function Home() {
   </nav> */}
   {/* end of navbar */}
   {/* header */}
-  <header
+  <header 
     id="header"
-    className="vh-100 carousel slide"
+    className="vh-100 carousel slide content-container"
     data-bs-ride="carousel"
     style={{ paddingTop: 104 }}
-  >
+   >
     <div className="container h-100 d-flex align-items-center carousel-inner">
       <div className="text-center carousel-item active">
         <h2 className="text-capitalize text-white">WeWear collection</h2>
@@ -135,6 +130,7 @@ export default function Home() {
       <span className="carousel-control-next-icon" />
     </button>
   </header>
+ 
   {/* end of header */}
   {/* collection */}
   <section id="collection" className="py-5">
