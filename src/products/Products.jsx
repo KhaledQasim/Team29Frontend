@@ -2,9 +2,10 @@ import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
 import image from "./images/weWEAR-12.png";
 import style from "../App.css";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Products() {
+    const navigate = useNavigate();
     return (
     <><CardGroup>
         <Card className="category" style={style}>
@@ -14,7 +15,8 @@ export default function Products() {
                 <Card.Text>
                     View all of our items in our WeWear T-Shirts product category.
                 </Card.Text>
-                <Button onClick={Link} href="/products/t-shirts" variant="primary">View T-Shirts</Button>
+                {/* to="/products/t-shirts" */}
+                <Button  onClick={() => {navigate("/products/t-shirts");}} variant="primary">View T-Shirts</Button>
             </Card.Body>
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
