@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
 import image from "../components/img/weWEAR-12.png";
-import style from "../products/categories.css";
+import style from "../App.css";
 
 export default function Products() {
     return (

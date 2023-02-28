@@ -106,7 +106,7 @@ export default function Home() {
       <div className="text-center carousel-item active">
         <h2 className="text-capitalize text-white">WeWear collection</h2>
         <h1 className="text-uppercase py-2 fw-bold text-white">new arrivals</h1>
-        <a href="/" className="btn mt-3 text-uppercase">
+        <a href="/products" className="btn mt-3 text-uppercase">
           shop now
         </a>
       </div>
