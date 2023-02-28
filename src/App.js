@@ -24,6 +24,8 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
 import Logout from './logout';
+import Basket from './basket/Basket';
+ 
 
 export const jwtAtom = atom(Cookies.get("jwt"));
 export const Atomlogged = atom("");
@@ -49,6 +51,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          <Route exact path="/basket" element={<Basket />}/>
           <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
           {/* <Route exact path="/admin" element={<Admin/>}/> */}
           <Route exact path="/profile" element={<UserProfile/>}/>

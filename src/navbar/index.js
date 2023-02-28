@@ -28,6 +28,7 @@ function Navbarr() {
 
 
   return (
+
     // <Navbar bg="light" expand="lg">
     //   <Container>
     //     <Navbar.Brand as={Link} to="/">
@@ -136,6 +137,11 @@ function Navbarr() {
             </Link>
           </li>
           <li className="nav-item px-2 py-2">
+            <Link className="nav-link text-uppercase text-dark" to="/basket">
+              Basket
+            </Link>
+          </li>
+          <li className="nav-item px-2 py-2">
             <Link className="nav-link text-uppercase text-dark" to="/products">
               collection
             </Link>
@@ -153,6 +159,7 @@ function Navbarr() {
               </Link>
             </li>
             <Button
+
                 variant="secondary"
                 onClick={() => {
                   fetch("/auth/logout").then((response) => {
