@@ -54,10 +54,10 @@ function App() {
           <Route exact path="/logout" element={<Logout />}/>
           <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
           <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/login" element={<Login className="content-container"/>}/>
           <Route exact path="/register" element={<Register/>}/>
         </Routes>
-        <Footer/>
+        <Footer className="footer--pin"/>
       </Router>
     </div>
   );
