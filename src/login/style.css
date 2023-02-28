@@ -1,0 +1,9 @@
+#login-eye {
+    position: absolute;
+    top: 20%;
+    right: -3%;
+  }
+  #login-eye:hover {
+    color: #00fcb6;
+    cursor: pointer;
+  }

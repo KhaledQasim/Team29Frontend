@@ -17,7 +17,7 @@ function Logout  ()  {
     }, [setIsLogged, setJwt])
     
     return (
-        <div>
+        <div className="content-container">
         Your JWT has expired or is Invalid, please re-login.    
         </div>
     );

@@ -1,0 +1,9 @@
+#register-eye {
+    position: absolute;
+    top: 20%;
+    right: -4%;
+  }
+  #register-eye:hover {
+    color: #00fcb6;
+    cursor: pointer;
+  }

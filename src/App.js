@@ -2,14 +2,22 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './navbar';
-import Home from './Home';
+import Footer from './footer';
+import HomeNew from './pages/HomeNew';
+// import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddProduct from './products/AddProduct';
 import EditProduct from './products/EditProduct';
 import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
 import Admin from './admin';
-import Test from './test';
+import UserProfile from './UserProfile';
+import Products from './products/Products';
+import TShirts from './products/T-shirts';
+import Jumpers from './products/Jumpers';
+import Jeans from './products/Jeans';
+import Shorts from './products/Shorts';
+import Jackets from './products/Jackets';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
@@ -42,19 +50,27 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-          <Routes>
-            <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
-            {/* <Route exact path="/admin" element={<Admin/>}/> */}
-            <Route exact path="/test" element={<Test/>}/>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
-            <Route exact path="/logout" element={<Logout />}/>
-            <Route exact path="/basket" element={<Basket />}/>
-            <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
-            <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-            <Route exact path="/login" element={<Login/>}/>
-            <Route exact path="/register" element={<Register/>}/>
-          </Routes>
+        <Routes>
+          <Route exact path="/basket" element={<Basket />}/>
+          <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
+          {/* <Route exact path="/admin" element={<Admin/>}/> */}
+          <Route exact path="/profile" element={<UserProfile/>}/>
+          <Route exact path="/" element={<HomeNew/>}/>
+          {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
+          <Route exact path="/products" element={<Products/>}/>
+          <Route exact path="/products/t-shirts" element={<TShirts/>}/>
+          <Route exact path="/products/jumpers" element={<Jumpers/>}/>
+          <Route exact path="/products/jeans" element={<Jeans/>}/>
+          <Route exact path="/products/shorts" element={<Shorts/>}/>
+          <Route exact path="/products/jackets" element={<Jackets/>}/>
+          <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
+          <Route exact path="/logout" element={<Logout />}/>
+          <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
+          <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
+          <Route exact path="/login" element={<Login className="content-container"/>}/>
+          <Route exact path="/register" element={<Register/>}/>
+        </Routes>
+        <Footer className="footer--pin"/>
       </Router>
     </div>
   );
