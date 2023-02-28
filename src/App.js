@@ -24,9 +24,7 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
 import Logout from './logout';
-import Basket from './basket/Basket';
- 
-
+import Basket from './basket/Basket'; 
 export const jwtAtom = atom(Cookies.get("jwt"));
 export const Atomlogged = atom("");
 function App() {
@@ -54,7 +52,7 @@ function App() {
           <Route exact path="/basket" element={<Basket />}/>
           <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
           {/* <Route exact path="/admin" element={<Admin/>}/> */}
-          <Route exact path="/profile" element={<UserProfile/>}/>
+          <Route exact path="/profile" element={<PrivateRoute><UserProfile/></PrivateRoute>}/>
           <Route exact path="/" element={<HomeNew/>}/>
           {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
           <Route exact path="/products" element={<Products/>}/>
@@ -67,7 +65,7 @@ function App() {
           <Route exact path="/logout" element={<Logout />}/>
           <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
           <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-          <Route exact path="/login" element={<Login className="content-container"/>}/>
+          <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/register" element={<Register/>}/>
         </Routes>
         <Footer className="footer--pin"/>

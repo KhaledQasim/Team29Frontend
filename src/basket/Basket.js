@@ -60,7 +60,7 @@ export default function Basket() {
   };
 
   return (
-    <div className='container'>
+    <div className='container content-container'>
       <h1 className='text-center m-4'>Shopping Cart</h1>
       <div className='row'>
         {products.length === 0 ? (

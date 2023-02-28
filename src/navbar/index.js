@@ -12,7 +12,7 @@ import { useAtom } from "jotai";
 import { Atomlogged, jwtAtom } from "../App";
 
 function Navbarr() {
-  
+  // const [role] = useState(getJwtAuth);
   const navigate = useNavigate();
   // const [isValid , setIsValid] = useState("");
   const [jwt,setJwt] = useAtom(jwtAtom);
@@ -28,59 +28,6 @@ function Navbarr() {
 
 
   return (
-
-    // <Navbar bg="light" expand="lg">
-    //   <Container>
-    //     <Navbar.Brand as={Link} to="/">
-    //       React-Bootstrap
-    //     </Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    //     <Navbar.Collapse id="basic-navbar-nav">
-    //       <Nav className="me-auto">
-    //         <Nav.Link as={Link} to="/">
-    //           Home
-    //         </Nav.Link>
-    //         <Nav.Link as={Link} to="/products">
-    //           Products
-    //         </Nav.Link>
-    //         {isLogged ? <Nav.Link as={Link} to="/profile">
-    //           My Profile
-    //         </Nav.Link>
-    //         : <></>
-    //         }
-            
-    //       </Nav>
-       
-    //       <Nav className="me-auto">
-    //         {isLogged ? (
-              // <Button
-              //   variant="secondary"
-              //   onClick={() => {
-              //     fetch("/auth/logout").then((response) => {
-              //       if (response.status === 200){
-              //         setJwt(null);
-              //         navigate("/");
-              //         setIsLogged(false); 
-              //       }
-              //     })
-              //   }}
-              // >
-              //   Logout
-              // </Button>
-    //         ) : (
-    //           <Nav className="me-auto">
-    //             <Nav.Link as={Link} to="/login">
-    //               Login
-    //             </Nav.Link>
-    //             <Nav.Link as={Link} to="/register">
-    //               Register
-    //             </Nav.Link>
-    //           </Nav>
-    //         )}
-    //       </Nav>
-    //     </Navbar.Collapse>
-    //   </Container>
-    // </Navbar>
     <>
     <meta charSet="UTF-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -158,6 +105,16 @@ function Navbarr() {
                 My Profile
               </Link>
             </li>
+            {/* {
+            role.includes("ADMIN") ?
+              <li className="nav-item px-2 py-2 border-0">
+                <Link className="nav-link text-uppercase text-dark" to="/admin">
+                  Admin
+                  {role}
+                </Link>
+              </li>
+            : <></>
+            } */}
             <Button
 
                 variant="secondary"

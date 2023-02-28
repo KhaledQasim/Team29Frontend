@@ -8,6 +8,8 @@ import { useAtom } from "jotai";
 import { jwtAtom } from "../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import Cookies from "js-cookie";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 function Login() {
@@ -25,42 +27,32 @@ function Login() {
 
   const handleClick = (e) => {
     setDisabled(true);
-    sendLoginRequest();
+    axiosSendLoginRequest();
     setTimeout(() => {
       setDisabled(false);
     }, 1250);
   };
  
-  function sendLoginRequest() {
-    setErrorMsg("");
-    const reqBody = {
-      email: email,
-      password: password,
-    };
-
-    fetch("auth/login", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
-    })
-      .then((response) => {
-        if (response.status === 200) return response.text();
-        else if (response.status === 401 || response.status === 403) {
-          setErrorMsg("Invalid username or password");
-        } else {
-          setErrorMsg(
-            "Something went wrong, try again later or reach out to us"
-          );
-        }
-      })
-      .then((data) => {
-        if (data) {
-          setJwt(data);
+  function axiosSendLoginRequest() {
+        axios
+        .post("auth/login", {
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          setJwt(Cookies.get("jwt"));
           navigate("/");
-        }
-      });
+        })
+        .catch((error) => {
+         
+          if (error.response)
+            // setErrorMsg(JSON.stringify(error.response.data).slice(17, -2));
+            setErrorMsg("Invalid Username or Password!")
+        });
+        
+          
+        
+        
   }
 
   return (
