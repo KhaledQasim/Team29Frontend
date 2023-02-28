@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
-import black from "../components/img/black.png";
-import blue from "../components/img/blue.png";
-import red from "../components/img/red.png";
-import green from "../components/img/green.png"
-import orange from "../components/img/orange.png"
+import black from "./images/tshirts/black.png";
+import blue from "./images/tshirts/blue.png";
+import red from "./images/tshirts/red.png";
+import green from "./images/tshirts/green.png"
+import orange from "./images/tshirts/orange.png"
 import style from "../App.css";
 
 export default function Products() {

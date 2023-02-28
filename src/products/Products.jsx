@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
-import image from "../components/img/weWEAR-12.png";
+import image from "./images/weWEAR-12.png";
 import style from "../App.css";
 import { Link } from "react-router-dom";
 
