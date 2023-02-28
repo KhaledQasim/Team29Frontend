@@ -83,6 +83,7 @@ function Login() {
         <InputGroup>
           <Form.Control
             type={passwordShown ? "text" : "password"}
+            // type="password"
             placeholder="Password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
