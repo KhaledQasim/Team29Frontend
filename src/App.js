@@ -1,32 +1,25 @@
 
-import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './navbar';
-import Footer from './footer';
-import HomeNew from './pages/HomeNew';
+
+
+import React from 'react';
 // import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AddProduct from './products/AddProduct';
-import EditProduct from './products/EditProduct';
-import ViewProduct from './products/ViewProduct';
-import Login from "./login/index";
-import Admin from './admin';
-import UserProfile from './UserProfile';
-import Products from './products/Products';
-import TShirts from './products/T-shirts';
-import Jumpers from './products/Jumpers';
-import Jeans from './products/Jeans';
-import Shorts from './products/Shorts';
-import Jackets from './products/Jackets';
-import PrivateRoute from './PrivateRoute';
-import Register from './register';
-import PrivateRouteAdmin from './PrivateRouteAdmin';
+
+
+import Admin from './admin/index.js';
+import MainLayoutRoutes from "./MainLayuotRoutes"
+
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
-import Logout from './logout';
-import Basket from './basket/Basket'; 
+import { useMode } from './admin/theme';
+
+
+
 export const jwtAtom = atom(Cookies.get("jwt"));
 export const Atomlogged = atom("");
+
+
+
 function App() {
   // const [roles,setRoles] = useState([]);
   // const user = useUser();
@@ -42,35 +35,17 @@ function App() {
   //     return JSON.stringify(decodedJwt.authorities);
   //   }
   // }
-
+  const [theme,colorMode] = useMode();
 
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path="/basket" element={<Basket />}/>
-          <Route exact path="/admin" element={<PrivateRouteAdmin> <Admin /></PrivateRouteAdmin>}/>
-          {/* <Route exact path="/admin" element={<Admin/>}/> */}
-          <Route exact path="/profile" element={<PrivateRoute><UserProfile/></PrivateRoute>}/>
-          <Route exact path="/" element={<HomeNew/>}/>
-          {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
-          <Route exact path="/products" element={<Products/>}/>
-          <Route exact path="/products/t-shirts" element={<TShirts/>}/>
-          <Route exact path="/products/jumpers" element={<Jumpers/>}/>
-          <Route exact path="/products/jeans" element={<Jeans/>}/>
-          <Route exact path="/products/shorts" element={<Shorts/>}/>
-          <Route exact path="/products/jackets" element={<Jackets/>}/>
-          <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
-          <Route exact path="/logout" element={<Logout />}/>
-          <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
-          <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-          <Route exact path="/login" element={<Login/>}/>
-          <Route exact path="/register" element={<Register/>}/>
-        </Routes>
-        <Footer className="footer--pin"/>
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<MainLayoutRoutes />} />
+      </Routes>
+    </Router>
+
+    
   );
 }
 
