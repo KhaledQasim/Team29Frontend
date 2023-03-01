@@ -40,12 +40,13 @@ export default function ViewProduct() {
                 </li>
                 <li className="list-group-item">
                   <b>Image: </b>
-                  <img style={{resizeMode: 'contain',height: 100,width: 125,}} src={process.env.PUBLIC_URL + "/" + product.image} alt="product"/>
+                  {/* process.env.PUBLIC_URL + "/" +  */}
+                  <img style={{resizeMode: 'contain',height: 100,width: 125,}} src={product.image} alt="product"/>
                 </li>
               </ul>
             </div>
           </div>
-          <Link className="btn btn-primary my-2" to={"/"}>
+          <Link className="btn btn-primary my-2" to={"/homeOld"}>
             Back to Home
           </Link>
         </div>

@@ -41,7 +41,8 @@ export default function Home() {
                             <th scope="row">{index+1}</th>   
                             <td>{product.name}</td>
                             <td>{product.price}</td>
-                            <td><img style={{resizeMode: 'contain',height: 100,width: 125,}} src={process.env.PUBLIC_URL +  product.image} alt="product"/></td>
+                            {/* process.env.PUBLIC_URL +   */}
+                            <td><img style={{resizeMode: 'contain',height: 100,width: 125,}} src={product.image} alt="product"/></td>
                             <td>
                                 <Link className='btn btn-primary mx-2' to={`/ViewProduct/${product.id}`}>View</Link>
                                 <Link className='btn btn-outline-primary mx-2' to={`/EditProduct/${product.id}`}>Edit</Link>

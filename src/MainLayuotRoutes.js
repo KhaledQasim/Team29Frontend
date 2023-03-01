@@ -4,8 +4,8 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './navbar';
 import Footer from './footer';
 import HomeNew from './pages/HomeNew';
-// import Home from './Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeOld from './Home';
+import { Routes, Route } from 'react-router-dom';
 import AddProduct from './products/AddProduct';
 import EditProduct from './products/EditProduct';
 import ViewProduct from './products/ViewProduct';
@@ -55,9 +55,9 @@ function App() {
       <div className="App">
        <React.Fragment/>
        
-         <nav>
+         
             <Navbar/>
-         </nav>
+         
         <Routes>
 
             {/* <Route exact path="/" element={<HomeNew/>}/> */}
@@ -65,7 +65,7 @@ function App() {
             <Route exact path="/login" element={<Login/>}/>
             <Route exact path="/register" element={<Register/>}/>
             <Route exact path="/logout" element={<Logout />}/>
-            
+            <Route exact path="/homeOld" element={<HomeOld/>}/>
 
             {/* <Route exact path="/admin" element={<Admin/>}/> */}
             <Route exact path="/profile" element={<PrivateRoute><UserProfile/></PrivateRoute>}/>
@@ -87,9 +87,9 @@ function App() {
             <Route exact path="/basket" element={<Basket />}/>
       
          </Routes>
-        <footer>
-            <Footer className="footer--pin"/>
-        </footer>
+
+         <Footer className="footer--pin"/>
+    
         
        <React.Fragment/>
       </div>

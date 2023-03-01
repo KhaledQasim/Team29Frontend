@@ -3,16 +3,16 @@
 
 import React from 'react';
 // import Home from './Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 
-import Admin from './admin/index.js';
+import Admin from './AdminLayoutRoutes';
 import MainLayoutRoutes from "./MainLayuotRoutes"
 
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
-import { useMode } from './admin/theme';
 
+import PrivateRouteAdmin from './PrivateRouteAdmin/index.js';
 
 
 export const jwtAtom = atom(Cookies.get("jwt"));
@@ -35,15 +35,22 @@ function App() {
   //     return JSON.stringify(decodedJwt.authorities);
   //   }
   // }
-  const [theme,colorMode] = useMode();
+
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/admin" element={<Admin />} />
+  
+      
+      
+
+      <Routes> 
+        <Route path="/admin/*" element={<PrivateRouteAdmin><Admin /></PrivateRouteAdmin>} />
         <Route path="*" element={<MainLayoutRoutes />} />
       </Routes>
-    </Router>
+  
+
+      
+ 
+
 
     
   );

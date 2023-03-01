@@ -24,7 +24,7 @@ export default function EditProduct() {
   const onSubmit=async(event)=>{
     event.preventDefault();
     await axios.put(`http://localhost:8080/product/${id}`,product);
-    navigate("/");  
+    navigate("/homeOld");  
   }
   const loadProduct = async() => {
     const result= await axios.get(`http://localhost:8080/product/${id}`);
@@ -74,10 +74,10 @@ export default function EditProduct() {
               value={image}
               onChange={(event)=>onInputChange(event)}
               />
-              <img style={{resizeMode: 'contain',height: 100,width: 125,}} src={process.env.PUBLIC_URL + "/" + product.image} alt="product"/>
+              <img style={{resizeMode: 'contain',height: 100,width: 125,}} src={product.image} alt="product"/>
           </div>
           <button type='submit' className="btn btn-outline-primary">Submit</button>
-          <Link className="btn btn-outline-danger mx-2" to={"/"}>Cancel</Link>
+          <Link className="btn btn-outline-danger mx-2" to={"/homeOld"}>Cancel</Link>
           </form>
         </div>
       </div>

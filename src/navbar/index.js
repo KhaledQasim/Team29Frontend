@@ -49,7 +49,7 @@ function Navbarr() {
         className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
         href="index.html"
       >
-        <img src="images/we_WEAR-8.png" width="125px" alt="site icon" />
+        <img src="../../images/we_WEAR-8.png" width="125px" alt="site icon" />
       </a>
       <div className="order-lg-2 nav-btns">
         <button type="button" className="btn position-relative">
