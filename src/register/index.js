@@ -44,7 +44,7 @@ function Register() {
  
   
     axios
-    .post("auth/register", {
+    .post("http://localhost:8080/auth/register", {
       email: email,
       password: password,
       firstname: firstName,

@@ -24,7 +24,7 @@ const PrivateRouteAdmin = (props) => {
     
     if (jwt && role.includes("ADMIN")) {
       
-      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
+      ajax(`http://localhost:8080/auth/validate`, "get", jwt).then((isValid) => {
         setIsValid(isValid);
         setIsLoading(false);
       });

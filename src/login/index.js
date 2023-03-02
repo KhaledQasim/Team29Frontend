@@ -35,7 +35,7 @@ function Login() {
  
   function axiosSendLoginRequest() {
         axios
-        .post("auth/login", {
+        .post("http://localhost:8080/auth/login", {
           email: email,
           password: password,
         })
