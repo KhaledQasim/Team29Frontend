@@ -10,7 +10,6 @@ import AddProduct from './products/AddProduct';
 import EditProduct from './products/EditProduct';
 import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
-import Admin from './admin/index.js';
 import UserProfile from './UserProfile';
 import Products from './products/Products';
 import TShirts from './products/T-shirts';
@@ -20,13 +19,11 @@ import Shorts from './products/Shorts';
 import Jackets from './products/Jackets';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
-import PrivateRouteAdmin from './PrivateRouteAdmin';
 import { atom } from 'jotai';
 import Cookies from 'js-cookie';
 import Logout from './logout';
 import Basket from './basket/Basket';
-import { ColorModeContext, useMode } from './admin/theme';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+
 
 export const jwtAtom = atom(Cookies.get("jwt"));
 export const Atomlogged = atom("");
@@ -54,43 +51,36 @@ function App() {
 
       <div className="App">
        <React.Fragment/>
-       
-         
-            <Navbar/>
-         
-        <Routes>
+        <Navbar/>
+          <Routes>
 
-            {/* <Route exact path="/" element={<HomeNew/>}/> */}
-            <Route index element={<HomeNew/>}/>
-            <Route exact path="/login" element={<Login/>}/>
-            <Route exact path="/register" element={<Register/>}/>
-            <Route exact path="/logout" element={<Logout />}/>
-            <Route exact path="/homeOld" element={<HomeOld/>}/>
+              {/* <Route exact path="/" element={<HomeNew/>}/> */}
+              <Route index element={<HomeNew/>}/>
+              <Route exact path="/login" element={<Login/>}/>
+              <Route exact path="/register" element={<Register/>}/>
+              <Route exact path="/logout" element={<Logout />}/>
+              <Route exact path="/homeOld" element={<HomeOld/>}/>
 
-            {/* <Route exact path="/admin" element={<Admin/>}/> */}
-            <Route exact path="/profile" element={<PrivateRoute><UserProfile/></PrivateRoute>}/>
+              {/* <Route exact path="/admin" element={<Admin/>}/> */}
+              <Route exact path="/profile" element={<PrivateRoute><UserProfile/></PrivateRoute>}/>
 
-            
-            {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
-            <Route exact path="/products" element={<Products/>}/>
-            <Route exact path="/products/t-shirts" element={<TShirts/>}/>
-            <Route exact path="/products/jumpers" element={<Jumpers/>}/>
-            <Route exact path="/products/jeans" element={<Jeans/>}/>
-            <Route exact path="/products/shorts" element={<Shorts/>}/>
-            <Route exact path="/products/jackets" element={<Jackets/>}/>
+              
+              {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
+              <Route exact path="/products" element={<Products/>}/>
+              <Route exact path="/products/t-shirts" element={<TShirts/>}/>
+              <Route exact path="/products/jumpers" element={<Jumpers/>}/>
+              <Route exact path="/products/jeans" element={<Jeans/>}/>
+              <Route exact path="/products/shorts" element={<Shorts/>}/>
+              <Route exact path="/products/jackets" element={<Jackets/>}/>
 
-            <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
-            <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
-            <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
-            
-            
-            <Route exact path="/basket" element={<Basket />}/>
-      
-         </Routes>
-
+              <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
+              <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
+              <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
+              
+              
+              <Route exact path="/basket" element={<Basket />}/>
+          </Routes>
          <Footer className="footer--pin"/>
-    
-        
        <React.Fragment/>
       </div>
     

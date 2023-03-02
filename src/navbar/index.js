@@ -19,7 +19,7 @@ function Navbarr() {
   const [isLogged, setIsLogged] = useAtom(Atomlogged);
   useEffect(() => {
     if (jwt){
-      ajax(`http://localhost:8080/auth/validate`, "get", jwt).then((isLogged) => {
+      ajax(`/auth/validate`, "get", jwt).then((isLogged) => {
         // setIsValid(isValid);
         setIsLogged(isLogged);
       });

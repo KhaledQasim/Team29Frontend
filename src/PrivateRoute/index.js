@@ -11,7 +11,7 @@ const PrivateRoute = (props) => {
     const [jwt,] = useAtom(jwtAtom);
     
     if (jwt) {
-      ajax(`http://localhost:8080/auth/validate`, "get", jwt).then((isValid) => {
+      ajax(`/auth/validate`, "get", jwt).then((isValid) => {
         setIsValid(isValid);
         setIsLoading(false);
       });
