@@ -7,7 +7,7 @@ export const mockDataTeam = [
     email: "jonsnow@gmail.com",
     age: 35,
     phone: "(665)121-5454",
-    access: "admin",
+    access: "ADMIN",
   },
   {
     id: 2,
@@ -934,7 +934,7 @@ export const mockGeographyData = [
   },
   {
     id: "KWT",
-    value: 414413,
+    value: 4144132222,
   },
   {
     id: "LAO",
