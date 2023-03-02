@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 import { Link, useNavigate } from "react-router-dom";
 
-
+import configData from "../config.json";
 import ajax from "../services/fetchService";
 import { useAtom } from "jotai";
 import { Atomlogged, jwtAtom } from "../App";
@@ -19,7 +19,7 @@ function Navbarr() {
   const [isLogged, setIsLogged] = useAtom(Atomlogged);
   useEffect(() => {
     if (jwt){
-      ajax(`/auth/validate`, "get", jwt).then((isLogged) => {
+      ajax(  `/auth/validate`, "get", jwt).then((isLogged) => {
         // setIsValid(isValid);
         setIsLogged(isLogged);
       });

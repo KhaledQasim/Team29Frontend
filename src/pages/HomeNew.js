@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-concat */
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import configData from "../config.json";
 import './Home.css';
 import { Button } from 'react-bootstrap';
 // import $ from 'jquery';
@@ -19,7 +19,7 @@ export default function Home() {
     },[]);
 
     const loadProducts=async()=>{
-        const result=await axios.get("http://localhost:8080/products");
+        const result=await axios.get("/products");
         setProducts(result.data);
     };
 

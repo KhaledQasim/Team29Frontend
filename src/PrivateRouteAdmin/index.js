@@ -4,7 +4,7 @@ import ajax from '../services/fetchService.js';
 import jwt_decode from "jwt-decode";
 import { useAtom } from 'jotai';
 import { jwtAtom } from '../App.js';
-
+import configData from "../config.json";
 const PrivateRouteAdmin = (props) => {
     const [jwt,] = useAtom(jwtAtom);
     const [isLoading, setIsLoading] = useState(true);

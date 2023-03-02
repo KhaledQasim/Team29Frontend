@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, } from 'react-router-dom';
+import configData from "../config.json";
 export default function Home() {
 
     const [products,setProducts]=useState([]);
@@ -12,7 +13,7 @@ export default function Home() {
     },[]);
     
     const loadProducts=async()=>{
-        const result=await axios.get("http://localhost:8080/products");
+        const result=await axios.get(configData.SERVER_URL + "/products");
         setProducts(result.data);
     };
 

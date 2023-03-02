@@ -177,6 +177,13 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
+              title="View Products"
+              to="view"
+              icon={<Inventory2OutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="Calendar"
               to="calendar"
               icon={<CalendarTodayOutlinedIcon />}

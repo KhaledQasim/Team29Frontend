@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { jwtAtom } from '../App.js';
 import ajax from '../services/fetchService.js';
-
+import configData from "../config.json";
 const PrivateRoute = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isValid, setIsValid] = useState("");

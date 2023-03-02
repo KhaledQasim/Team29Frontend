@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import configData from "../config.json";
 export default function ViewProduct() {
   const [product, setProduct] = useState({
     name: "",

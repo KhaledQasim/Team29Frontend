@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtAtom } from "../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-
+import configData from "../config.json";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 

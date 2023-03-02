@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
 import { Atomlogged, jwtAtom } from '../App';
-
+import configData from "../config.json";
 function Logout  ()  {
     const [,setJwt] = useAtom(jwtAtom);
     const [,setIsLogged] = useAtom(Atomlogged);
