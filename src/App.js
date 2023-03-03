@@ -17,7 +17,7 @@ import PrivateRouteAdmin from './PrivateRouteAdmin/index.js';
 
 export const jwtAtom = atom(Cookies.get("jwt"));
 export const Atomlogged = atom("");
-
+export const AtomAdmin = atom("");
 
 
 function App() {

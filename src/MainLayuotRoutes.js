@@ -25,8 +25,8 @@ import Logout from './logout';
 import Basket from './basket/Basket';
 
 
-export const jwtAtom = atom(Cookies.get("jwt"));
-export const Atomlogged = atom("");
+// export const jwtAtom = atom(Cookies.get("jwt"));
+// export const Atomlogged = atom("");
 
 
 

@@ -28,8 +28,8 @@ import Sidebar from './admin/scenes/global/Sidebar';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 
-export const jwtAtom = atom(Cookies.get("jwt"));
-export const Atomlogged = atom("");
+// export const jwtAtom = atom(Cookies.get("jwt"));
+// export const Atomlogged = atom("");
 
 
 
