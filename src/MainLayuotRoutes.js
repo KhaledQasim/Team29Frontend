@@ -19,8 +19,7 @@ import Shorts from './products/Shorts';
 import Jackets from './products/Jackets';
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
-import { atom } from 'jotai';
-import Cookies from 'js-cookie';
+// import { atom } from 'jotai';
 import Logout from './logout';
 import Basket from './basket/Basket';
 

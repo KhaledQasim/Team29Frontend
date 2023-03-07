@@ -5,18 +5,16 @@ import { Routes, Route } from 'react-router-dom';
 
 import "./admin/index.css"
 
-import { atom } from 'jotai';
-import Cookies from 'js-cookie';
-import Test from "./test.js";
+
 import { ColorModeContext, useMode } from './admin/theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import Topbar from './admin/scenes/global/Topbar.jsx';
 import Dashboard from './admin/scenes/dashboard';
-import Team from './admin/scenes/team';
-import Contacts from './admin/scenes/contacts';
-import Invoices from './admin/scenes/invoices';
+import Users from './admin/scenes/users';
+
 import Form from './admin/scenes/form';
-import View from './admin/scenes/view';
+import Files from './admin/scenes/files';
+import Products from './admin/scenes/products';
 import FormProduct from './admin/scenes/form-product';
 import Bar from './admin/scenes/bar';
 import Pie from './admin/scenes/pie';
@@ -49,14 +47,16 @@ function App() {
                     <Routes>
                         <Route path="" element={<PrivateRouteAdmin><Dashboard /></PrivateRouteAdmin>} />
                           
-                        <Route path="team" element={<PrivateRouteAdmin><Team /></PrivateRouteAdmin>} />
-                        <Route path="contacts" element={<PrivateRouteAdmin><Contacts /></PrivateRouteAdmin>} />
-                        <Route path="invoices" element={<PrivateRouteAdmin><Invoices /></PrivateRouteAdmin>} />
+                        <Route path="users" element={<PrivateRouteAdmin><Users /></PrivateRouteAdmin>} />
+                        <Route path="products" element={<PrivateRouteAdmin><Products /></PrivateRouteAdmin>} />
+                        <Route path="files" element={<PrivateRouteAdmin><Files /></PrivateRouteAdmin>} />
+                        {/* <Route path="contacts" element={<PrivateRouteAdmin><Contacts /></PrivateRouteAdmin>} />
+                        <Route path="invoices" element={<PrivateRouteAdmin><Invoices /></PrivateRouteAdmin>} /> */}
                           
                         
                         <Route path="form" element={<PrivateRouteAdmin><Form /></PrivateRouteAdmin>} />
                         <Route path="form-product" element={<PrivateRouteAdmin><FormProduct /></PrivateRouteAdmin>} />
-                        <Route path="view" element={<PrivateRouteAdmin><View /></PrivateRouteAdmin>} />
+                        
                         <Route path="calendar" element={<PrivateRouteAdmin><Calendar /></PrivateRouteAdmin>} />
                         <Route path="faq" element={<PrivateRouteAdmin><FAQ /></PrivateRouteAdmin>} />
                         

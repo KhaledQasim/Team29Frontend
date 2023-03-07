@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -17,10 +16,17 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import { FilePresentOutlined } from "@mui/icons-material";
+import { useAtom } from "jotai";
+import { jwtAtom } from "../../../App";
+import jwt_decode from "jwt-decode";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  
+  
   return (
     <MenuItem
       active={selected === title}
@@ -37,11 +43,26 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 const Sidebar = () => {
+  useEffect(() => {
+    getJwtAuth();
+  })
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-
+  const [jwt,] = useAtom(jwtAtom);
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  function  getJwtAuth () {
+    if (jwt) {
+      const decodedJwt = jwt_decode(jwt);
+      setEmail(JSON.stringify(decodedJwt.sub));
+    }
+    
+    return[];
+  };
+  
+  
   return (
     <Box
       sx={{
@@ -80,9 +101,9 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
-                </Typography>
+                <IconButton onClick={() => navigate("/")}>
+                  <HomeOutlinedIcon />HOME
+                </IconButton>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -97,7 +118,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={`/HTML/we-WEAR-7.png`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -108,10 +129,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  ADMIN
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  {email.slice(1,-1)}
                 </Typography>
               </Box>
             </Box>
@@ -134,13 +155,13 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Manage Team"
-              to="team"
+              title="Manage Users"
+              to="users"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Contacts Information"
               to="contacts"
               icon={<ContactsOutlinedIcon />}
@@ -153,8 +174,21 @@ const Sidebar = () => {
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+            /> */}
+            <Item
+              title="Manage Products"
+              to="products"
+              icon={<Inventory2OutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
             />
-
+             <Item
+              title="Upload Images"
+              to="files"
+              icon={<FilePresentOutlined />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -172,13 +206,6 @@ const Sidebar = () => {
              <Item
               title="Create Product"
               to="form-product"
-              icon={<Inventory2OutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="View Products"
-              to="view"
               icon={<Inventory2OutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

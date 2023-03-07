@@ -1,22 +1,43 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Select, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import MUIRichTextEditor from "mui-rte";
+import { useState } from "react";
+import { data } from "jquery";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
+  const [description, setDescription] = useState();
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [disabled, setDisabled] = useState(false);
   const handleFormSubmit = (values) => {
+    setDisabled(true);
+    setSuccessMsg(null);
+    setErrorMsg(null);
+
     console.log(values);
+
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1250); 
   };
+  function saveDescription(data) {
+    
+    setDescription(data);
+    
+  }
+ 
+  
 
   return (
     <Box m="20px">
       <Header title="CREATE PRODUCT" subtitle="Create a New Product" />
 
       <Formik
-        onSubmit={handleFormSubmit}
+        onSubmit={handleFormSubmit }
         initialValues={initialValues}
         validationSchema={checkoutSchema}
       >
@@ -32,123 +53,145 @@ const Form = () => {
             <Box
               display="grid"
               gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+              // gridTemplateColumns="repeat(5, minmax(0, 1fr))"
               sx={{
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                
               }}
             >
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="First Name"
+                label="Product Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
-                sx={{ gridColumn: "span 2" }}
+                value={values.name}
+                name="name"
+                error={!!touched.name && !!errors.name}
+                helperText={touched.name && errors.name}
+                sx={{ gridColumn: "span 1" }}
+              />
+               <select className="form-select" aria-label="Default select example" style={{ color: "#bfc1c6", background: "#293040" , height:"52"}}
+                variant="filled"
+                type="text"
+                label="Size"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.size}
+                name="size"
+               
+              >
+                <option value="">Please Choose a Size!</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+              <TextField
+                fullWidth
+                variant="filled"
+                type="number"
+                label="Quantity"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.quantity}
+                name="quantity"
+                error={!!touched.quantity && !!errors.quantity}
+                helperText={touched.quantity && errors.quantity}
+                sx={{ gridColumn: "span 1" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
-                label="Last Name"
+                type="number"
+                label="Price"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
+                value={values.price}
+                name="price"
+                error={!!touched.price && !!errors.price}
+                helperText={touched.price && errors.price}
+                sx={{ gridColumn: "span 1" }}
               />
-              <TextField
-                fullWidth
+              
+              <select className="form-select" aria-label="Default select example" style={{ color: "#bfc1c6", background: "#293040" , height:"52"}}
                 variant="filled"
                 type="text"
-                label="Email"
+                label="Category"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
+                // value={values.category}
+                name="category"
+               
+              >
+                <option value="">Please Choose a Category!</option>
+                <option value="Shirts">Shirts</option>
+                <option value="Pants">Pants</option>
+                <option value="Shorts">Shorts</option>
+                <option value="Sweaters">Sweaters</option>
+              </select>
+              
+              <MUIRichTextEditor
+                className="MUIRichTextEditor"
                 variant="filled"
-                type="text"
-                label="Contact Number"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address2}
-                name="address2"
-                error={!!touched.address2 && !!errors.address2}
-                helperText={touched.address2 && errors.address2}
-                sx={{ gridColumn: "span 4" }}
+                // type="text"
+                label="Description"
+                // onBlur={handleBlur}
+                
+                value={values.description = description}
+                name="description"
+                // value={values.category}
+             
+                onSave={(data) => { saveDescription(data)}}
+                // onChange={handleDescriptionChange}
+                sx={{outerWidth:"10000px"}}
+                // error={!!touched.description && !!errors.description}
+                // helperText={touched.description && errors.description}
+              
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
-                Create New User
+              <Button type="submit" color="secondary" variant="contained" disabled={disabled}>
+                Create New Product
               </Button>
             </Box>
+         
           </form>
         )}
+     
       </Formik>
     </Box>
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
+// const phoneRegExp =
+//   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+const sizeRegExp =
+  /S|M|L|XL/;
+const categoryRegExp =
+  /Shirts|Pants|Shorts|Sweaters/;
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+  name: yup.string().required("required"),
+  size: yup.string().required("required").matches(sizeRegExp, "Role must be ADMIN or USER!"),
+  quantity: yup.number().typeError("Must only be a number!").required("required"),
+  price: yup.number().typeError("Must only be a number!").required("required"),
+  category: yup.string().required("required").matches(categoryRegExp, "Role must be ADMIN or USER!"),
+  description: yup.string().required("required"),
+  // contact: yup
+  //   .string()
+  //   .matches(phoneRegExp, "Phone number is not valid")
+  //   .required("required"),
+
 });
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
+  name: "",
+  size: "",
+  quantity: "",
+  price: "",
+  category: "",
+  description: "",
+
 };
 
 export default Form;

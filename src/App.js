@@ -1,7 +1,7 @@
 
 
 
-import React from 'react';
+import React, { useState } from 'react';
 // import Home from './Home';
 import { Routes, Route } from 'react-router-dom';
 
@@ -13,12 +13,16 @@ import { atom } from 'jotai';
 import Cookies from 'js-cookie';
 
 import PrivateRouteAdmin from './PrivateRouteAdmin/index.js';
+import axios from 'axios';
+
+
 
 
 export const jwtAtom = atom(Cookies.get("jwt"));
 export const Atomlogged = atom("");
 export const AtomAdmin = atom("");
-
+export const AtomLowStock = atom([]);
+export const AtomNoStock = atom([]);
 
 function App() {
   // const [roles,setRoles] = useState([]);

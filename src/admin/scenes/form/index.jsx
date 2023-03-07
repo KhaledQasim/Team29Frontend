@@ -1,17 +1,45 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Alert, Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import axios from "axios";
+import { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { textAlign } from "@mui/system";
+
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
-  const handleFormSubmit = (values) => {
-    console.log(values.firstName);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [disabled, setDisabled] = useState(false);
+  
+  const handleFormSubmit = async (values) => {
+  
+    setDisabled(true);
+    setSuccessMsg(null);
+    setErrorMsg(null);
+    await axios.post("/api/user/post", values)
+      .then((res) => {
+        setErrorMsg(null);
+        setSuccessMsg("User Created!");
+    
+      })
+      .catch((error) => {
+        if (error.response) {
+          setSuccessMsg(null);
+          setErrorMsg(JSON.stringify(error.response.data).slice(17, -2));
+     
+        }
+      })
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1250); 
   };
 
   return (
+  
     <Box m="20px">
       <Header title="CREATE USER" subtitle="Create a New User Profile" />
 
@@ -44,10 +72,10 @@ const Form = () => {
                 label="First Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
+                value={values.firstname}
+                name="firstname"
+                error={!!touched.firstname && !!errors.firstname}
+                helperText={touched.firstname && errors.firstname}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
@@ -57,12 +85,40 @@ const Form = () => {
                 label="Last Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
+                value={values.lastname}
+                name="lastname"
+                error={!!touched.lastname && !!errors.lastname}
+                helperText={touched.lastname && errors.lastname}
                 sx={{ gridColumn: "span 2" }}
               />
+              {/* <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Role"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.role}
+                name="role"
+                error={!!touched.role && !!errors.role}
+                helperText={touched.role && errors.role}
+                sx={{ gridColumn: "span 4" }}
+              /> */}
+              <select className="form-select" aria-label="Default select example" style={{ color: "#bfc1c6", background: "#293040" }}
+                variant="filled"
+                type="text"
+                label="Role"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.role}
+                name="role"
+               
+              >
+                <option value="">Please Choose a role!</option>
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+                
+              </select>
               <TextField
                 fullWidth
                 variant="filled"
@@ -76,7 +132,7 @@ const Form = () => {
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -114,41 +170,87 @@ const Form = () => {
                 error={!!touched.address2 && !!errors.address2}
                 helperText={touched.address2 && errors.address2}
                 sx={{ gridColumn: "span 4" }}
+              /> */}
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+                name="password"
+                error={!!touched.password && !!errors.password}
+                helperText={touched.password && errors.password}
+                sx={{ gridColumn: "span 4" }}
               />
+            
             </Box>
+            {
+              successMsg ?
+               
+                <Alert severity="success" >{successMsg}
+                 
+                </Alert>
+           
+                
+                :<></>
+               
+            }
+            {
+               errorMsg ?
+                  
+                <Alert severity="error">{errorMsg}</Alert>
+                
+                
+              : <></>
+            }
+            
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              
+              <Button type="submit" color="secondary" variant="contained" disabled={disabled}>
                 Create New User
               </Button>
+           
             </Box>
+           
           </form>
+          
         )}
       </Formik>
     </Box>
+    
+  
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
+// const phoneRegExp =
+//   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+const roleRegExp =
+  /ADMIN|USER/;
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
+  firstname: yup.string().required("Required"),
+  lastname: yup.string().required("Required"),
+  role: yup.string().required("Please type: ADMIN or USER").matches(roleRegExp, "Role must be ADMIN or USER!"),
+  email: yup.string().email("Invalid email").required("Required"),
+  password: yup
     .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+    .required("Required")
+    .min(8, "Invalid password, must be longer than 8 characters!"),
+  // contact: yup
+  //   .string()
+  //   .matches(phoneRegExp, "Phone number is not valid")
+  //   .required("required"),
+  // address1: yup.string().required("required"),
+  // address2: yup.string().required("required"),
 });
 const initialValues = {
-  firstName: "",
-  lastName: "",
+  firstname: "",
+  lastname: "",
+  role: "",
   email: "",
-  contact: "",
-  address1: "",
-  address2: "",
+  password: "",
+  
 };
 
 export default Form;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
@@ -10,20 +10,17 @@ import jwt_decode from "jwt-decode";
 
 import ajax from "../services/fetchService";
 import { useAtom } from "jotai";
-import { AtomAdmin, Atomlogged, jwtAtom } from "../App";
-import { Menu, MenuItem } from "react-pro-sidebar";
 import {
-  Avatar,
-  Divider,
-  IconButton,
-  ListItemIcon,
+  AtomAdmin,
+  Atomlogged,
+  jwtAtom,
+} from "../App";
+
+import {
   Popover,
-  Tooltip,
-  Typography,
 } from "@mui/material";
-import { Box, PersonAdd } from "react-bootstrap-icons";
-import { Settings } from "@mui/icons-material";
-import Logout from "../logout";
+
+import axios from "axios";
 
 function Navbarr() {
   // const [role] = useState(getJwtAuth);
@@ -32,12 +29,15 @@ function Navbarr() {
   const [jwt, setJwt] = useAtom(jwtAtom);
   const [isLogged, setIsLogged] = useAtom(Atomlogged);
   const [isAdmin, setAdmin] = useAtom(AtomAdmin);
-
-
+  const [lowStocks, setLowStock] = useState([]);
+  const [noStocks, setNoStock] = useState([]);
   // code for popper to work (notification bell dropdown menu)
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const pepe = (event) => {
-    prompt("hello");
+  const loadNotifications = async () => {
+    const LowStock = await axios.get("/api/notifications/low-stock");
+    setLowStock(LowStock.data);
+    const NoStock = await axios.get("/api/notifications/no-stock");
+    setNoStock(NoStock.data);
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,10 +47,17 @@ function Navbarr() {
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-  // end of popper code
-
-
+  
   useEffect(() => {
+    const interval = setInterval(() => {
+      loadNotifications();
+    }, 4000);
+  
+    return () => clearInterval(interval); 
+  }, [])
+  useEffect(() => {
+    console.log("use")
+    loadNotifications();
     if (jwt) {
       ajax(`/auth/validate`, "get", jwt).then((isLogged) => {
         // setIsValid(isValid);
@@ -100,7 +107,7 @@ function Navbarr() {
             <button type="button" className="btn position-relative">
               <i className="fa fa-heart" />
               <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
-                1
+                22
               </span>
             </button>
             <button type="button" className="btn position-relative">
@@ -113,6 +120,7 @@ function Navbarr() {
                   variant="contained"
                   onClick={handleClick}
                 >
+                  <span className="badge bg-primary">{ noStocks.length + lowStocks.length }</span>
                   <i className="fa fa-bell" />
                 </Button>
                 <Popover
@@ -125,12 +133,47 @@ function Navbarr() {
                     horizontal: "left",
                   }}
                 >
-                  <Typography sx={{ p: 2 }}>
-                    The content of the Popover.
-                  </Typography>
-                  <Button onClick={pepe}>
-                    test
-                  </Button>
+                  <Table hover>
+                    <thead>
+                      <tr>
+                        {
+                          noStocks.length === 0  && lowStocks.length === 0 ?
+                          <th>No notifications</th>
+                          : noStocks.length === 0 ?
+                            <></>
+                          :<th>OUT OF STOCK</th>
+                        }
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {noStocks.map((noStock, index) => (
+                        <tr key={index + 1}>
+                          <td>{noStock.name  + " in category: " + noStock.category + " has no stock left!"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+
+                    <thead>
+                      {
+                        lowStocks.length === 0 ?
+                        <></>
+                        :
+                        <tr>
+                          <th>LOW STOCK</th>
+                        </tr>
+                      }
+                      
+                    </thead>
+                    <tbody>
+                      {lowStocks.map((lowStock, index) => (
+                        <tr key={index + 1}>
+                          <td>{lowStock.name  + " in category: " + lowStock.category + " has remaining quantity of " + lowStock.quantity + "!"}</td>
+                        </tr>
+                      ))}
+                      
+                    </tbody>
+                  </Table>
                 </Popover>
               </>
             ) : (

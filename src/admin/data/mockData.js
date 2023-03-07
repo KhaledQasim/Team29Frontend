@@ -201,9 +201,9 @@ export const mockDataContacts = [
 
 export const mockDataInvoices = [
   {
-    id: 1,
-    name: "Jon Snow",
-    email: "jonsnow@gmail.com",
+    "id": 1,
+    "name": "Jon Snow",
+    "email": "jonsnow@gmail.com",
     cost: "21.24",
     phone: "(665)121-5454",
     date: "03/12/2022",
