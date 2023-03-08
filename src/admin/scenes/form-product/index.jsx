@@ -1,36 +1,51 @@
-import { Box, Button, Select, TextField } from "@mui/material";
+import { Alert, Box, Button, IconButton, Select, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import MUIRichTextEditor from "mui-rte";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "jquery";
+import axios from "axios";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+import { Save, SaveAltOutlined } from "@mui/icons-material";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [description, setDescription] = useState();
+ 
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const handleFormSubmit = (values) => {
-    setDisabled(true);
-    setSuccessMsg(null);
-    setErrorMsg(null);
+  const [Quillvalue, setQuillValue] = useState('');
 
-    console.log(values);
-
+  const handleFormSubmit = async (values) => {
+   
+    
+    await axios.post("/api/product", values)
+      .then((res) => {
+        setErrorMsg(null);
+        setSuccessMsg("User Created!");
+    
+      })
+      .catch((error) => {
+        if (error.response) {
+          setSuccessMsg(null);
+          setErrorMsg(JSON.stringify(error.response.data).slice(17, -2));
+     
+        }
+      })
     setTimeout(() => {
       setDisabled(false);
-    }, 1250); 
+    }, 1250);
+    
+   
   };
-  function saveDescription(data) {
-    
-    setDescription(data);
-    
-  }
+
  
-  
+ 
+
+ 
 
   return (
     <Box m="20px">
@@ -132,31 +147,41 @@ const Form = () => {
                 <option value="Sweaters">Sweaters</option>
               </select>
               
-              <MUIRichTextEditor
-                className="MUIRichTextEditor"
-                variant="filled"
-                // type="text"
-                label="Description"
-                // onBlur={handleBlur}
-                
-                value={values.description = description}
-                name="description"
-                // value={values.category}
-             
-                onSave={(data) => { saveDescription(data)}}
-                // onChange={handleDescriptionChange}
-                sx={{outerWidth:"10000px"}}
-                // error={!!touched.description && !!errors.description}
-                // helperText={touched.description && errors.description}
-              
-              />
+            
             </Box>
+            <Box sx={{ marginTop: 3,}}>
+              Press the save button to copy the value below when editing the description of already existing products! <IconButton onClick={navigator.clipboard.writeText(Quillvalue)} ><Save /></IconButton>
+            </Box>
+            <ReactQuill
+              style={{ marginTop: 25 }}
+              theme="snow"
+              value={values.description = Quillvalue}
+              onChange={setQuillValue}
+            />
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained" disabled={disabled}>
                 Create New Product
               </Button>
             </Box>
-         
+            {
+              successMsg ?
+               
+                <Alert severity="success" >{successMsg}
+                 
+                </Alert>
+           
+                
+                :<></>
+               
+            }
+            {
+               errorMsg ?
+                  
+                <Alert severity="error">{errorMsg}</Alert>
+                
+                
+              : <></>
+            }
           </form>
         )}
      
@@ -191,7 +216,8 @@ const initialValues = {
   price: "",
   category: "",
   description: "",
-
+  image:"/HTML/we-WEAR-10.png",
+  images:"/HTML/we-WEAR-13.png,/HTML/we-WEAR-12.png,/HTML/we-WEAR-12.png",
 };
 
 export default Form;

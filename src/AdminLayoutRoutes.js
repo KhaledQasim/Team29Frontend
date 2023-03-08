@@ -11,7 +11,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import Topbar from './admin/scenes/global/Topbar.jsx';
 import Dashboard from './admin/scenes/dashboard';
 import Users from './admin/scenes/users';
-
+import Notification from './admin/scenes/notifications';
 import Form from './admin/scenes/form';
 import Files from './admin/scenes/files';
 import Products from './admin/scenes/products';
@@ -49,6 +49,7 @@ function App() {
                           
                         <Route path="users" element={<PrivateRouteAdmin><Users /></PrivateRouteAdmin>} />
                         <Route path="products" element={<PrivateRouteAdmin><Products /></PrivateRouteAdmin>} />
+                        <Route path="notifications" element={<PrivateRouteAdmin><Notification /></PrivateRouteAdmin>} />
                         <Route path="files" element={<PrivateRouteAdmin><Files /></PrivateRouteAdmin>} />
                         {/* <Route path="contacts" element={<PrivateRouteAdmin><Contacts /></PrivateRouteAdmin>} />
                         <Route path="invoices" element={<PrivateRouteAdmin><Invoices /></PrivateRouteAdmin>} /> */}

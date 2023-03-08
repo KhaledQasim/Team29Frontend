@@ -16,7 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import { FilePresentOutlined } from "@mui/icons-material";
+import { FilePresentOutlined, Inventory2Sharp, NotificationsOutlined } from "@mui/icons-material";
 import { useAtom } from "jotai";
 import { jwtAtom } from "../../../App";
 import jwt_decode from "jwt-decode";
@@ -182,6 +182,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            <Item
+              title="Manage Stock"
+              to="notifications"
+              icon={<Inventory2Sharp />}
+              selected={selected}
+              setSelected={setSelected}
+            />
              <Item
               title="Upload Images"
               to="files"
@@ -217,13 +224,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="FAQ Page"
               to="faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Typography
               variant="h6"

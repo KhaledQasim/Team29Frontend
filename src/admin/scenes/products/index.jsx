@@ -1,30 +1,30 @@
 import {
-  Avatar,
+
   Box,
   IconButton,
   Tooltip,
-  Typography,
+
   useTheme,
 } from "@mui/material";
-import {
-  DataGrid,
-  GridToolbar,
- 
-} from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 
 import Header from "../../components/Header";
-import {
-  Delete,
-
-} from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Button, Modal } from "react-bootstrap";
+import ReactQuill from "react-quill";
 
 const View = () => {
-  
+  //modal
+  const [modalShow, setModalShow] = useState(false);
 
+  const [modalImage, setModalImage] = useState("");
+
+
+  const [modalShowDesc, setModalShowDesc] = useState(false);
+  const [modalDesc, setModalDesc] = useState("");
   // const {id} = useParams
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -32,20 +32,42 @@ const View = () => {
   useEffect(() => {
     loadProducts();
   }, []);
+  function MyVerticallyCenteredModalForImages(props) {
+    return (
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Body style={{ background: "#1f2a40" }}>
+          <img src={modalImage} alt="product" />
+        </Modal.Body>
+      </Modal>
+    );
+  }
+  function MyVerticallyCenteredModalForDescription(props) {
+    return (
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Body style={{ background: "#1f2a40" }}>
+          <ReactQuill
+            value={modalDesc}
+            readOnly={true}
+            theme={"bubble"}
+          />
+        </Modal.Body>
+      </Modal>
+    );
+  }
 
   const loadProducts = async () => {
     const result = await axios.get("/products");
     setProducts(result.data);
   };
-  // const loadUserByID = async (id) => {
-  //   const result =  await axios.get(`/api/user/get/${id}`)
-  //   return result.data;
-  // }
-  const clickedImages = () => {
-    console.log("clicked images");
-  };
 
-  // apiRef.current.updateRows([{ id: 1, _action: 'delete' }]);  to delete a row
 
   const onClick = async (id, field, newValue) => {
     const r = await axios.get(`/product/${id}`);
@@ -156,13 +178,13 @@ const View = () => {
   };
   const handleClickDelete = async (id) => {
     if (window.confirm(`Are you sure you want to delete this product?`)) {
-      // console.log(selected.event.id)
+
       await axios.delete(`/api/product/${id}`);
       loadProducts();
     }
   };
 
-  // }
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -176,21 +198,17 @@ const View = () => {
       field: "description",
       headerName: "Product Description",
       flex: 1,
-
       editable: true,
+      renderCell: (params) => (
+        <IconButton onClick={() => {
+          setModalShowDesc(true);
+          setModalDesc(params.row.description);
+        }}>
+          <h6>Click to view description/ Double Click empty space to Edit --></h6>
+        </IconButton>
+      ),
+
     },
-    // {
-    //   field: "age",
-    //   headerName: "Age",
-    //   type: "number",
-    //   headerAlign: "left",
-    //   align: "left",
-    // },
-    // {
-    //   field: "phone",
-    //   headerName: "Phone Number",
-    //   flex: 1,
-    // },
     {
       cellClassName: "price",
       field: "price",
@@ -205,30 +223,33 @@ const View = () => {
       field: "image",
       headerName: "Product Image",
       renderCell: (params) => (
-   
-          <IconButton >
-            <img src={params.row.image} alt="product" width={60} height={60} />
-          </IconButton>
-       
-
+        <IconButton onClick={() => {
+          setModalShow(true);
+          setModalImage(params.row.image);
+        }}>
+          <img src={params.row.image} alt="product" width={60} height={60} />
+        </IconButton>
       ),
-      flex: 1,
+      flex: 0.3,
       editable: true,
       sortable: false,
       filterable: false,
     },
     {
       field: "images",
-
-      onCellEditStart: clickedImages,
-      // renderCell: params => { let imagesArray = params.row.images.split(",") && <Avatar src={params.row.images.split(",")} /> },
-      // onClick:{clickedImages()},
       renderCell: ({ row: { images } }) => {
         const imagesArray = images.split(",");
         return (
-          <IconButton>
-            <img src={imagesArray[0]} alt="product" width={60} height={60} />
-          </IconButton>
+          imagesArray.map((image) =>
+            <IconButton
+              onClick={() => {
+                setModalShow(true);
+                setModalImage(image);
+              }}
+            >
+              <img src={image} alt="product" width={50} height={50} />
+            </IconButton>
+          )
         );
       },
       headerName: "Product Images",
@@ -284,7 +305,7 @@ const View = () => {
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="Products" subtitle="Managing the Products" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -325,7 +346,17 @@ const View = () => {
           onCellEditCommit={(params) =>
             onClick(params.id, params.field, params.value)
           }
+        
         />
+        <MyVerticallyCenteredModalForImages
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+        <MyVerticallyCenteredModalForDescription
+          show={modalShowDesc}
+          onHide={() => setModalShowDesc(false)}
+        />
+
       </Box>
     </Box>
   );
