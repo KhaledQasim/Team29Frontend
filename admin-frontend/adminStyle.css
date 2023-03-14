@@ -238,10 +238,10 @@ img  {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #98BDFF;
+    background-color: #8794ac;
     min-width: auto;
     border-radius: 25px;
-    box-shadow: 0 14px 18px 0 #4B49AC; 
+    box-shadow: 0 14px 18px 0 #c5c73e; 
     z-index: 1;
     
   }
@@ -356,8 +356,8 @@ input[type=checkbox] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #4B49AC;
-    background-color: #98BDFF;
+    border: 2px solid #c5c73e;
+    background-color: #8794ac;
 
   }
   
@@ -378,7 +378,7 @@ input[type=checkbox] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #4B49AC;
+    border: 2px solid #434354;
   }
 
   label{
@@ -389,7 +389,7 @@ input[type=checkbox] {
 
   input[type=text]:focus {
 
-    background-color: #98BDFF;
+    background-color: #8794ac;
   }
   #display-img{
     width: 100%;
@@ -400,7 +400,7 @@ input[type=checkbox] {
 
   }
   #dropdown{
-    background-color: #98BDFF;
+    background-color: #8794ac;
     width: 100%;
 
   }
@@ -409,14 +409,14 @@ input[type=checkbox] {
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #4B49AC;
+    border: 2px solid #c5c73e;
     border-radius: 4px;
-    background-color: #98BDFF;
+    background-color: #8794ac;
     resize: none;
     font-family: 'Times New Roman', Times, serif;
   }
   textarea:focus{
-    background-color: #98BDFF;
+    background-color: #8794ac;
   }
   input[type=radio]#Female {
     accent-color: #d357fe;
@@ -443,11 +443,11 @@ input[type=submit]{
   padding: 12px;
   width: 200px;
 border-radius: 5px;
-background-color: #98BDFF;
+background-color: #8794ac;
 }
 input[type=submit]:hover{
-  background-color: #4B49AC;
-  color: #98BDFF;
+  background-color: #abb54e;
+  color: #585d66;
   transition-duration: 1.5s;
 }
 
@@ -477,8 +477,8 @@ padding: 1em;
 .search_categories{
   font-size: 13px;
   padding: 10px 8px 10px 14px;
-  background: #98BDFF;
-  border: 1px solid #4B49AC;
+  background: #8794ac;
+  border: 1px solid #c5c73e;
   border-radius: 6px;
   overflow: hidden;
   position: relative;
