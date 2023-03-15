@@ -7,79 +7,77 @@ import {  useNavigate } from "react-router-dom";
 export default function Products() {
     const navigate = useNavigate();
     return (
-    <><CardGroup>
-        <Card className="category" style={style}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>T-Shirts</Card.Title>
-                <Card.Text>
-                    View all of our items in our WeWear T-Shirts product category.
-                </Card.Text>
-                {/* to="/products/t-shirts" */}
-                <Button  onClick={() => {navigate("/products/t-shirts");}} variant="primary">View T-Shirts</Button>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-        </Card>
-        <br></br>
-        <Card className="category" style={style}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>Jumpers</Card.Title>
-                <Card.Text>
-                    View all of our item in our WeWear Jumpers product category.
-                </Card.Text>
-                <Button onClick={() => {navigate("/products/jumpers");}} variant="primary">View Jumpers</Button>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-        </Card>
-        <br></br>
-        <Card className="category" style={style}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>Jeans</Card.Title>
-                <Card.Text>
-                    View all of our items in our WeWear Jeans product category.
-                </Card.Text>
-                <Button onClick={() => {navigate("/products/jeans");}} variant="primary">View Jeans</Button>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-        </Card>
-    </CardGroup>
-    <br></br>
-    <CardGroup>
-        <Card className="category2" style={style}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>Shorts</Card.Title>
-                <Card.Text>
-                    View all of our item in our WeWear Shorts product category.
-                </Card.Text>
-                <Button onClick={() => {navigate("/products/shorts");}} variant="primary">View Shorts</Button>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-        </Card>
-        <br></br>
-        <Card className="category2" style={style}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <Card.Title>Jackets</Card.Title>
-                <Card.Text>
-                    View all of our items in our WeWear Jackets product category.
-                </Card.Text>
-                <Button onClick={() => {navigate("/products/jackets");}} variant="primary">View Jackets</Button>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-        </Card>
-    </CardGroup><br></br></>
+        <><CardGroup className="categories" style={style}>
+            <Card className="category" style={style}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <Card.Title>T-Shirts</Card.Title>
+                    <Card.Text>
+                        View all of our items in our WeWear T-Shirts product category.
+                    </Card.Text>
+                    {/* to="/products/t-shirts" */}
+                    <Button onClick={() => { navigate("/products/t-shirts"); } } style={{width: 'fit-content'}}>View T-Shirts</Button>
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+            <br></br>
+            <Card className="category" style={style}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <Card.Title>Jumpers</Card.Title>
+                    <Card.Text>
+                        View all of our item in our WeWear Jumpers product category.
+                    </Card.Text>
+                    <Button onClick={() => { navigate("/products/jumpers"); } } style={{width: 'fit-content'}}>View Jumpers</Button>
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+            <br></br>
+            <Card className="category" style={style}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <Card.Title>Jeans</Card.Title>
+                    <Card.Text>
+                        View all of our items in our WeWear Jeans product category.
+                    </Card.Text>
+                    <Button onClick={() => { navigate("/products/jeans"); } } style={{width: 'fit-content'}}>View Jeans</Button>
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+            <br></br>
+            <Card className="category" style={style}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <Card.Title>Shorts</Card.Title>
+                    <Card.Text>
+                        View all of our item in our WeWear Shorts product category.
+                    </Card.Text>
+                    <Button onClick={() => { navigate("/products/shorts"); } } style={{width: 'fit-content'}}>View Shorts</Button>
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+            <br></br>
+            <Card className="category" style={style}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <Card.Title>Jackets</Card.Title>
+                    <Card.Text>
+                        View all of our items in our WeWear Jackets product category.
+                    </Card.Text>
+                    <Button onClick={() => { navigate("/products/jackets"); } } style={{width: 'fit-content'}}>View Jackets</Button>
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+        </CardGroup><br></br></>
     );
 }

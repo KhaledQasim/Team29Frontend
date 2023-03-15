@@ -9,7 +9,7 @@ import style from "../App.css";
 
 export default function Products() {
     return (
-    <><CardGroup>
+    <><CardGroup className="categories">
         <Card className="category" style={style}>
             <Card.Img variant="top" src={black} />
             <Card.Body>
@@ -57,10 +57,7 @@ export default function Products() {
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
         </Card>
-    </CardGroup>
-    <br></br>
-    <CardGroup>
-        <Card className="category2" style={style}>
+        <Card className="category" style={style}>
             <Card.Img variant="top" src={green} />
             <Card.Body>
                 <Card.Title>WeWear Knee-Length Shorts</Card.Title>
@@ -76,7 +73,7 @@ export default function Products() {
             </Card.Footer>
         </Card>
         <br></br>
-        <Card className="category2" style={style}>
+        <Card className="category" style={style}>
             <Card.Img variant="top" src={orange} />
             <Card.Body>
                 <Card.Title>WeWear Exclusive Shorts</Card.Title>
@@ -91,6 +88,8 @@ export default function Products() {
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
         </Card>
-    </CardGroup><br></br></>
+    </CardGroup>
+    <br></br>
+    </>
     );
 }

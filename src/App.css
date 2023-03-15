@@ -39,21 +39,15 @@
   }
 }
 
+.categories {
+  width: fit-content;
+}
+
 .category {
   padding: 10px;
-  width: 300px;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.category2 {
-  padding: 10px;
- 
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: 300px;
 }
 
 .content-container {
@@ -61,7 +55,6 @@
     padding-top: 1%;
 }
 
-  
 .footer--pin {
     position: relative;
     left: 0;
@@ -69,7 +62,7 @@
 }
 
 .tshirt-price {
-  color: red;
+  color: gold;
   font-size: x-large;
 }
   
