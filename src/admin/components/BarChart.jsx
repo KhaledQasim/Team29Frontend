@@ -4,7 +4,7 @@ import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
 import { mockBarData as data } from "../data/mockData";
 
-const BarChart = ({ isDashboard = false }) => {
+const BarChart = (props,{ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -45,13 +45,13 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut","ice","ice2","ice3","ice4"]}
       indexBy="country"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
-      colors={{ scheme: "nivo" }}
+      colors={{ scheme: "paired" }}
       defs={[
         {
           id: "dots",
@@ -94,7 +94,7 @@ const BarChart = ({ isDashboard = false }) => {
         legendPosition: "middle",
         legendOffset: -40,
       }}
-      enableLabel={false}
+      enableLabel={props.enableLabel}
       labelSkipWidth={12}
       labelSkipHeight={12}
       labelTextColor={{
@@ -126,8 +126,8 @@ const BarChart = ({ isDashboard = false }) => {
         },
       ]}
       role="application"
-      barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
+      label={function (e) {
+        return e.id + ": " + e.formattedValue;
       }}
     />
   );

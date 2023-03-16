@@ -17,11 +17,12 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 
 
 function Register() {
+ 
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState("");
   const navigate = useNavigate();
   const [, setJwt] = useAtom(jwtAtom);
@@ -42,7 +43,6 @@ function Register() {
   // const [validated,setValidated] = useState(false);
   function axiosSendLoginRequest() {
  
-  
     axios
     .post("/auth/register", {
       email: email,
@@ -90,6 +90,7 @@ function Register() {
             required
             type="text"
             placeholder="First name"
+            
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
           />
@@ -136,7 +137,7 @@ function Register() {
           <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
-              minLength={8}
+              pattern="^(?=\S+$).{8,}$"
               type={passwordShown ? "text" : "password"}
               placeholder="Password"
               required
@@ -146,7 +147,7 @@ function Register() {
             />
             <i id="register-eye" onClick={togglePasswordVisiblity} style= {style}>{eye}</i>
             <Form.Control.Feedback type="invalid">
-              Please choose a password longer than 8 characters.
+              Please choose a password longer than 8 characters and contain to white spaces!
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>     

@@ -21,16 +21,17 @@ const Form = () => {
 
   const handleFormSubmit = async (values) => {
    
-    
+    setSuccessMsg(null);
+    setErrorMsg(null);
     await axios.post("/api/product", values)
       .then((res) => {
-        setErrorMsg(null);
-        setSuccessMsg("User Created!");
+   
+        setSuccessMsg("Product Created!");
     
       })
       .catch((error) => {
         if (error.response) {
-          setSuccessMsg(null);
+        
           setErrorMsg(JSON.stringify(error.response.data).slice(17, -2));
      
         }
@@ -149,9 +150,7 @@ const Form = () => {
               
             
             </Box>
-            <Box sx={{ marginTop: 3,}}>
-              Press the save button to copy the value below when editing the description of already existing products! <IconButton onClick={navigator.clipboard.writeText(Quillvalue)} ><Save /></IconButton>
-            </Box>
+           
             <ReactQuill
               style={{ marginTop: 25 }}
               theme="snow"

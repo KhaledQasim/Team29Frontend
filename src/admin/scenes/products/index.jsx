@@ -8,9 +8,10 @@ import {
 } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
+import 'react-quill/dist/quill.snow.css';
 
 import Header from "../../components/Header";
-import { Delete } from "@mui/icons-material";
+import { Clear, Delete, Save } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
@@ -19,6 +20,7 @@ import ReactQuill from "react-quill";
 const View = () => {
   //modal
   const [modalShow, setModalShow] = useState(false);
+  const [Quillvalue, setQuillValue] = useState('');
 
   const [modalImage, setModalImage] = useState("");
 
@@ -358,6 +360,15 @@ const View = () => {
         />
 
       </Box>
+      <Box sx={{ marginTop: 3,}}>
+              Press the save button to copy the value below when editing the description of already existing products! <IconButton onClick={() => navigator.clipboard.writeText(Quillvalue)} ><Save /></IconButton> To Clear <IconButton onClick={()=> setQuillValue("")} ><Clear/></IconButton>
+      </Box>
+      <ReactQuill
+              style={{ marginTop: 25 }}
+              theme="snow"
+              value={Quillvalue}
+              onChange={setQuillValue}
+      />
     </Box>
   );
 };
