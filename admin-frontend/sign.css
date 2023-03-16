@@ -4,7 +4,7 @@
 box-sizing: border-box;
 }
 body{
-background-color: #080710;
+background-color: rgb(58, 58, 58);
 
 }
 .background{
@@ -20,7 +20,7 @@ Top: 50%;
     position: absolute; border-radius: 50%;
     }
     .shape:first-child{
-        background:linear-gradient(to right, #98BDFF, #4B49AC ); 
+        background:linear-gradient(to right, #8794ac , #c5c73e); 
         right:  180px;
         bottom: -80px;
     }
@@ -37,7 +37,7 @@ Top: 50%;
     }
     form *{
         font-family: 'Poppins',sans-serif;
-        color: #ffffff;
+        color:#ffffff;
         letter-spacing: 0.5px;
         outline: none;
         border: none;
@@ -57,11 +57,11 @@ Top: 50%;
           input[type=submit]{
         margin-top: 20px;
         width: 100%;
-        background-color: #98BDFF;
+        background-color: #a4ac49;
         color: #080710;
         padding: 15px 0; font-size: 18px; font-weight: 600; border-radius: 5px; cursor:pointer }
         input[type=submit]:hover{
-            background-color: #4B49AC;
+            background-color: #dff307;
         }
         input[type=checkbox] {
             /* Add if not using autoprefixer */
