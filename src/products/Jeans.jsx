@@ -6,10 +6,16 @@ import red from "./images/tshirts/red.png";
 import green from "./images/tshirts/green.png"
 import orange from "./images/tshirts/orange.png"
 import style from "../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Products() {
+    const navigate = useNavigate();
     return (
-    <><CardGroup className="categories">
+    <>
+    <div className="backButton">
+        <Button onClick={() => { navigate(-1); } }>&laquo; All Categories</Button>
+    </div> 
+    <CardGroup className="categories">
         <Card className="category" style={style}>
             <Card.Img variant="top" src={black} />
             <Card.Body>

@@ -39,10 +39,6 @@
   }
 }
 
-.categories {
-  width: fit-content;
-}
-
 .category {
   padding: 10px;
   margin-top: 10px;
@@ -64,5 +60,10 @@
 .tshirt-price {
   color: gold;
   font-size: x-large;
+}
+
+.backButton {
+  margin-top: 10px;
+  padding: 10px;
 }
   
