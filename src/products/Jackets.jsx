@@ -21,8 +21,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Men's Jackets</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                     Introducing the perfect addition to your wardrobe, our Men's Black Jacket!     
+                     Crafted from premium black fabric, this jacket features a sleek and modern design that is both versatile and timeless.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -37,8 +37,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Women's Jacket</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Introducing the perfect addition to your wardrobe, our Women's Blue Jacket!     
+                    Crafted from premium black fabric, this jacket features a sleek and modern design that is both versatile and timeless.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -53,8 +53,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Leather Jacket</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Red Leather Jacket!
+                    Crafted from high-quality materials, this jacket is both durable and comfortable.    
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -68,8 +68,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Limited Edition Jacket</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Green Limited Edition Jacket!
+                    Limited edition jackets are made with high-quality materials and feature unique design elements.        
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -84,8 +84,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Exclusive Jacket</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Exclusive Jeans, Finished in Orange.
+                    Suitable for exclusive events.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
