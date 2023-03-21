@@ -21,8 +21,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Men's Jeans</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                      Basic Men's Jeans, Finished in Black.
+                      Crafted from Premium Denim, our jeans feature a range of cuts and styles to suit every taste. 
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -37,8 +37,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Women's Jeans</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                      Basic Women's Jeans, Finished in Blue.
+                      Crafted from Premium Denim, our jeans feature a range of cuts and styles to suit every taste. 
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -53,8 +53,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Kids Jeggings</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                      Basic Kids Jeggings, Finished in Red.
+                      Made from a soft and stretchy blend of materials, our jeggings provide all-day comfort while still maintaining the look of classic denim jeans.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -68,8 +68,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Skinny Jeans</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                      Unisex Skinny Jeans, Finished in Green.
+                      These jeans are designed to hug your curves and flatter your figure, making them the perfect choice for any occasion.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -84,8 +84,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Exclusive Jeans</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                      Unisex Exclusive Jeans, Finished in Orange.
+                      Suitable for exclusive events.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
