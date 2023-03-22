@@ -21,8 +21,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Men's Shorts</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Basic Men's Shorts, Finished in Black.
+                    Specially Designed for Warm Weather and Casual Occasions.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -37,8 +37,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Women's Shorts</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Basic Women's Shorts, Finished in Blue.
+                    Specially Designed for Warm Weather and Casual Occasions.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -53,8 +53,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Swimming Shorts</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Shorts, Finished in Dark Red.
+                    Suitable for Swimming and are typically made of quick-drying materials and feature a comfortable fit with an elastic waistband and drawstring closure.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -68,8 +68,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Knee-Length Shorts</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Knee-Length Shorts, Finished in Green.
+                    Ideal for daily wear.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -84,8 +84,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Exclusive Shorts</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Exclusive Shorts, Finished in Orange.
+                    Suitable for Exclusive Events.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
