@@ -21,8 +21,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Men's T-Shirt</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Basic Men's T-Shirt, Finished in Satin Black.
+                    Ideal for your daily use.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -37,8 +37,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Women's T-Shirt</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Basic Women's Cropped T-Shirt, Finished in Navy Blue.
+                    Ideal for your daily use.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -53,8 +53,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Kids Short Sleeve T-Shirt</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Kids Short Sleeve T-Shirt, Finished in Bright Red.
+                    Affordable Ruff-n-Tuff Collection for Kids.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -69,8 +69,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Oversized T-Shirt</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Oversized T-Shirt, Finished in Olive Green.
+                    Your Perfect Lounge Wear.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
@@ -85,8 +85,8 @@ export default function Products() {
             <Card.Body>
                 <Card.Title>WeWear Long Sleeve Shirt</Card.Title>
                 <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus rem
-                    officia accusantium maiores quisquam dolorum?
+                    Unisex Long Sleeve Shirt, Finished in Orange.
+                    Suitable for Every Weather.
                 </Card.Text>
                 <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
