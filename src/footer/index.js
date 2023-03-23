@@ -25,32 +25,40 @@ const Footer = () => {
               <ul className="list-unstyled">
                 <li className="my-3">
                   <Link
-                    href="/"
+
                     className="text-white text-decoration-none text-muted"
+                    to="/"
                   >
+
                     <i className="fas fa-chevron-right me-1" /> Home
                   </Link>
                 </li>
                 <li className="my-3">
                   <Link
-                    href="/"
+
                     className="text-white text-decoration-none text-muted"
+                    to="/products"
                   >
+
                     <i className="fas fa-chevron-right me-1" /> Collection
                   </Link>
                 </li>
                 <li className="my-3">
                   <Link
-                    href="/"
+
                     className="text-white text-decoration-none text-muted"
+                    to="/aboutus"
                   >
+
                     <i className="fas fa-chevron-right me-1" /> About us
+
                   </Link>
                 </li>
                 <li className="my-3">
                   <Link
-                    href="/"
+
                     className="text-white text-decoration-none text-muted"
+                    to="/login"
                   >
                     <i className="fas fa-chevron-right me-1" /> Login
                   </Link>
