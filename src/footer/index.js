@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
             <div className="col-md-6 col-lg-3">
               <h5 className="fw-light mb-3">Contact Us</h5>
-              <div className="d-flex justify-content-start align-items-start my-2 text-muted">
+              <div className=" justify-content-start align-items-start my-2 text-muted">
                 <span className="me-3">
                   <i className="fas fa-map-marked-alt" />
                 </span>
@@ -67,13 +67,13 @@ const Footer = () => {
                   Aston Street, Birmingham, B4 smth, United Kingdom
                 </span>
               </div>
-              <div className="d-flex justify-content-start align-items-start my-2 text-muted">
+              <div className=" justify-content-start align-items-start my-2 text-muted">
                 <span className="me-3">
                   <i className="fas fa-envelope" />
                 </span>
                 <span className="fw-light">info@WeWear.com</span>
               </div>
-              <div className="d-flex justify-content-start align-items-start my-2 text-muted">
+              <div className=" justify-content-start align-items-start my-2 text-muted">
                 <span className="me-3">
                   <i className="fas fa-phone-alt" />
                 </span>
@@ -83,7 +83,7 @@ const Footer = () => {
             <div className="col-md-6 col-lg-3">
               <h5 className="fw-light mb-3">Follow Us</h5>
               <div>
-                <ul className="list-unstyled d-flex">
+                <ul className="list-unstyled ">
                   <li>
                     <a
                       href="/"
