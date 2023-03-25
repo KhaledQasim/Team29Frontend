@@ -216,9 +216,12 @@ function Navbarr() {
                 </Link>
               </li>
               <li className="nav-item px-2 py-2">
-                <a className="nav-link text-uppercase text-dark" href="#about">
-                  about us
-                </a>
+                <Link
+                  className="nav-link text-uppercase text-dark"
+                  to="/aboutus"
+                >
+                       About Us
+                </Link>
               </li>
               {isAdmin ? (
                 <li className="nav-item px-2 py-2 border-0">

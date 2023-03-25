@@ -22,6 +22,7 @@ import Register from './register';
 // import { atom } from 'jotai';
 import Logout from './logout';
 import Basket from './basket/Basket';
+import AboutUsContact from "./pages/ContactUs";
 
 
 // export const jwtAtom = atom(Cookies.get("jwt"));
@@ -55,6 +56,7 @@ function App() {
 
               {/* <Route exact path="/" element={<HomeNew/>}/> */}
               <Route index element={<HomeNew/>}/>
+              <Route exact path="/aboutus" element={<AboutUsContact/>}/>
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/register" element={<Register/>}/>
               <Route exact path="/logout" element={<Logout />}/>

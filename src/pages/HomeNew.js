@@ -1,5 +1,10 @@
 /* eslint-disable no-useless-concat */
 import React, { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+import Isotope from 'isotope-layout';
+
 import axios from 'axios'
 import configData from "../config.json";
 import './Home.css';
@@ -11,6 +16,42 @@ import { Button } from 'react-bootstrap';
 export default function Home() {
 
     const [,setProducts]=useState([]);
+
+    useEffect(() => {
+  const initializeIsotope = () => {
+    const iso = new Isotope('.collection-list', {
+      itemSelector: '.col-md-6',
+      layoutMode: 'fitRows',
+    });
+
+    iso.arrange({ filter: '*' });
+
+    const filterButtons = document.querySelectorAll('.filter-button-group button');
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filterValue = button.getAttribute('data-filter');
+        iso.arrange({ filter: filterValue });
+
+        filterButtons.forEach((btn) => {
+          btn.classList.remove('active-filter-btn');
+        });
+        button.classList.add('active-filter-btn');
+      });
+    });
+  };
+
+  if (document.readyState === 'complete') {
+    initializeIsotope();
+  } else {
+    window.addEventListener('load', initializeIsotope);
+  }
+
+  return () => {
+    window.removeEventListener('load', initializeIsotope);
+  };
+}, []);
+
+
 
 
 
@@ -91,46 +132,48 @@ export default function Home() {
   </nav> */}
   {/* end of navbar */}
   {/* header */}
-  <header 
-    id="header"
-    className="vh-100 carousel slide content-container"
-    data-bs-ride="carousel"
-    style={{ paddingTop: 104 }}
-   >
-    <div className="container h-100 d-flex align-items-center carousel-inner">
-      <div className="text-center carousel-item active">
-        <h2 className="text-capitalize text-white">WeWear collection</h2>
-        <h1 className="text-uppercase py-2 fw-bold text-white">new arrivals</h1>
-        <a href="/products" className="btn mt-3 text-uppercase">
-          shop now
-        </a>
-      </div>
-      <div className="text-center carousel-item">
-        <h2 className="text-capitalize text-white">WeWear Collection</h2>
-        <h1 className="text-uppercase py-2 fw-bold text-white">new season</h1>
-        <a href="/" className="btn mt-3 text-uppercase">
-          buy now
-        </a>
-      </div>
+  <header
+  id="header"
+  className=" carousel slide content-container-home"
+  data-bs-ride="carousel"
+
+>
+  <div className="container h-100 d-flex align-items-center carousel-inner">
+    <div className="text-center carousel-item active">
+      <h2 className="text-capitalize text-white">WeWear collection</h2>
+      <h1 className="text-uppercase py-2 fw-bold text-white">new arrivals</h1>
+      <a href="/products" className="btn mt-3 text-uppercase">
+        shop now
+      </a>
     </div>
-    <button
-      className="carousel-control-prev"
-      type="button"
-      data-bs-target="#header"
-      data-bs-slide="prev"
-    >
-      <span className="carousel-control-prev-icon" />
-    </button>
-    <button
-      className="carousel-control-next"
-      type="button"
-      data-bs-target="#header"
-      data-bs-slide="next"
-    >
-      <span className="carousel-control-next-icon" />
-    </button>
-  </header>
- 
+    <div className="text-center carousel-item">
+      <h2 className="text-capitalize text-white">WeWear Collection</h2>
+      <h1 className="text-uppercase py-2 fw-bold text-white">new season</h1>
+      <a href="/" className="btn mt-3 text-uppercase">
+        buy now
+      </a>
+    </div>
+  </div>
+  <button
+    className="carousel-control-prev"
+    type="button"
+    data-bs-target="#header"
+    data-bs-slide="prev"
+  >
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button
+    className="carousel-control-next"
+    type="button"
+    data-bs-target="#header"
+    data-bs-slide="next"
+  >
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</header>
+
   {/* end of header */}
   {/* collection */}
   <section id="collection" className="py-5">
@@ -517,6 +560,8 @@ export default function Home() {
           </button>
         </div>
       </div>
+
+
     </div>
   </section>
   {/* end of newsletter */}
