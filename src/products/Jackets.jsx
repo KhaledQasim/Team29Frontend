@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
-import black from "./images/tshirts/black.png";
-import blue from "./images/tshirts/blue.png";
-import red from "./images/tshirts/red.png";
-import green from "./images/tshirts/green.png"
-import orange from "./images/tshirts/orange.png"
+import jacket1 from "./images/jackets/11.png";
+import jacket2 from "./images/jackets/12.png";
+import jacket3 from "./images/jackets/13.png";
+import jacket4 from "./images/jackets/14.png";
+import jacket5 from "./images/jackets/15.png";
 import style from "../App.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export default function Products() {
     </div> 
     <CardGroup className="categories">
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={black} />
+            <Card.Img variant="top" src={jacket1}/>
             <Card.Body>
                 <Card.Title>WeWear Men's Jackets</Card.Title>
                 <Card.Text>
@@ -33,7 +33,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={blue} />
+            <Card.Img variant="top" src={jacket2} />
             <Card.Body>
                 <Card.Title>WeWear Women's Jacket</Card.Title>
                 <Card.Text>
@@ -49,7 +49,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={red} />
+            <Card.Img variant="top" src={jacket3} />
             <Card.Body>
                 <Card.Title>WeWear Leather Jacket</Card.Title>
                 <Card.Text>
@@ -63,8 +63,9 @@ export default function Products() {
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
         </Card>
+        <br></br>        
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={green} />
+            <Card.Img variant="top" src={jacket4}/>
             <Card.Body>
                 <Card.Title>WeWear Limited Edition Jacket</Card.Title>
                 <Card.Text>
@@ -80,7 +81,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={orange} />
+            <Card.Img variant="top" src={jacket5}/>
             <Card.Body>
                 <Card.Title>WeWear Exclusive Jacket</Card.Title>
                 <Card.Text>
