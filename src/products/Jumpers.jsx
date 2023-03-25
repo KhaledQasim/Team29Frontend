@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
-import black from "./images/tshirts/black.png";
-import blue from "./images/tshirts/blue.png";
-import red from "./images/tshirts/red.png";
-import green from "./images/tshirts/green.png"
-import orange from "./images/tshirts/orange.png"
+import jumper1 from "./images/jumpers/6.png";
+import jumper2 from "./images/jumpers/7.png";
+import jumper3 from "./images/jumpers/8.png";
+import jumper4 from "./images/jumpers/9.png";
+import jumper5 from "./images/jumpers/10.png";
 import style from "../App.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export default function Products() {
     </div> 
     <CardGroup className="categories">
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={black} />
+            <Card.Img variant="top" src={jumper1}/>
             <Card.Body>
                 <Card.Title>WeWear Men's Jumper</Card.Title>
                 <Card.Text>
@@ -33,7 +33,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={blue} />
+            <Card.Img variant="top" src={jumper2}/>
             <Card.Body>
                 <Card.Title>WeWear Women's Jumper</Card.Title>
                 <Card.Text>
@@ -49,7 +49,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={red} />
+            <Card.Img variant="top" src={jumper3}/>
             <Card.Body>
                 <Card.Title>WeWear Kids Short Sleeve Jumper</Card.Title>
                 <Card.Text>
@@ -64,7 +64,7 @@ export default function Products() {
             </Card.Footer>
         </Card>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={green} />
+            <Card.Img variant="top" src={jumper4}/>
             <Card.Body>
                 <Card.Title>WeWear Oversized Jumper</Card.Title>
                 <Card.Text>
@@ -80,7 +80,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={orange} />
+            <Card.Img variant="top" src={jumper5}/>
             <Card.Body>
                 <Card.Title>WeWear Long Sleeve Jumper</Card.Title>
                 <Card.Text>
