@@ -62,7 +62,8 @@ export default function Products() {
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
-        </Card>
+                </Card>
+                <br></br>
         <Card className="category" style={style}>
             <Card.Img variant="top" src={jumper4}/>
             <Card.Body>

@@ -63,8 +63,9 @@ export default function Products() {
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
         </Card>
+        <br></br>        
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={shorts4}/>
+            <Card.Img variant="top" className="shorts4Image" src={shorts4} style={style} />
             <Card.Body>
                 <Card.Title>WeWear Knee-Length Shorts</Card.Title>
                 <Card.Text>

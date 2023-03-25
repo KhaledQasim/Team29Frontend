@@ -63,6 +63,7 @@ export default function Products() {
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
         </Card>
+        <br></br>        
         <Card className="category" style={style}>
             <Card.Img variant="top" src={jacket4}/>
             <Card.Body>
