@@ -1,15 +1,19 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
-import image from "./images/weWEAR-12.png";
+import TshirtPlaceholder from "../Placeholder Images/TshirtPlaceholder.png";
+import JumperPlaceholder from "../Placeholder Images/SweaterPlaceholder.png";
+import JeansPlaceholder from "../Placeholder Images/JeansPlaceholder.png";
+import ShortsPlaceholder from "../Placeholder Images/ShortsPlaceholder.png";
+import JacketPlaceholder from "../Placeholder Images/JacketPlaceholder.png";
 import "../App.css";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Products() {
     const navigate = useNavigate();
     return (
         <><CardGroup>
             <Card className="category">
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={TshirtPlaceholder} />
                 <Card.Body>
                     <Card.Title>T-Shirts</Card.Title>
                     <Card.Text>
@@ -24,7 +28,7 @@ export default function Products() {
             </Card>
             <br></br>
             <Card className="category" >
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" className="jumperPlaceholder" src={JumperPlaceholder} />
                 <Card.Body>
                     <Card.Title>Jumpers</Card.Title>
                     <Card.Text>
@@ -38,7 +42,7 @@ export default function Products() {
             </Card>
             <br></br>
             <Card className="category" >
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={JeansPlaceholder} />
                 <Card.Body>
                     <Card.Title>Jeans</Card.Title>
                     <Card.Text>
@@ -52,7 +56,7 @@ export default function Products() {
             </Card>
             <br></br>
             <Card className="category" >
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={ShortsPlaceholder} />
                 <Card.Body>
                     <Card.Title>Shorts</Card.Title>
                     <Card.Text>
@@ -66,7 +70,7 @@ export default function Products() {
             </Card>
             <br></br>
             <Card className="category" >
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={JacketPlaceholder} />
                 <Card.Body>
                     <Card.Title>Jackets</Card.Title>
                     <Card.Text>
