@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Button, CardGroup } from "react-bootstrap";
-import tshirt1 from "./images/tshirts/1.png";
-import tshirt2 from "./images/tshirts/2.png";
-import tshirt3 from "./images/tshirts/3.png";
-import tshirt4 from "./images/tshirts/4.png";
-import tshirt5 from "./images/tshirts/5.png";
+import shorts1 from "./images/shorts/21.png";
+import shorts2 from "./images/shorts/22.png";
+import shorts3 from "./images/shorts/23.png";
+import shorts4 from "./images/shorts/24.png";
+import shorts5 from "./images/shorts/25.png";
 import style from "../App.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export default function Products() {
     </div> 
     <CardGroup className="categories">
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={tshirt1}/>
+            <Card.Img variant="top" src={shorts1}/>
             <Card.Body>
                 <Card.Title>WeWear Men's Shorts</Card.Title>
                 <Card.Text>
@@ -33,7 +33,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={tshirt2}/>
+            <Card.Img variant="top" src={shorts2}/>
             <Card.Body>
                 <Card.Title>WeWear Women's Shorts</Card.Title>
                 <Card.Text>
@@ -49,7 +49,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={tshirt3}/>
+            <Card.Img variant="top" src={shorts3}/>
             <Card.Body>
                 <Card.Title>WeWear Swimming Shorts</Card.Title>
                 <Card.Text>
@@ -64,7 +64,7 @@ export default function Products() {
             </Card.Footer>
         </Card>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={tshirt4}/>
+            <Card.Img variant="top" src={shorts4}/>
             <Card.Body>
                 <Card.Title>WeWear Knee-Length Shorts</Card.Title>
                 <Card.Text>
@@ -80,7 +80,7 @@ export default function Products() {
         </Card>
         <br></br>
         <Card className="category" style={style}>
-            <Card.Img variant="top" src={tshirt5}/>
+            <Card.Img variant="top" src={shorts5}/>
             <Card.Body>
                 <Card.Title>WeWear Exclusive Shorts</Card.Title>
                 <Card.Text>
