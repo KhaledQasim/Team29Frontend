@@ -208,17 +208,17 @@ export const handleSizeChange = async (event, productId) => {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
   updateCartModal();
 }
-export const emptyCart = async () => {
-const cartId = localStorage.getItem('cartId');
-if (!cartId) {
-return;
-}
-await deleteCart(cartId);
-localStorage.removeItem('cartId');
-localStorage.removeItem('cartItems');
-updateCartModal();
-toast.success('Cart cleared!');
+export const emptyCart = () => {
+  const cartId = localStorage.getItem('cartId');
+  const cartData = JSON.parse(localStorage.getItem('cartData'));
+
+  if (!cartId) {
+    return;
+  }
+  localStorage.removeItem('cartData');
+  updateCart(cartId,cartData);
 };
+
   export const hasProductInCart = async (productId) => {
     const cartId = localStorage.getItem('cartId');
     if (!cartId) {

@@ -33,6 +33,8 @@ export default function Basket({ cartData }) {
   const [productToDelete, setProductToDelete] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cartChanged, setCartChanged] = useState(false)
+  const [formattedTotalPrice, setFormattedTotalPrice] = useState("");
+
   const BASE_URL = 'http://localhost:3000/carts';
 
   useEffect(() => {
@@ -116,6 +118,8 @@ export default function Basket({ cartData }) {
           setProductCount(count);
           setTotalPrice(price);
           setProducts(productsWithDetails);
+          setFormattedTotalPrice(formatter.format(price));
+
     
           setShowEmptyCartModal(productsInCart.length === 0);
         } catch (error) {
@@ -137,6 +141,14 @@ export default function Basket({ cartData }) {
       reloadPage();
     }
   }, [cartChanged]);
+
+  const formatter = new Intl.NumberFormat('en-UK', {
+    style: 'currency',
+    currency: 'GBP',
+    minimumFractionDigits: 2,
+  });
+  
+  
 
   const setQuantity = (productId, size, newQuantity) => {
     const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
@@ -261,9 +273,10 @@ export default function Basket({ cartData }) {
   
 
   const handleEmptyCart = async () => {
+    const cartId = localStorage.getItem('cartId');
     try {
-      await emptyCart(cart.id);
-      setCart(await getCartById(cart.id));
+      await emptyCart(cartId);
+      setCart(await getCartById(cartId));
       setCartChanged(true); // set cartChanged to true
 
     } catch (error) {
@@ -368,7 +381,7 @@ export default function Basket({ cartData }) {
                           value={product.quantity}
                           onChange={(e) => handleAddToCart(product.id, product.size, e.target.value - product.quantity, product.price)}
                         >
-                          {Array.from({ length: 10 }, (_, i) => i + 1).map((value) => (
+                          {Array.from({ length: 20 }, (_, i) => i + 1).map((value) => (
                             <option key={value} value={value}>
                               {value}
                             </option>
@@ -380,7 +393,7 @@ export default function Basket({ cartData }) {
                 </Card>
               ))}
               <p>Product count: {productCount}</p>
-              <p>Total price: {totalPrice}</p>
+              <p>Total price: {formattedTotalPrice}</p>
               <Button variant="primary" onClick={() => setShowEmptyCartModal(true)}>
                 Empty cart
               </Button>

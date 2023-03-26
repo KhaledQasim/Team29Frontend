@@ -139,7 +139,7 @@ return (
         <Col key={product.id} sm={12} md={6} lg={4}>
           <Card>
             <Card.Body>
-              <Card.Img variant="card-top-sm" src={product.image} />
+            <Card.Img variant="card-top-sm" src={product.image} style={{ width: '300px', height: '300px' }} />
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>{product.description}</Card.Text>
               <Card.Text>${product.price}</Card.Text>
@@ -150,6 +150,8 @@ return (
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
+                    <option value="XL">XL</option>
+
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="quantityInput">
