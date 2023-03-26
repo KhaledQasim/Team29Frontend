@@ -24,7 +24,7 @@ export default function Products() {
                     Basic Men's Jeans, Finished in Black.
                     Crafted from Premium Denim, our jeans feature a range of cuts and styles to suit every taste. 
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£18.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -40,7 +40,7 @@ export default function Products() {
                     Basic Women's Jeans, Finished in Blue.
                     Crafted from Premium Denim, our jeans feature a range of cuts and styles to suit every taste. 
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£19.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -56,7 +56,7 @@ export default function Products() {
                     Basic Kids Jeggings, Finished in Red.
                     Made from a soft and stretchy blend of materials, our jeggings provide all-day comfort while still maintaining the look of classic denim jeans.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£20.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -72,7 +72,7 @@ export default function Products() {
                     Unisex Skinny Jeans, Finished in Green.
                     These jeans are designed to hug your curves and flatter your figure, making them the perfect choice for any occasion.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£21.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -88,7 +88,7 @@ export default function Products() {
                     Unisex Exclusive Jeans, Finished in Orange.
                     Suitable for exclusive events.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£22.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>

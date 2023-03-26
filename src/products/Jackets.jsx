@@ -24,7 +24,7 @@ export default function Products() {
                     Introducing the perfect addition to your wardrobe, our Men's Black Jacket!    
                     Crafted from premium black fabric, this jacket features a sleek and modern design that is both versatile and timeless
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£23.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -40,7 +40,7 @@ export default function Products() {
                     Introducing the perfect addition to your wardrobe, our Women's Blue Jacket!     
                     Crafted from premium black fabric, this jacket features a sleek and modern design that is both versatile and timeless.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£24.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -56,7 +56,7 @@ export default function Products() {
                     Unisex Red Leather Jacket!
                     Crafted from high-quality materials, this jacket is both durable and comfortable.    
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£25.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -72,7 +72,7 @@ export default function Products() {
                     Unisex Green Limited-Edition Jacket!
                     Limited edition jackets are made with high-quality materials and feature unique design elements.  
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£26.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -88,7 +88,7 @@ export default function Products() {
                     Unisex Exclusive Jeans, Finished in Orange.
                     Suitable for exclusive events.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£27.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>

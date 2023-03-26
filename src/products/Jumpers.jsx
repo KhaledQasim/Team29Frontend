@@ -24,7 +24,7 @@ export default function Products() {
                     Basic Regular Fit Men's Jumper, Finished in Satin Black.
                     Perfect for Chilly Days and Stylish Addition to any Wardrobe.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£13.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -40,7 +40,7 @@ export default function Products() {
                     Basic Regular Fit Women's Jumper, Finished in Navy Blue.
                     Perfect for Chilly Days and Stylish Addition to any Wardrobe.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£14.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -56,7 +56,7 @@ export default function Products() {
                     Basic Regular Fit Kids Short Sleeve Jumper, Finished in Red.
                     Perfect for Chilly Days and Stylish Addition to any Wardrobe.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£15.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -72,7 +72,7 @@ export default function Products() {
                     Basic Regular Fit Unisex Oversized Jumper, Finished in Light Green.
                     Perfect for Chilly Days and Stylish Addition to any Wardrobe.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£16.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -88,7 +88,7 @@ export default function Products() {
                     Basic Regular Fit Unisex Long Sleeves Jumper, Finished in Orange.
                     Perfect for Chilly Days and Stylish Addition to any Wardrobe.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£17.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>

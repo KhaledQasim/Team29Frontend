@@ -24,7 +24,7 @@ export default function Products() {
                     Basic Men's T-Shirt, Finished in Satin Black.
                     Ideal for your daily use.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" >£8.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -40,7 +40,7 @@ export default function Products() {
                     Basic Women's Cropped T-Shirt, Finished in Navy Blue.
                     Ideal for your daily use.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" >£9.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -56,7 +56,7 @@ export default function Products() {
                     Kids Short Sleeve T-Shirt, Finished in Bright Red.
                     Affordable Ruff-n-Tuff Collection for Kids.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" >£10.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -72,7 +72,7 @@ export default function Products() {
                     Unisex Oversized T-Shirt, Finished in Olive Green.
                     Your Perfect Lounge Wear.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" >£11.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -88,7 +88,7 @@ export default function Products() {
                     Unisex Long Sleeve Shirt, Finished in Orange.
                     Suitable for Every Weather.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" >£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" >£12.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>

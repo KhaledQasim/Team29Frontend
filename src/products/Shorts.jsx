@@ -24,7 +24,7 @@ export default function Products() {
                     Basic Men's Shorts, Finished in Black.
                     Specially Designed for Warm Weather and Casual Occasions.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£6.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -40,7 +40,7 @@ export default function Products() {
                     Basic Women's Shorts, Finished in Blue.
                     Specially Designed for Warm Weather and Casual Occasions.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£7.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -56,7 +56,7 @@ export default function Products() {
                     Unisex Shorts, Finished in Dark Red.
                     Suitable for Swimming and are typically made of quick-drying materials and feature a comfortable fit with an elastic waistband and drawstring closure.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£8.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -72,7 +72,7 @@ export default function Products() {
                     Unisex Knee-Length Shorts, Finished in Green.
                     Ideal for daily wear.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£9.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
@@ -88,7 +88,7 @@ export default function Products() {
                     Unisex Exclusive Shorts, Finished in Orange.
                     Suitable for Exclusive Events.
                 </Card.Text>
-                <Card.Text><strong className="tshirt-price" style={style}>£77.77</strong></Card.Text>
+                <Card.Text><strong className="tshirt-price" style={style}>£10.00</strong></Card.Text>
                 <Button variant="primary">Add To Basket</Button>
             </Card.Body>
             <Card.Footer>
