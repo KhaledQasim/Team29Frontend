@@ -1,0 +1,18 @@
+.product-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .product-image {
+    margin-right: 20px;
+  }
+  
+  .product-image img {
+    width: 100%;
+  }
+  
+  .product-details {
+    flex: 1;
+  }
+  

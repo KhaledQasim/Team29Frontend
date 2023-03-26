@@ -1,6 +1,10 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button, Modal, Card } from "react-bootstrap";
 import { Link, } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import './basket.css'
 import {
   addProductToCart,
   removeProductFromCart,
@@ -14,7 +18,9 @@ import {
   createCart,
   updateCart,
   deleteCart,
-  getProductById
+  getProductById,
+  getProductDetails
+
 } from "./cartFunctions";
 
 export default function Basket({ cartData }) {
@@ -26,6 +32,8 @@ export default function Basket({ cartData }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cartChanged, setCartChanged] = useState(false)
+  const BASE_URL = 'http://localhost:3000/carts';
 
   useEffect(() => {
     async function fetchData() {
@@ -71,7 +79,7 @@ export default function Basket({ cartData }) {
     }
 
     fetchData();
-  }, []);
+  }, [cartChanged]);
 
 
   useEffect(() => {
@@ -79,7 +87,7 @@ export default function Basket({ cartData }) {
       console.log("Fetching cart data...");
       console.log("Cart:", cart);
       setLoading(true); // set loading state to true before fetching data
-
+    
       if (cart) {
         try {
           const currentCart = cart;
@@ -89,26 +97,27 @@ export default function Basket({ cartData }) {
             getTotalPrice(currentCart.id),
             getProductsInCart(currentCart.id),
           ]);
-
+    
           console.log("Count:", count);
           console.log("Price:", price);
           console.log("Products in cart:", productsInCart);
-
-          setProductCount(count);
-          setTotalPrice(price);
-          setProducts(
-            productsInCart.map((product) => ({
+    
+          // Fetch product data for each product in the cart
+          const productsWithDetails = await Promise.all(productsInCart.map(async (product) => {
+            const { name, image } = await getProductDetails(product.productId);
+            return {
               ...product,
               cartData: currentCart,
-            }))
-          );
-
-          const cartQuantity = await getCartQuantity(currentCart.id);
-          console.log("Cart quantity:", cartQuantity);
-          if (cartQuantity === 0) {
-            console.log("Cart is empty. Showing empty cart modal.");
-            setShowEmptyCartModal(true);
-          }
+              name,
+              image,
+            };
+          }));
+    
+          setProductCount(count);
+          setTotalPrice(price);
+          setProducts(productsWithDetails);
+    
+          setShowEmptyCartModal(productsInCart.length === 0);
         } catch (error) {
           console.error("Error fetching cart data: ", error);
         } finally {
@@ -116,53 +125,137 @@ export default function Basket({ cartData }) {
         }
       }
     }
-
+    
     fetchCartData();
   }, [cart]);
+  useEffect(() => {
+    // listen for changes in cartChanged state variable and reload page when there is a change
+    function reloadPage() {
+      window.location.reload();
+    }
+    if (cartChanged) {
+      reloadPage();
+    }
+  }, [cartChanged]);
 
+  const setQuantity = (productId, size, newQuantity) => {
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+    const existingProductIndex = cartData.findIndex(
+      (product) => product.id === productId && product.size === size
+    );
   
-
-  const handleAddToCart = async (productId) => {
-    const cartId = localStorage.getItem('cartId');
-
-    try {
-      await addProductToCart(cartId, productId);
-      // Update the local state to reflect the changes made to the cart
-      const updatedCart = await getCartById(cartId);
-      setCart(updatedCart);
-      const [count, price, productsInCart] = await Promise.all([
-        getProductCount(updatedCart.id),
-        getTotalPrice(updatedCart.id),
-        getProductsInCart(updatedCart.id),
-      ]);
-      setProductCount(count);
-      setTotalPrice(price);
-      setProducts(
-        productsInCart.map((product) => ({
-          ...product,
-          cartData: updatedCart,
-        }))
-      );
-    } catch (error) {
-      console.error("Error adding product to cart: ", error);
+    if (existingProductIndex !== -1) {
+      cartData[existingProductIndex].quantity = newQuantity;
+      localStorage.setItem('cartData', JSON.stringify(cartData));
+      handleUpdateCart(cartData);
     }
   };
   
 
-  const handleRemoveFromCart = async (productId) => {
+  const handleUpdateCart = async (cartData) => {
     const cartId = localStorage.getItem('cartId');
     if (!cartId) {
       throw new Error('Cart ID is undefined');
     }
-    if (!productId) {
-      throw new Error('Product ID is undefined');
-    }
+  
+    const updatedCartData = [...cartData, { ...cartData }];
+    const quantity = getCartQuantity(updatedCartData);
+    const totalPrice = getTotalPrice(updatedCartData);
+  
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        quantity: quantity,
+        totalPrice: totalPrice,
+      },
+    };
+  
+    const requestBody = {
+      products: updatedCartData,
+    };
   
     try {
-      await removeProductFromCart(cartId, productId);
-      setCart(await getCartById(cartId));
+      await axios.put(`${BASE_URL}/${cartId}`, requestBody, config);
+      console.log('Cart Updated:', requestBody);
+      setCartChanged(true); // set cartChanged to true
+      return true; // indicate that the request was successful
     } catch (error) {
-      console.error("Error removing product from cart:", error);
+      throw new Error('Failed to update cart'); // throw an error if the request failed
+    }
+  };
+  
+  
+  
+  const handleAddToCart = async (productId, size, quantity = 1, price) => {
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+    const existingProductIndex = cartData.findIndex(
+      (product) => product.id === productId && product.size === size
+    );
+  
+    if (existingProductIndex !== -1) {
+      // If product already exists in cart, update the quantity of the existing product
+      cartData[existingProductIndex].quantity += quantity;
+    } else {
+      // If product doesn't exist in cart, add it to the cart
+      cartData.push({ id: productId, size, quantity, price });
+    }
+  
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  
+    // Updated call to handleUpdateCart function
+    await handleUpdateCart(cartData);
+    setCartChanged(true); // set cartChanged to true
+
+  };
+  
+  
+  
+  const handleRemoveFromCart = async (productId, size, quantity = 1, price) => {
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+    const existingProductIndex = cartData.findIndex(
+      (product) => product.id === productId && product.size === size
+    );
+  
+    if (existingProductIndex !== -1) {
+      const updatedQuantity = cartData[existingProductIndex].quantity - quantity;
+      if (updatedQuantity <= 0) {
+        cartData.splice(existingProductIndex, 1);
+      } else {
+        cartData[existingProductIndex].quantity = updatedQuantity;
+      }
+  
+      localStorage.setItem('cartData', JSON.stringify(cartData));
+  
+      // Updated call to handleUpdateCart function
+      await handleUpdateCart(cartData);
+      setCartChanged(true); // set cartChanged to true
+
+    }
+  };
+  
+  const handleRemoveProduct = async (productId, size, quantity, price) => {
+    const cartId = localStorage.getItem('cartId');
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+    const existingProductIndex = cartData.findIndex(
+      (product) => product.id === productId && product.size === size
+    );
+  
+    if (existingProductIndex !== -1) {
+      const updatedQuantity = cartData[existingProductIndex].quantity - quantity;
+      if (updatedQuantity <= 0) {
+        cartData.splice(existingProductIndex, 1);
+      } else {
+        cartData[existingProductIndex].quantity = updatedQuantity;
+      }
+  
+      localStorage.setItem('cartData', JSON.stringify(cartData));
+  
+      // Updated call to handleUpdateCart function
+      await handleUpdateCart(cartData);
+      setCartChanged(true); // set cartChanged to true
+
     }
   };
   
@@ -171,6 +264,8 @@ export default function Basket({ cartData }) {
     try {
       await emptyCart(cart.id);
       setCart(await getCartById(cart.id));
+      setCartChanged(true); // set cartChanged to true
+
     } catch (error) {
       console.error("Error emptying cart:", error);
     }
@@ -182,6 +277,8 @@ export default function Basket({ cartData }) {
       const updatedCart = await getCartById(cart.id);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
+      setCartChanged(true); // set cartChanged to true
+
     } catch (error) {
       console.error("Error updating product quantity:", error);
     }
@@ -194,6 +291,8 @@ export default function Basket({ cartData }) {
       localStorage.removeItem("cartId");
       setCart(null);
       setShowDeleteModal(false);
+      setCartChanged(true); // set cartChanged to true
+
     } catch (error) {
       console.error("Error deleting cart:", error);
     }
@@ -226,9 +325,19 @@ export default function Basket({ cartData }) {
     }
   };
 
+  const handleCheckout = () => {
+  // redirect to checkout page
+  };
+
   return (
     <div>
       <h1>Basket</h1>
+      <Button variant="secondary" style={{ marginRight: "10px" }} onClick={() => window.history.back()}>
+                      Go back
+                    </Button>
+                    <Link to="/products/">
+                      <Button variant="primary">Continue shopping</Button>
+                    </Link>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -237,30 +346,39 @@ export default function Basket({ cartData }) {
             <p>Your cart is empty.</p>
           ) : (
             <div>
-                {products.map((product) => (
-                        <Card key={product.id}>
-                        <Card.Body>
-                          <Button variant="secondary" style={{ marginRight: "10px" }} onClick={() => window.history.back()}>
-                            Go back
-                          </Button>
-                          <Link to="/products/">
-                            <Button variant="primary">Continue shopping</Button>
-                          </Link>
-                          <Card.Img  variant="top" src={product.image} alt={product.name} />
-                          <Card.Title>{product.name}</Card.Title>
-                          <Card.Text>{product.description}</Card.Text>
-                          <Card.Text>Size: {product.size}</Card.Text>
-                          <Card.Text>Price: {product.price} GBP</Card.Text>
-                          <label htmlFor="quantity">Quantity:</label>
-<div>
-  <button onClick={() => handleRemoveFromCart(product.id)}>-</button>
-  <span>{product.quantity}</span>
-  <button onClick={() => handleAddToCart(product.id)}>+</button>
-</div>
-
-                        </Card.Body>
-                      </Card>
-                    ))}
+              {products.map((product, index) => (
+                <Card key={index}>
+                  <Card.Body>
+  
+                    <div>
+                    <div className="product-image">
+                    <Card.Img variant="left" src={product.image} alt={product.name} style={{ width: "100px", height: "auto", marginRight: "10px" }} />
+  </div>                      <Card.Title>{product.name}</Card.Title>
+                      <Card.Text>{product.description}</Card.Text>
+                      <Card.Text>Size: {product.size}</Card.Text>
+                      <Card.Text>Price: {product.price} GBP</Card.Text>
+                      <label htmlFor="quantity">Quantity:</label>
+                      <div>
+                      <button onClick={() => handleRemoveProduct(product.id, product.size)}>
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
+                        <button onClick={() => handleRemoveFromCart(product.id, product.size, 1, product.price)}>-</button>
+                        <button onClick={() => handleAddToCart(product.id, product.size, 1, product.price)}>+</button>
+                        <select
+                          value={product.quantity}
+                          onChange={(e) => handleAddToCart(product.id, product.size, e.target.value - product.quantity, product.price)}
+                        >
+                          {Array.from({ length: 10 }, (_, i) => i + 1).map((value) => (
+                            <option key={value} value={value}>
+                              {value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              ))}
               <p>Product count: {productCount}</p>
               <p>Total price: {totalPrice}</p>
               <Button variant="primary" onClick={() => setShowEmptyCartModal(true)}>
@@ -268,7 +386,9 @@ export default function Basket({ cartData }) {
               </Button>
               <Button variant="primary" onClick={() => setShowDeleteModal(true)}>
                 Delete cart
-              </Button>
+                  </Button>
+              <Button variant="primary" onClick={handleCheckout}>Checkout</Button>
+
             </div>
           )}
         </div>
@@ -303,4 +423,4 @@ export default function Basket({ cartData }) {
       </Modal>
     </div>
   );
-}
+}  

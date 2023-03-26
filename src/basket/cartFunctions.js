@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080/carts';
+const BASE_URL = 'http://localhost:3000/carts';
 
 export const getProductId = async (productid) => {
   const response = await axios.get(`/product/${productid}`);
@@ -12,14 +12,14 @@ export async function getProductDetails(productId) {
   const response = await axios.get(`/product/${productId}`);
   return response.data;
 }
-export const getProductById = async (id) => {
+export const getProductById = async (productId) => {
   try {
-    console.log('ID:', id);
-    const response = await axios.get(`/product/${id}`);
+    console.log('ID:', productId);
+    const response = await axios.get(`/product/${productId}`);
     return response;
   } catch (error) {
-    console.error(`Error fetching product with ID ${id}: `, error);
-    throw new Error(`Error fetching product with ID ${id}`);
+    console.error(`Error fetching product with ID ${productId}: `, error);
+    throw new Error(`Error fetching product with ID ${productId}`);
   }
 };
 
@@ -27,9 +27,19 @@ export const getCartById = async (cartId) => {
   if (!cartId) {
     throw new Error('Cart ID is undefined');
   }
-  const response = await axios.get(`${BASE_URL}/${cartId}`);
-  return response.data;
+
+  let cartData = JSON.parse(localStorage.getItem(`cart-${cartId}`));
+
+  if (cartData) {
+    return cartData;
+  } else {
+    const response = await axios.get(`${BASE_URL}/${cartId}`);
+    const data = response.data;
+    localStorage.setItem(`cart-${cartId}`, JSON.stringify(data));
+    return data;
+  }
 };
+
 
 
 export const createCart = async () => {
@@ -60,36 +70,49 @@ export const getCart = async () => {
   }
 };
 
-
-export const updateCart = async (cartId, cartData) => {
+export const updateCart = async (productId, size, price) => {
+  const cartId = localStorage.getItem('cartId');
   if (!cartId) {
     throw new Error('Cart ID is undefined');
   }
-
-  const cartQuantity = cartData.reduce((total, item) => total + item.quantity, 0);
-  const totalPrice = cartData.reduce((total, item) => total + (item.quantity * item.price), 0);
-
-  const requestBody = {
-    products: cartData,
-    productCount: cartQuantity,
-    totalPrice: totalPrice
+  const cartData = JSON.parse(localStorage.getItem('cartData') || '{}');
+  const cart = await getCart(cartId);
+  const updatedCartData = [...cart.products, { ...cartData }];
+  const quantity = getCartQuantity(updatedCartData);
+  const totalPrice = getTotalPrice(updatedCartData);
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    params: {
+      quantity,
+      totalPrice
+    }
   };
-
-  const response = await axios.put(`${BASE_URL}/${cartId}`, requestBody);
-  return response.data;
+  const requestBody = {
+      productId,
+      quantity,
+      size,
+      price,
+    };
+  const response = await axios.put(`${BASE_URL}/${cartId}`, requestBody, config);
+  const updatedCart = response.data;
+  updatedCart.quantity = quantity;
+  updatedCart.totalPrice = totalPrice;
+  localStorage.setItem('cart', JSON.stringify(updatedCart));
+  return updatedCart;
 };
-
-
 
 export const deleteCart = async (cartId) => {
   if (!cartId) {
     throw new Error('Cart ID is undefined');
   }
   const response = await axios.delete(`${BASE_URL}/${cartId}`);
+  localStorage.removeItem('cartId'); // remove the cartId from local storage
+  localStorage.removeItem('cart'); // remove the cart data from local storage
   return response.data;
 };
-
-
 export const addProductToCart = async (productId, quantity, size, price) => {
   let cartId = localStorage.getItem('cartId');
   console.log(cartId);
@@ -102,7 +125,6 @@ export const addProductToCart = async (productId, quantity, size, price) => {
       console.log(cartId);
       localStorage.setItem('cartId', cartId);
     }
-
     // Get the cart and add the product
     const cart = await getCart(cartId);
     const cartData = {
@@ -112,13 +134,10 @@ export const addProductToCart = async (productId, quantity, size, price) => {
       price,
     };
     await axios.post(`${BASE_URL}/${cartId}/addproduct`, cartData); 
-
     // Update the cart
-    await updateCart(cartId, cartData);
-
+    await updateCart(cartId, cart);
     // Update local storage with the new cart data
     localStorage.setItem('cart', JSON.stringify(cart));
-
     window.alert('Product added to cart!');
   } catch (error) {
     window.alert('Failed to add product to cart');
