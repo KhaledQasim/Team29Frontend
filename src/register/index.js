@@ -185,7 +185,7 @@ function Register() {
       <Button type="button" onClick={handleSubmit} disabled={disabled}>Register</Button>
     </Form> */}
     
-    <MDBContainer className='my-5' fluid>
+    <MDBContainer className='my-5 content-container' fluid >
 
       <MDBCard className='text-black m-5' style={{borderRadius: '25px'}}>
         <MDBCardBody>

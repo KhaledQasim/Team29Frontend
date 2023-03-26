@@ -140,7 +140,7 @@ function Login() {
       </Button>
     </Form> */}
 
-<MDBContainer className='my-5'>
+<MDBContainer className='my-5 content-container'>
       <MDBCard>
 
         <MDBRow className='g-0 d-flex align-items-center'>
