@@ -215,8 +215,8 @@ export const emptyCart = () => {
   if (!cartId) {
     return;
   }
-  localStorage.removeItem('cartData');
-  updateCart(cartId,cartData);
+  localStorage.clear();
+  updateCart(cartId);
 };
 
   export const hasProductInCart = async (productId) => {
