@@ -35,7 +35,7 @@ export default function Basket({ cartData }) {
   const [cartChanged, setCartChanged] = useState(false)
   const [formattedTotalPrice, setFormattedTotalPrice] = useState("");
 
-  const BASE_URL = 'http://localhost:3000/carts';
+  const BASE_URL = 'http://localhost:8080/carts';
 
   useEffect(() => {
     async function fetchData() {
