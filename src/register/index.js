@@ -13,7 +13,7 @@ import {
   MDBCol,
 }
   from 'mdb-react-ui-kit';
-import image from "../products/images/we_WEAR-8.png";
+
 import axios from "axios";
 import style from "./style.css"
 import { useAtom } from "jotai";
@@ -235,7 +235,7 @@ function Register() {
                 <MDBIcon fas icon="envelope me-3" size='lg'/>
                 <Form.Group controlId="email">
                   {/* <Form.Label>Email</Form.Label> */}
-                  <MDBInputGroup hasValidation>
+                  <MDBInputGroup >
                     <Form.Control
                       type="email"
                       placeholder="Email"
@@ -255,7 +255,7 @@ function Register() {
                 <MDBIcon fas icon="lock me-3" size='lg' />
                 <Form.Group controlId="password">
                   {/* <Form.Label>Password</Form.Label> */}
-                  <MDBInputGroup hasValidation>
+                  <MDBInputGroup >
                     <Form.Control
                       pattern="^(?=\S+$).{8,}$"
                       type={passwordShown ? "text" : "password"}
@@ -265,7 +265,7 @@ function Register() {
                       onChange={(event) => setPassword(event.target.value)}
                       
                     />
-                    {/* <i id="register-eye" onClick={togglePasswordVisiblity} style= {style}>{eye}</i> */}
+                    <i id="register-eye" onClick={togglePasswordVisiblity} style= {style}>{eye}</i>
                     <Form.Control.Feedback type="invalid">
                       Please choose a password longer than 8 characters and contain to white spaces!
                     </Form.Control.Feedback>
@@ -273,10 +273,10 @@ function Register() {
                 </Form.Group>
               </div>
 
-              <div className='mb-4'>
+              {/* <div className='mb-4'>
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='I agree to the Terms and Conditions' />    
-                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
-              </div>    
+                
+              </div>     */}
 
               {errorMsg ? (
               <Container>
@@ -299,7 +299,7 @@ function Register() {
             </MDBCol>
 
             <MDBCol className='order-1 order-lg-2 d-flex align-items-center'>
-              <MDBCardImage src={image} fluid/>
+              <MDBCardImage src="/images/we_WEAR-8.png" fluid/>
             </MDBCol>
 
           </MDBRow>

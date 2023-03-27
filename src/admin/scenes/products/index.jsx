@@ -274,7 +274,7 @@ const View = () => {
       flex: 0.3,
       editable: true,
       type: "singleSelect",
-      valueOptions: ["Shirts", "Pants", "Shorts", "Sweaters"],
+      valueOptions: ["T-Shirts", "Jeans", "Jumpers", "Shorts","Jackets"],
     },
     {
       field: "quantity",

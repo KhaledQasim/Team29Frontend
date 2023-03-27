@@ -25,7 +25,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Cookies from "js-cookie";
 import configData from "../config.json";
-import image from "../products/images/we_WEAR-8.png";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 function Login() {
@@ -146,7 +146,7 @@ function Login() {
         <MDBRow className='g-0 d-flex align-items-center'>
 
           <MDBCol md='4'>
-            <MDBCardImage src={image} alt='logo' className='rounded-t-5 rounded-tr-lg-0' fluid />
+            <MDBCardImage src="/images/we_WEAR-8.png" alt='logo' className='rounded-t-5 rounded-tr-lg-0' fluid />
           </MDBCol>
 
           <MDBCol md='8'>
@@ -173,15 +173,12 @@ function Login() {
                     placeholder="Password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                  />
+                    />
+                    <i id="login-eye" onClick={togglePasswordVisiblity} style= {style}>{eye}</i>
                 </MDBInputGroup>
                 
               </Form.Group>
 
-              <div className="d-flex justify-content-between mx-4 mb-4">
-                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-                <a href="!#">Forgot password?</a>
-              </div>
                 
               {errorMsg ? (
                 <Container>

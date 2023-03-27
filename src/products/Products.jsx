@@ -1,87 +1,83 @@
-import React from "react";
-import { Card, Button, CardGroup } from "react-bootstrap";
-import TshirtPlaceholder from "../Placeholder Images/TshirtPlaceholder.png";
-import JumperPlaceholder from "../Placeholder Images/SweaterPlaceholder.png";
-import JeansPlaceholder from "../Placeholder Images/JeansPlaceholder.png";
-import ShortsPlaceholder from "../Placeholder Images/ShortsPlaceholder.png";
-import JacketPlaceholder from "../Placeholder Images/JacketPlaceholder.png";
+import React, { useEffect, useState } from "react";
+import { Card, Button, CardGroup, Row } from "react-bootstrap";
+
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+// import TshirtPlaceholder from "../images/PlaceHolder/TshirtPlaceholder.png";
+// import TshirtPlaceholder from "/images/PlaceHolder/TshirtPlaceholder.png";
+// import JumperPlaceholder from "../../public/images/PlaceHolder/TshirtPlaceholder.png";
+// import JeansPlaceholder from "../../public/images/PlaceHolder/TshirtPlaceholder.png";
+// import ShortsPlaceholder from "../../public/images/PlaceHolder/TshirtPlaceholder.png";
+// import JacketPlaceholder from "../../public/images/PlaceHolder/TshirtPlaceholder.png";
 export default function Products() {
-    const navigate = useNavigate();
-    return (
-        <><CardGroup>
-            <Card className="category">
-                <Card.Img variant="top" src={TshirtPlaceholder} />
-                <Card.Body>
-                    <Card.Title>T-Shirts</Card.Title>
-                    <Card.Text>
-                        View all of our items in our WeWear T-Shirts product category.
-                    </Card.Text>
-                    {/* to="/products/t-shirts" */}
-                    <Button onClick={() => { navigate("/products/t-shirts"); } }>View T-Shirts</Button>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <br></br>
-            <Card className="category" >
-                <Card.Img variant="top" className="jumperPlaceholder" src={JumperPlaceholder} />
-                <Card.Body>
-                    <Card.Title>Jumpers</Card.Title>
-                    <Card.Text>
-                        View all of our item in our WeWear Jumpers product category.
-                    </Card.Text>
-                    <Button onClick={() => { navigate("/products/jumpers"); } }>View Jumpers</Button>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <br></br>
-            <Card className="category" >
-                <Card.Img variant="top" src={JeansPlaceholder} />
-                <Card.Body>
-                    <Card.Title>Jeans</Card.Title>
-                    <Card.Text>
-                        View all of our items in our WeWear Jeans product category.
-                    </Card.Text>
-                    <Button onClick={() => { navigate("/products/jeans"); } }>View Jeans</Button>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <br></br>
-            <Card className="category" >
-                <Card.Img variant="top" src={ShortsPlaceholder} />
-                <Card.Body>
-                    <Card.Title>Shorts</Card.Title>
-                    <Card.Text>
-                        View all of our item in our WeWear Shorts product category.
-                    </Card.Text>
-                    <Button onClick={() => { navigate("/products/shorts"); } }>View Shorts</Button>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <br></br>
-            <Card className="category" >
-                <Card.Img variant="top" src={JacketPlaceholder} />
-                <Card.Body>
-                    <Card.Title>Jackets</Card.Title>
-                    <Card.Text>
-                        View all of our items in our WeWear Jackets product category.
-                    </Card.Text>
-                    <Button onClick={() => { navigate("/products/jackets"); } }>View Jackets</Button>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-        </CardGroup><br></br></>
-    );
+  const [imagesPath] = [
+    {
+      "T-Shirts": "/images/PlaceHolder/TshirtPlaceholder.png",
+      Shorts: "/images/PlaceHolder/ShortsPlaceholder.png",
+      Jackets: "/images/PlaceHolder/JacketPlaceholder.png",
+      Jeans: "/images/PlaceHolder/JeansPlaceholder.png",
+      Jumpers: "/images/PlaceHolder/SweaterPlaceholder.png",
+    },
+  ];
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const loadProducts = async () => {
+    await axios.get("/products").then((data) => setProducts(data.data));
+  };
+  const decidePath = (key) => {
+    if ( key === "Shorts" ){
+        return imagesPath.Shorts;
+    }
+      
+    if ( key === "T-Shirts" ){
+        return imagesPath["T-Shirts"];
+    }
+
+    if ( key === "Jackets" ){
+        return imagesPath.Jackets;
+    } 
+     
+    if ( key === "Jeans" ){
+        return imagesPath.Jeans;
+    }
+
+    if ( key === "Jumpers" ){
+        return imagesPath.Jumpers;
+    }    
+  }
+  useEffect(() => {
+    loadProducts();
+   
+  }, []);
+
+  return (
+    <div className="content-container" style={{ marginLeft: "1rem" }}>
+      <Row xs={2} md={5} className="g-0">
+        {products.map((product) => (
+          <Card style={{ width: "18rem", marginRight: "1rem" }}>
+            <Card.Img
+              variant="top"
+              style={{ flexGrow: "inherit"}}
+              src={decidePath(product.category)}
+            />
+            <Card.Body>
+              <Card.Title style={{fontSize:"3rem"}} >{product.category}</Card.Title>
+              {/* <Card.Text>
+                View all of our items in our WeWear T-Shirts product category.
+              </Card.Text> */}
+              {/* to="/products/t-shirts" */}
+              <Button   
+                onClick={() => {
+                  navigate(`/productsCategory/${product.category}`);
+                }}
+              >
+                View {product.category}
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </Row>
+    </div>
+  );
 }
