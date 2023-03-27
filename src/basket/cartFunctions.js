@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/carts';
+const BASE_URL = 'http://localhost:8080/carts';
 
 export const getProductId = async (productid) => {
   const response = await axios.get(`/product/${productid}`);
