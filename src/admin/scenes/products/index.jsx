@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
 import ReactQuill from "react-quill";
+import moment from "moment";
 
 const View = () => {
   //modal
@@ -259,6 +260,14 @@ const View = () => {
       editable: true,
       sortable: false,
       filterable: false,
+    },
+    {
+      field: "createdAt",
+      headerName: "Created Date",
+      flex: 0.5,
+    
+      renderCell: params=> moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS')
+     
     },
     {
       field: "size",
