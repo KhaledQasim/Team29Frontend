@@ -277,6 +277,7 @@ export default function Basket({ cartData }) {
     try {
       await emptyCart(cartId);
       setCart(await getCartById(cartId));
+      localStorage.removeItem('cartData');
       setCartChanged(true); // set cartChanged to true
 
     } catch (error) {
