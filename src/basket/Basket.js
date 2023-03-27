@@ -255,7 +255,7 @@ export default function Basket({ cartData }) {
     );
   
     if (existingProductIndex !== -1) {
-      const updatedQuantity = cartData[existingProductIndex].quantity - quantity;
+      const updatedQuantity = cartData[existingProductIndex].quantity - cartData[existingProductIndex].quantity;
       if (updatedQuantity <= 0) {
         cartData.splice(existingProductIndex, 1);
       } else {
@@ -397,9 +397,6 @@ export default function Basket({ cartData }) {
               <Button variant="primary" onClick={() => setShowEmptyCartModal(true)}>
                 Empty cart
               </Button>
-              <Button variant="primary" onClick={() => setShowDeleteModal(true)}>
-                Delete cart
-                  </Button>
               <Button variant="primary" onClick={handleCheckout}>Checkout</Button>
 
             </div>
