@@ -35,7 +35,7 @@ export default function Basket({ cartData }) {
   const [cartChanged, setCartChanged] = useState(false)
   const [formattedTotalPrice, setFormattedTotalPrice] = useState("");
 
-  const BASE_URL = 'http://localhost:8080/carts';
+  const BASE_URL = '/carts';
 
   useEffect(() => {
     async function fetchData() {
@@ -147,21 +147,6 @@ export default function Basket({ cartData }) {
     currency: 'GBP',
     minimumFractionDigits: 2,
   });
-  
-  
-
-  const setQuantity = (productId, size, newQuantity) => {
-    const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
-    const existingProductIndex = cartData.findIndex(
-      (product) => product.id === productId && product.size === size
-    );
-  
-    if (existingProductIndex !== -1) {
-      cartData[existingProductIndex].quantity = newQuantity;
-      localStorage.setItem('cartData', JSON.stringify(cartData));
-      handleUpdateCart(cartData);
-    }
-  };
   
 
   const handleUpdateCart = async (cartData) => {
