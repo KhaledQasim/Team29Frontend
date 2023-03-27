@@ -10,15 +10,9 @@ import jwt_decode from "jwt-decode";
 
 import ajax from "../services/fetchService";
 import { useAtom } from "jotai";
-import {
-  AtomAdmin,
-  Atomlogged,
-  jwtAtom,
-} from "../App";
+import { AtomAdmin, Atomlogged, jwtAtom } from "../App";
 
-import {
-  Popover,
-} from "@mui/material";
+import { Popover } from "@mui/material";
 
 import axios from "axios";
 
@@ -34,10 +28,12 @@ function Navbarr() {
   // code for popper to work (notification bell dropdown menu)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const loadNotifications = async () => {
-    const LowStock = await axios.get("/api/notifications/low-stock");
-    setLowStock(LowStock.data);
-    const NoStock = await axios.get("/api/notifications/no-stock");
-    setNoStock(NoStock.data);
+    if (jwt) {
+      const LowStock = await axios.get("/api/notifications/low-stock");
+      setLowStock(LowStock.data);
+      const NoStock = await axios.get("/api/notifications/no-stock");
+      setNoStock(NoStock.data);
+    }
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,27 +43,37 @@ function Navbarr() {
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       loadNotifications();
-    }, 4000);
-  
-    return () => clearInterval(interval); 
-  }, [])
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => {
-    console.log("use")
+    console.log("use");
     loadNotifications();
     if (jwt) {
-      ajax(`/auth/validate`, "get", jwt).then((isLogged) => {
-        // setIsValid(isValid);
-        setIsLogged(isLogged);
-        const decodedJwt = jwt_decode(jwt);
-        let role = JSON.stringify(decodedJwt.authorities);
-        if (role.includes("ADMIN")) {
-          setAdmin(true);
-        }
-      });
+      axios
+        .get(`/auth/validate`, { headers: { Authorization: `Bearer ${jwt}` } })
+        .then(async (isLogged) => {
+          if (isLogged.data === true) {
+            setIsLogged(true);
+            const decodedJwt = jwt_decode(jwt);
+            let role = JSON.stringify(decodedJwt.authorities);
+            if (role.includes("ADMIN")) {
+              setAdmin(true);
+            }
+            else {
+              setAdmin(false);
+            }
+          }
+          else {
+            setIsLogged(false);
+            setAdmin(false);
+          }
+        });
     }
   }, [jwt, setAdmin, setIsLogged]);
 
@@ -120,7 +126,9 @@ function Navbarr() {
                   variant="contained"
                   onClick={handleClick}
                 >
-                  <span className="badge bg-primary">{ noStocks.length + lowStocks.length }</span>
+                  <span className="badge bg-primary">
+                    {noStocks.length + lowStocks.length}
+                  </span>
                   <i className="fa fa-bell" />
                 </Button>
                 <Popover
@@ -136,42 +144,50 @@ function Navbarr() {
                   <Table hover>
                     <thead>
                       <tr>
-                        {
-                          noStocks.length === 0  && lowStocks.length === 0 ?
+                        {noStocks.length === 0 && lowStocks.length === 0 ? (
                           <th>No notifications</th>
-                          : noStocks.length === 0 ?
-                            <></>
-                          :<th>OUT OF STOCK</th>
-                        }
-                        
+                        ) : noStocks.length === 0 ? (
+                          <></>
+                        ) : (
+                          <th>OUT OF STOCK</th>
+                        )}
                       </tr>
                     </thead>
                     <tbody>
                       {noStocks.map((noStock, index) => (
                         <tr key={index + 1}>
-                          <td>{noStock.name  + " in category: " + noStock.category + " has no stock left!"}</td>
+                          <td>
+                            {noStock.name +
+                              " in category: " +
+                              noStock.category +
+                              " has no stock left!"}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
 
                     <thead>
-                      {
-                        lowStocks.length === 0 ?
+                      {lowStocks.length === 0 ? (
                         <></>
-                        :
+                      ) : (
                         <tr>
                           <th>LOW STOCK</th>
                         </tr>
-                      }
-                      
+                      )}
                     </thead>
                     <tbody>
                       {lowStocks.map((lowStock, index) => (
                         <tr key={index + 1}>
-                          <td>{lowStock.name  + " in category: " + lowStock.category + " has remaining quantity of " + lowStock.quantity + "!"}</td>
+                          <td>
+                            {lowStock.name +
+                              " in category: " +
+                              lowStock.category +
+                              " has remaining quantity of " +
+                              lowStock.quantity +
+                              "!"}
+                          </td>
                         </tr>
                       ))}
-                      
                     </tbody>
                   </Table>
                 </Popover>
@@ -216,9 +232,12 @@ function Navbarr() {
                 </Link>
               </li>
               <li className="nav-item px-2 py-2">
-                <a className="nav-link text-uppercase text-dark" href="#about">
-                  about us
-                </a>
+                <Link
+                  className="nav-link text-uppercase text-dark"
+                  to="/aboutus"
+                >
+                  About Us
+                </Link>
               </li>
               {isAdmin ? (
                 <li className="nav-item px-2 py-2 border-0">

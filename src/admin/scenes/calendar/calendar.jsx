@@ -27,8 +27,8 @@ const Calendar = () => {
   const [currentEvents, setCurrentEvents] = useState([]);
   useEffect(() => {
     loadCalendar();
-    
-  }, [currentEvents]);
+   
+  }, []);
   const loadCalendar = async () => {
     const result = await axios.get("/api/calendar/get");
     setCurrentEvents(result.data);
@@ -37,7 +37,7 @@ const Calendar = () => {
   
   const deleteEvent = async (id) => {
     
-    await axios.delete(`/api/calendar/delete/${id}`);
+    await axios.delete(`/api/calendar/delete/${id}`).then(()=> loadCalendar());
     // window.location.reload();
   }
   // const onSubmit=async(event)=>{
@@ -46,8 +46,10 @@ const Calendar = () => {
   //   navigate("/");  
   // }
   const addEvent = async (createdEvent) => {
-    await axios.post("/api/calendar/post", createdEvent);
-    window.location.reload();
+    
+    await axios.post("/api/calendar/post", createdEvent).then(loadCalendar()).finally(window.location.reload());
+    
+    //
   }
 
   const handleDateClick = (selected) => {
@@ -70,13 +72,7 @@ const Calendar = () => {
         end: selected.endStr,
         allDay: selected.allDay,
       };
-      addEvent(createdEvent).then(
-        
-
-        calendarApi.render()
-
-      
-      );
+      addEvent(createdEvent)
       
      
     }

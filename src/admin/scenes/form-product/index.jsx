@@ -142,10 +142,11 @@ const Form = () => {
                
               >
                 <option value="">Please Choose a Category!</option>
-                <option value="Shirts">Shirts</option>
-                <option value="Pants">Pants</option>
+                <option value="T-Shirts">T-Shirts</option>
+                <option value="Jeans">Jeans</option>
+                <option value="Jumpers">Jumpers</option>
                 <option value="Shorts">Shorts</option>
-                <option value="Sweaters">Sweaters</option>
+                <option value="Jackets">Jackets</option>
               </select>
               
             
@@ -194,7 +195,7 @@ const Form = () => {
 const sizeRegExp =
   /S|M|L|XL/;
 const categoryRegExp =
-  /Shirts|Pants|Shorts|Sweaters/;
+  /T-Shirts|Jeans|Shorts|Jumpers|Jackets/;
 const checkoutSchema = yup.object().shape({
   name: yup.string().required("required"),
   size: yup.string().required("required").matches(sizeRegExp, "Role must be ADMIN or USER!"),

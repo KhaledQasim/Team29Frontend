@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from "@mui/material";
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoFeatures } from "../data/mockGeoFeatures";
 import { tokens } from "../theme";
-import { mockGeographyData as data } from "../data/mockData";
+// import { mockGeographyData as data } from "../data/mockData";
+import axios from 'axios';
 
 const GeographyChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [data, setData] = useState([]);
+
+  const loadData = async () => {
+    await axios.get("/api/GeoIp/get")
+      .then((res) => {
+       
+        
+        const t = Object.entries(res.data).map(([country, count]) => {
+          return { id: country, value: count };
+        }
+        );
+     
+        setData(t);
+     
+    })
+  }
+  useEffect(() => {
+    loadData();
+  }, [])
+  
   return (
     <ResponsiveChoropleth
       data={data}
