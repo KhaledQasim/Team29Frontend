@@ -8,8 +8,7 @@ const CategoryProducts = () => {
   const navigate = useNavigate();
   const [products, SetProducts] = useState([]);
   const loadProductsByCategory = async () => {
-    await axios
-      .get(`/productsCategory/${category}`)
+    await axios.get(`/productsCategory/${category}`)
       .then((data) => SetProducts(data.data));
      
   };

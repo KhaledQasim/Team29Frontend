@@ -3,14 +3,16 @@ import { Card, Button, CardGroup, Form, Col } from 'react-bootstrap';
 import { addProductToCart, getProductById, getProductCount, getTotalPrice} from '../basket/cartFunctions';
 import axios from 'axios';
 import Basket from '../basket/Basket';
+  
+export const BASE_URL = 'http://localhost:8080/carts';
 
-function ProductList() {
+export function ProductList() {
+  
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState('S');
   const [availableQuantity, setAvailableQuantity] = useState(0);
   const [cartData, setCartData] = useState([]);
-  const BASE_URL = 'http://localhost:3000/carts';
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,10 +47,9 @@ function ProductList() {
     if (!cartId) {
       throw new Error('Cart ID is undefined');
     }
-  
     const cartData = JSON.parse(localStorage.getItem('cartData'));
+    console.log(cartData);
     const updatedCartItemIndex = cartData.findIndex(item => item.id === updatedCart.id && item.size === updatedCart.size);
-  
     if (updatedCartItemIndex < 0) {
       throw new Error('Could not find item in cart');
     }
