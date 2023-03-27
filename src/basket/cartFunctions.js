@@ -184,7 +184,7 @@ export const getTotalPrice = () => {
     throw new Error("No cart data found in localStorage for getTotalPrice");
   }
   const totalPrice = cartData.reduce((total, item) => total + item.quantity * item.price, 0);
-  return totalPrice;
+  return totalPrice/100;
 };
 
 export const getProductsInCart = () => {

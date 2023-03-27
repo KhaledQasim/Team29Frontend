@@ -121,7 +121,7 @@ export default function Basket({ cartData }) {
           setFormattedTotalPrice(formatter.format(price));
 
     
-          setShowEmptyCartModal(productsInCart.length === 0);
+          setShowEmptyCartModal();
         } catch (error) {
           console.error("Error fetching cart data: ", error);
         } finally {
@@ -364,11 +364,11 @@ localStorage.removeItem('cartData');
                       <button onClick={() => handleRemoveProduct(product.id, product.size)}>
                         <i className="fas fa-trash-alt"></i>
                       </button>
-                        <button onClick={() => handleRemoveFromCart(product.id, product.size, 1, product.price)}>-</button>
-                        <button onClick={() => handleAddToCart(product.id, product.size, 1, product.price)}>+</button>
+                        <button onClick={() => handleRemoveFromCart(product.id, product.size, 1, product.price/100)}>-</button>
+                        <button onClick={() => handleAddToCart(product.id, product.size, 1, product.price/100)}>+</button>
                         <select
                           value={product.quantity}
-                          onChange={(e) => handleAddToCart(product.id, product.size, e.target.value - product.quantity, product.price)}
+                          onChange={(e) => handleAddToCart(product.id, product.size, e.target.value - product.quantity, product.price/100)}
                         >
                           {Array.from({ length: 20 }, (_, i) => i + 1).map((value) => (
                             <option key={value} value={value}>
@@ -382,7 +382,7 @@ localStorage.removeItem('cartData');
                 </Card>
               ))}
               <p>Product count: {productCount}</p>
-              <p>Total price: {formattedTotalPrice}</p>
+              <p>Total price: {formattedTotalPrice/100}</p>
               <Button variant="primary" onClick={() => setShowEmptyCartModal(true)}>
                 Empty cart
               </Button>

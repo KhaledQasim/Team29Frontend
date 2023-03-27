@@ -127,7 +127,7 @@ const SingleProduct = () => {
     
       <img alt="product" src={product.image} />
       <h4>{"Name: " + product.name}</h4>
-      <h4>{"£" + product.price}</h4>
+      <h4>{"£" + product.price/100}</h4>
       <h4>{"Stock: " + product.quantity}</h4>
       <h4>{"Size: " + product.size}</h4>
       <Form.Group controlId="quantityInput">
@@ -136,7 +136,7 @@ const SingleProduct = () => {
       </Form.Group>
       <Button
       variant="primary"
-      onClick={() => handleAddToCart(product.id, product.size, quantity, product.price)}> Add to Cart</Button>
+      onClick={() => handleAddToCart(product.id, product.size, quantity, product.price/100)}> Add to Cart</Button>
       <ReactQuill
         value={product.description}
         readOnly={true}
