@@ -18,9 +18,18 @@ import Register from './register';
 // import { atom } from 'jotai';
 import Logout from './logout';
 import Basket from './basket/Basket';
+
 import AboutUsContact from "./pages/ContactUs";
 import CategoryProducts from './products/CategoryProducts';
 import SingleProduct from './products/SingleProduct';
+
+import ProductList from './products/ProductList';
+
+
+
+
+
+
 // export const jwtAtom = atom(Cookies.get("jwt"));
 // export const Atomlogged = atom("");
 
@@ -68,6 +77,9 @@ function App() {
               <Route exact path="/products/:id" element={<SingleProduct/>}/>
         
               <Route exact path="/productsCategory/:category" element={<CategoryProducts/>}/>
+
+          
+             
               <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
               <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
               <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
