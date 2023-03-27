@@ -58,7 +58,7 @@
 }
 
 .tshirt-price {
-  color: gold;
+  /* color: gold; */
   font-size: x-large;
 }
 
@@ -68,6 +68,11 @@
 }
 
 .shorts4Image {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.jumperPlaceholder {
   padding-top: 50px;
   padding-bottom: 20px;
 }
