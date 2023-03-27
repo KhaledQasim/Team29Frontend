@@ -255,21 +255,24 @@ export default function Basket({ cartData }) {
     );
   
     if (existingProductIndex !== -1) {
-      const updatedQuantity = cartData[existingProductIndex].quantity - cartData[existingProductIndex].quantity;
-      if (updatedQuantity <= 0) {
-        cartData.splice(existingProductIndex, 1);
-      } else {
-        cartData[existingProductIndex].quantity = updatedQuantity;
+      const shouldRemoveProduct = window.confirm('Are you sure you want to remove this product?');
+      if (shouldRemoveProduct) {
+        const updatedQuantity = cartData[existingProductIndex].quantity - cartData[existingProductIndex].quantity;
+        if (updatedQuantity <= 0) {
+          cartData.splice(existingProductIndex, 1);
+        } else {
+          cartData[existingProductIndex].quantity = updatedQuantity;
+        }
+  
+        localStorage.setItem('cartData', JSON.stringify(cartData));
+  
+        // Updated call to handleUpdateCart function
+        await handleUpdateCart(cartData);
+        setCartChanged(true); // set cartChanged to true
       }
-  
-      localStorage.setItem('cartData', JSON.stringify(cartData));
-  
-      // Updated call to handleUpdateCart function
-      await handleUpdateCart(cartData);
-      setCartChanged(true); // set cartChanged to true
-
     }
   };
+  
   
 
   const handleEmptyCart = async () => {
@@ -277,7 +280,7 @@ export default function Basket({ cartData }) {
     try {
       await emptyCart(cartId);
       setCart(await getCartById(cartId));
-      localStorage.removeItem('cartData');
+localStorage.removeItem('cartData');
       setCartChanged(true); // set cartChanged to true
 
     } catch (error) {
