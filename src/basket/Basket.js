@@ -121,7 +121,7 @@ export default function Basket({ cartData }) {
           setFormattedTotalPrice(formatter.format(price));
 
     
-          setShowEmptyCartModal();
+          setShowEmptyCartModal(productsInCart.length === 0);
         } catch (error) {
           console.error("Error fetching cart data: ", error);
         } finally {
