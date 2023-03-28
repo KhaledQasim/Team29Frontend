@@ -286,50 +286,17 @@ localStorage.removeItem('cartData');
     }
   };
 
-
-  const handleDeleteCart = async () => {
+  const handleCheckout = async (cartData) => {
     try {
-      await deleteCart(cart.id);
-      localStorage.removeItem("cartId");
-      setCart(null);
-      setShowDeleteModal(false);
-      setCartChanged(true); // set cartChanged to true
-
+      // Save the cart data to local storage
+      localStorage.setItem('cart', JSON.stringify(cartData));
+      // Navigate to the checkout page
+      window.location.href = "/checkout";
     } catch (error) {
-      console.error("Error deleting cart:", error);
+      console.error(error);
     }
   };
-  const handleShowEmptyCartModal = () => setShowEmptyCartModal(true);
-  const handleCloseEmptyCartModal = () => setShowEmptyCartModal(false);
-  const handleShowDeleteModal = () => setShowDeleteModal(true);
-  const handleCloseDeleteModal = () => setShowDeleteModal(false);
-  const handleProductToDelete = (productId) => {
-    setProductToDelete(productId);
-    handleShowDeleteModal();
-  };
-  const handleProductDeleteConfirm = () => {
-    handleRemoveFromCart(productToDelete);
-    handleCloseDeleteModal();
-  };
-  const handleQuantityChange = async (event, productId) => {
-    const newQuantity = parseInt(event.target.value);
-    try {
-      await handleUpdateQuantity(productId, newQuantity);
-      const updatedProducts = products.map(product => {
-        if (product.productId === productId) {
-          return { ...product, quantity: newQuantity };
-        }
-        return product;
-      });
-      setProducts(updatedProducts);
-    } catch (error) {
-      console.error("Error updating product quantity:", error);
-    }
-  };
-
-  const handleCheckout = () => {
-  // redirect to checkout page
-  };
+ 
 
   return (
     <div>
