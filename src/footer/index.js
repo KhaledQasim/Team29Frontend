@@ -15,9 +15,7 @@ const Footer = () => {
                 WeWear
               </a>
               <p className="text-white text-muted mt-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                mollitia quisquam veniam odit cupiditate, ullam aut voluptas
-                velit dolor ipsam?
+              WeWear is a sustainable fashion brand that creates clothing for both men and women. The brand is committed to reducing the environmental impact of the fashion industry and uses eco-friendly materials such as organic cotton, Tencel, and recycled polyester. 
               </p>
             </div>
             <div className="col-md-6 col-lg-3">
