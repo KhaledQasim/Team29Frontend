@@ -24,6 +24,8 @@ import CategoryProducts from './products/CategoryProducts';
 import SingleProduct from './products/SingleProduct';
 
 import ProductList from './products/ProductList';
+import Checkout from './checkout/checkout';
+import Confirmation from './checkout/confirmation';
 
 
 
@@ -85,7 +87,12 @@ function App() {
               <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
               
               
-              <Route exact path="/basket" element={<Basket />}/>
+        <Route exact path="/basket" element={<Basket />} />
+        
+        <Route exact path="/checkout" element={<Checkout />}/>
+        <Route exact path="/checkout/confirmation" element={<Confirmation />}/>
+
+        
           </Routes>
          <Footer className="footer--pin"/>
        <React.Fragment/>

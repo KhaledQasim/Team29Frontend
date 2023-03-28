@@ -174,8 +174,8 @@ export const getProductCount = () => {
   if (!cartData) {
     return 0;
   }
-  const cartQuantity = cartData.reduce((total, item) => total + item.quantity, 0);
-  return cartQuantity;
+  const productCount = cartData.reduce((total, item) => total + item.quantity, 0);
+  return productCount;
 };
 
 export const getTotalPrice = () => {
@@ -250,7 +250,12 @@ export const emptyCart = () => {
     return cartQuantity;
   };
   
-  
+ export const calculateTotalPrice = (cartData) => {
+  const totalPrice = cartData.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+  return totalPrice;
+} 
   
 // Get the modal
 const modal = document.getElementById('myModal');
