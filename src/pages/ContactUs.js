@@ -50,7 +50,7 @@ function AboutUsContact() {
           <div className="row">
             <div className="col-md-12">
               <p>
-                About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us About us
+              WeWear is a sustainable fashion brand that creates clothing for both men and women. The brand is committed to reducing the environmental impact of the fashion industry and uses eco-friendly materials such as organic cotton, Tencel, and recycled polyester. WeWear's clothing is designed to be comfortable and stylish, while also being environmentally responsible. The brand also values ethical manufacturing practices and works with factories that provide fair wages and safe working conditions for their employees. Overall, WeWear is a fashion brand that prioritizes sustainability and ethical practices in all aspects of its operations.
               </p>
             </div>
           </div>
