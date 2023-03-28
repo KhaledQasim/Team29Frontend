@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './Home.css';
 
-function Checkout() {
+function Checkoutnew() {
   return (
     <div className="checkout-container">
       <div className="container">
@@ -96,5 +96,5 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default Checkoutnew;
 

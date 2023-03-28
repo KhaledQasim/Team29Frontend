@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
-const SingleProduct = () => {
+const SingleProductnew = () => {
   return (
     <div className="content-container-product">
       <section id="single-product" className="py-5">
@@ -114,4 +114,4 @@ const SingleProduct = () => {
   );
 };
 
-export default SingleProduct;
+export default SingleProductnew;
