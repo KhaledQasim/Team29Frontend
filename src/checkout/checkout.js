@@ -48,7 +48,7 @@ export const Checkout = () => {
         <label htmlFor="postalCode">Postal Code:</label>
         <input type="text" id="postalCode" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
       </form>
-      <Link to="/confirmation">
+      <Link to="checkout/confirmation">
         <button>Place Order</button>
       </Link>
     </div>
