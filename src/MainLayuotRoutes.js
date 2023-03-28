@@ -20,12 +20,17 @@ import Logout from './logout';
 import Basket from './basket/Basket';
 
 import AboutUsContact from "./pages/ContactUs";
+
+import Checkoutnew from "./pages/checkout";
+import SingleProductnew from "./pages/Single-Product";
+
 import CategoryProducts from './products/CategoryProducts';
 import SingleProduct from './products/SingleProduct';
 
 import ProductList from './products/ProductList';
 import Checkout from './checkout/checkout';
 import Confirmation from './checkout/confirmation';
+
 
 
 
@@ -64,6 +69,8 @@ function App() {
               {/* <Route exact path="/" element={<HomeNew/>}/> */}
               <Route index element={<HomeNew/>}/>
               <Route exact path="/aboutus" element={<AboutUsContact/>}/>
+              <Route exact path="/checkout" element={<Checkoutnew/>}/>
+              <Route exact path="/product" element={<SingleProductnew/>}/>
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/register" element={<Register/>}/>
               <Route exact path="/logout" element={<Logout />}/>
