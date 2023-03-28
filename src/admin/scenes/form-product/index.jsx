@@ -25,7 +25,7 @@ const Form = () => {
     setErrorMsg(null);
     await axios.post("/api/product", values)
       .then((res) => {
-   
+        console.log(values);
         setSuccessMsg("Product Created!");
     
       })

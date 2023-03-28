@@ -4,7 +4,7 @@ import { addProductToCart, getProductById, getProductCount, getTotalPrice} from 
 import axios from 'axios';
 import Basket from '../basket/Basket';
   
-export const BASE_URL = 'http://localhost:8080/carts';
+export const BASE_URL = '/carts';
 
 export function ProductList() {
   

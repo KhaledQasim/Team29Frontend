@@ -17,7 +17,6 @@ export default function Home() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [Newproducts, setNewProducts] = useState([]);
-  
 
   const loadProducts = async () => {
     await axios.get("/products").then((res) => setProducts(res.data));
@@ -25,11 +24,14 @@ export default function Home() {
   const newProducts = async () => {
     await axios.get("/products/new").then((res) => setNewProducts(res.data));
   };
+  useEffect(() => {
+    loadProducts();
+    newProducts();
+  }, []);
 
   useEffect(() => {
+ 
     const initializeIsotope = () => {
-      loadProducts();
-      newProducts();
       const iso = new Isotope(".collection-list", {
         itemSelector: ".col-md-6",
         layoutMode: "fitRows",
@@ -61,8 +63,9 @@ export default function Home() {
 
     return () => {
       window.removeEventListener("load", initializeIsotope);
+      
     };
-  }, []);
+  }, [Newproducts]);
 
   // const deleteProduct=async (id)=>{
   //     await axios.delete(`http://localhost:8080/product/${id}`);
@@ -189,7 +192,7 @@ export default function Home() {
             <h2 className="position-relative d-inline-block">New Collection</h2>
           </div>
           <div className="row g-0">
-            {/* <div className="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
+            <div className="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
               <button
                 type="button"
                 className="btn m-2 text-dark active-filter-btn"
@@ -218,7 +221,7 @@ export default function Home() {
               >
                 New Arrival
               </button>
-            </div> */}
+            </div>
             <div className="collection-list mt-4 row gx-0 gy-3">
               {/* <div className="col-md-6 col-lg-4 col-xl-3 p-2 best">
                 <div className="special-img collection-img position-relative">
@@ -287,15 +290,13 @@ export default function Home() {
                 </div>
               </div> */}
 
-              {Newproducts.map((product) => (
-                <div className="col-md-6 col-lg-4 col-xl-3 p-2 new" >
+              {Newproducts.map((product, index) => (
+                <div
+                  key={index + 1}
+                  className="col-md-6 col-lg-4 col-xl-3 p-2 new"
+                >
                   <div className="special-img collection-img position-relative">
-                    <img
-                      src={product.image}
-                      style={{ height: "300px" }}
-                      className="w-100"
-                      alt="product"
-                    />
+                    <img src={product.image} className="w-100" alt="product" />
                     <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                       sale
                     </span>
@@ -318,12 +319,81 @@ export default function Home() {
                         <i className="fas fa-star" />
                       </span>
                     </div>
-                   
                     <p className="text-capitalize my-1">{product.name}</p>
-                    <span className="fw-bold">{"£"+product.price/100}</span>
+                    <span className="fw-bold">{"£" + product.price / 100}</span>
                   </div>
                 </div>
               ))}
+
+              {/* {Newproducts.map((product, index) => (
+                <div
+                  key={index + 1}
+                  className="col-md-6 col-lg-4 col-xl-3 p-2 best"
+                >
+                  <div className="special-img collection-img position-relative">
+                    <img src={product.image} className="w-100" alt="product" />
+                    <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
+                      sale
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <div className="rating mt-3">
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                    </div>
+                    <p className="text-capitalize my-1">{product.name}</p>
+                    <span className="fw-bold">{"£" + product.price / 100}</span>
+                  </div>
+                </div>
+              ))}
+
+              {Newproducts.map((product, index) => (
+                <div
+                  key={index + 1}
+                  className="col-md-6 col-lg-4 col-xl-3 p-2 feat"
+                >
+                  <div className="special-img collection-img position-relative">
+                    <img src={product.image} className="w-100" alt="product" />
+                    <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
+                      sale
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <div className="rating mt-3">
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                      <span className="text-primary">
+                        <i className="fas fa-star" />
+                      </span>
+                    </div>
+                    <p className="text-capitalize my-1">{product.name}</p>
+                    <span className="fw-bold">{"£" + product.price / 100}</span>
+                  </div>
+                </div>
+              ))} */}
 
               {/* <div className="col-md-6 col-lg-4 col-xl-3 p-2 best">
                 <div className="special-img collection-img position-relative">
@@ -464,7 +534,7 @@ export default function Home() {
       </section>
       {/* end of collection */}
       {/* special products */}
-      <section id="special" className="py-5" >
+      <section id="special" className="py-5" style={{ marginTop: "5rem" }}>
         <div className="container">
           <div className="title text-center py-5">
             <h2 className="position-relative d-inline-block">

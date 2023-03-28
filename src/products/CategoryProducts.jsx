@@ -28,7 +28,7 @@ const CategoryProducts = () => {
               src={product.image}
             />
             <Card.Body>
-              <Card.Title style={{fontSize:"3rem"}} >{product.category}</Card.Title>
+              <Card.Title style={{fontSize:"3rem"}} >{product.name}</Card.Title>
               {/* <Card.Text>
                 View all of our items in our WeWear T-Shirts product category.
               </Card.Text> */}

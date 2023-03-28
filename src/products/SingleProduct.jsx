@@ -6,7 +6,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { getProductCount, getTotalPrice, updateCart, addProductToCart} from "../basket/cartFunctions";
 import Basket from '../basket/Basket';
 
-export const BASE_URL = 'http://localhost:8080/carts';
+export const BASE_URL = '/carts';
 
 const SingleProduct = () => {
   const { id } = useParams();

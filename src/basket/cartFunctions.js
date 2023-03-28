@@ -44,7 +44,7 @@ export const getCartById = async (cartId) => {
 
 export const createCart = async () => {
   try {
-    const response = await axios.post(`${BASE_URL}`, {});
+    const response = await axios.post(`${BASE_URL}`);
     const { data: cart } = response;
     localStorage.setItem('cartId', cart.id); // set the cartId in local storage
     return cart;
