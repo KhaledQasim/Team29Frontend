@@ -47,7 +47,7 @@ const Calendar = () => {
   // }
   const addEvent = async (createdEvent) => {
     
-    await axios.post("/api/calendar/post", createdEvent).then(loadCalendar()).finally(window.location.reload());
+    await axios.post("/api/calendar/post", createdEvent).then(loadCalendar()).finally(setTimeout(()=>{window.location.reload()},250) );
     
     //
   }

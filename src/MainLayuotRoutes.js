@@ -12,19 +12,29 @@ import ViewProduct from './products/ViewProduct';
 import Login from "./login/index";
 import UserProfile from './UserProfile';
 import Products from './products/Products';
-import TShirts from './products/T-shirts';
-import Jumpers from './products/Jumpers';
-import Jeans from './products/Jeans';
-import Shorts from './products/Shorts';
-import Jackets from './products/Jackets';
+
 import PrivateRoute from './PrivateRoute';
 import Register from './register';
 // import { atom } from 'jotai';
 import Logout from './logout';
 import Basket from './basket/Basket';
+
 import AboutUsContact from "./pages/ContactUs";
-import Checkout from "./pages/checkout";
-import SingleProduct from "./pages/Single-Product";
+
+import Checkoutnew from "./pages/checkout";
+import SingleProductnew from "./pages/Single-Product";
+
+import CategoryProducts from './products/CategoryProducts';
+import SingleProduct from './products/SingleProduct';
+
+import ProductList from './products/ProductList';
+import Checkout from './checkout/checkout';
+import Confirmation from './checkout/confirmation';
+
+
+
+
+
 
 
 // export const jwtAtom = atom(Cookies.get("jwt"));
@@ -59,8 +69,8 @@ function App() {
               {/* <Route exact path="/" element={<HomeNew/>}/> */}
               <Route index element={<HomeNew/>}/>
               <Route exact path="/aboutus" element={<AboutUsContact/>}/>
-              <Route exact path="/checkout" element={<Checkout/>}/>
-              <Route exact path="/product" element={<SingleProduct/>}/>
+              <Route exact path="/checkout" element={<Checkoutnew/>}/>
+              <Route exact path="/product" element={<SingleProductnew/>}/>
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/register" element={<Register/>}/>
               <Route exact path="/logout" element={<Logout />}/>
@@ -72,18 +82,24 @@ function App() {
               
               {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
               <Route exact path="/products" element={<Products/>}/>
-              <Route exact path="/products/t-shirts" element={<TShirts/>}/>
-              <Route exact path="/products/jumpers" element={<Jumpers/>}/>
-              <Route exact path="/products/jeans" element={<Jeans/>}/>
-              <Route exact path="/products/shorts" element={<Shorts/>}/>
-              <Route exact path="/products/jackets" element={<Jackets/>}/>
+            
+              <Route exact path="/products/:id" element={<SingleProduct/>}/>
+        
+              <Route exact path="/productsCategory/:category" element={<CategoryProducts/>}/>
 
+          
+             
               <Route exact path="/AddProduct" element={<PrivateRoute> <AddProduct /></PrivateRoute>}/>
               <Route exact path="/EditProduct/:id" element={<PrivateRoute> <EditProduct /></PrivateRoute>}/>
               <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
               
               
-              <Route exact path="/basket" element={<Basket />}/>
+        <Route exact path="/basket" element={<Basket />} />
+        
+        <Route exact path="/checkout" element={<Checkout />}/>
+        <Route exact path="/checkout/confirmation" element={<Confirmation />}/>
+
+        
           </Routes>
          <Footer className="footer--pin"/>
        <React.Fragment/>

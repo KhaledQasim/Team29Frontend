@@ -12,11 +12,30 @@ import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import { SupervisedUserCircleOutlined } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [usersAmount, setUsersAmount] = useState(0);
+  const [usersNew, setUsersNew] = useState(0);
 
+
+  const getUserAmount = async () => {
+    await axios.get("/api/user/number/get").then((data)=>setUsersAmount(data.data))
+  } 
+
+  const getUserNew = async () => {
+    await axios.get("/api/user/new").then((data)=>setUsersNew(data.data))
+  }
+
+  useEffect(() => {
+    getUserNew();
+    getUserAmount();
+  }, [])
+  
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -24,7 +43,7 @@ const Dashboard = () => {
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
         <Box>
-          <Button
+          {/* <Button
             sx={{
               backgroundColor: colors.blueAccent[700],
               color: colors.grey[100],
@@ -35,7 +54,7 @@ const Dashboard = () => {
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
             Download Reports
-          </Button>
+          </Button> */}
         </Box>
       </Box>
 
@@ -55,12 +74,13 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
+            title={usersAmount}
+            subtitle="Total Users"
+            // progress="0.75"
+            // increase="+14%"
+            showCircle={false}
             icon={
-              <EmailIcon
+              <SupervisedUserCircleOutlined
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -75,9 +95,10 @@ const Dashboard = () => {
         >
           <StatBox
             title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
+            subtitle="Total Sales"
+            // progress="0.50"
+            // increase="+21%"
+            showCircle={false}
             icon={
               <PointOfSaleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -93,10 +114,12 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
-            increase="+5%"
+            title={usersNew}
+            subtitle="New Users This Month"
+            progress={usersNew/usersAmount}
+            
+            increase={(usersNew/usersAmount*100).toFixed(2)+"%"}
+            showCircle={true}
             icon={
               <PersonAddIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -112,8 +135,9 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
+            showCircle={true}
             title="1,325,134"
-            subtitle="Traffic Received"
+            subtitle="Orders Today"
             progress="0.80"
             increase="+43%"
             icon={
