@@ -20,6 +20,7 @@ function Navbarr() {
   // const [role] = useState(getJwtAuth);
   const navigate = useNavigate();
   // const [isValid , setIsValid] = useState("");
+  const [cartDataLength, setCartDataLength] = useState(0);
   const [jwt, setJwt] = useAtom(jwtAtom);
   const [isLogged, setIsLogged] = useAtom(Atomlogged);
   const [isAdmin, setAdmin] = useAtom(AtomAdmin);
@@ -47,12 +48,19 @@ function Navbarr() {
   useEffect(() => {
     const interval = setInterval(() => {
       loadNotifications();
-    }, 1000);
+      const cartData = JSON.parse(localStorage.getItem("cartData"));
+      if (cartData) {
+        setCartDataLength(cartData.length);
+      }
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
-    console.log("use");
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    if (cartData) {
+      setCartDataLength(cartData.length);
+    }
     loadNotifications();
     if (jwt) {
       axios
@@ -64,12 +72,10 @@ function Navbarr() {
             let role = JSON.stringify(decodedJwt.authorities);
             if (role.includes("ADMIN")) {
               setAdmin(true);
-            }
-            else {
+            } else {
               setAdmin(false);
             }
-          }
-          else {
+          } else {
             setIsLogged(false);
             setAdmin(false);
           }
@@ -104,13 +110,21 @@ function Navbarr() {
             />
           </a>
           <div className="order-lg-2 nav-btns">
-            <button type="button" className="btn position-relative">
-              <i className="fa fa-shopping-cart" />
-              <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
-                1
-              </span>
+            <button
+              type="button"
+              className="btn position-relative"
+              onClick={() => navigate("/basket")}
+            >
+              {isLogged ? (
+                <>
+                  <i className="fa fa-shopping-cart" />
+                  <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
+                    {cartDataLength}
+                  </span>
+                </>
+              ) : null}
             </button>
-            <button type="button" className="btn position-relative">
+            {/* <button type="button" className="btn position-relative">
               <i className="fa fa-heart" />
               <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
                 22
@@ -118,7 +132,7 @@ function Navbarr() {
             </button>
             <button type="button" className="btn position-relative">
               <i className="fa fa-search" />
-            </button>
+            </button> */}
             {isAdmin ? (
               <>
                 <Button
@@ -215,14 +229,14 @@ function Navbarr() {
                   home
                 </Link>
               </li>
-              <li className="nav-item px-2 py-2">
+              {/* <li className="nav-item px-2 py-2">
                 <Link
                   className="nav-link text-uppercase text-dark"
                   to="/basket"
                 >
                   Basket
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item px-2 py-2">
                 <Link
                   className="nav-link text-uppercase text-dark"
@@ -267,8 +281,9 @@ function Navbarr() {
                       fetch("/auth/logout").then((response) => {
                         if (response.status === 200) {
                           setJwt(null);
-                          window.location.reload();
                           navigate("/");
+                          window.location.reload();
+                          
                           setIsLogged(false);
                         }
                       });
