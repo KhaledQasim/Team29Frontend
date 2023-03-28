@@ -19,9 +19,9 @@ const CategoryProducts = () => {
 
   return (
     <div className="content-container" style={{ marginLeft: "1rem" }}>
-      <Row xs={2} md={5} className="g-0">
+      <Row xs={2} md={5} className="g-0" >
         {products.map((product) => (
-          <Card style={{ width: "18rem", marginRight: "1rem" }}>
+          <Card style={{ width: "18rem", marginRight: "1rem" , flexGrow:"1",marginBottom:"1rem"}}>
             <Card.Img
               variant="top"
               style={{ flexGrow: "inherit" }}
