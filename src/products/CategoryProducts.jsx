@@ -70,25 +70,25 @@ const CategoryProducts = () => {
 
         </Form.Control>
         <Form.Group>
-        <Form.Label className="text-start" style={{paddingRight: 1050}}>Price range:</Form.Label>
-          <Form.Control
-            
-            type="number"
-            placeholder="Min Price"
-            value={minPriceFilter}
-            onChange={handleMinPriceFilter}
-            style={{ width: "500px" }}
+  <Form.Label className="text-start" style={{paddingRight: 1050}}>Price range:</Form.Label>
+  <Form.Control
+    type="number"
+    placeholder="Min Price"
+    value={minPriceFilter}
+    onChange={handleMinPriceFilter}
+    style={{ width: "500px" }}
+    min={0}
+  />
+  <Form.Control
+    type="number"
+    placeholder="Max Price"
+    value={maxPriceFilter}
+    onChange={handleMaxPriceFilter}
+    style={{ width: "500px" }}
+    min={0}
+  />
+</Form.Group>
 
-          />
-          <Form.Control
-            type="number"
-            placeholder="Max Price"
-            value={maxPriceFilter}
-            onChange={handleMaxPriceFilter}
-            style={{ width: "500px" }}
-
-          />
-        </Form.Group>
       </Form>
       <Row xs={2} md={5} className="g-0">
         {filteredProducts.map((product) => (
