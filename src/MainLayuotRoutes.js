@@ -37,6 +37,7 @@ import Confirmation from './checkout/confirmation';
 
 
 
+
 // export const jwtAtom = atom(Cookies.get("jwt"));
 // export const Atomlogged = atom("");
 
@@ -70,7 +71,7 @@ function App() {
               <Route index element={<HomeNew/>}/>
               <Route exact path="/aboutus" element={<AboutUsContact/>}/>
               <Route exact path="/checkout" element={<Checkoutnew/>}/>
-              <Route exact path="/product" element={<SingleProductnew/>}/>
+              <Route exact path="/products/:id" element={<SingleProductnew/>}/>
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/register" element={<Register/>}/>
               <Route exact path="/logout" element={<Logout />}/>
@@ -83,7 +84,7 @@ function App() {
               {/* <Route exact path="/homenew" element={<HomeNew/>}/> */}
               <Route exact path="/products" element={<Products/>}/>
             
-              <Route exact path="/products/:id" element={<SingleProduct/>}/>
+              {/* <Route exact path="/products/:id" element={<SingleProduct/>}/> */}
         
               <Route exact path="/productsCategory/:category" element={<CategoryProducts/>}/>
 
@@ -94,10 +95,10 @@ function App() {
               <Route exact path="/ViewProduct/:id" element={<ViewProduct />}/>
               
               
-        <Route exact path="/basket" element={<Basket />} />
-        
-        <Route exact path="/checkout" element={<Checkout />}/>
-        <Route exact path="/checkout/confirmation" element={<Confirmation />}/>
+              <Route exact path="/basket" element={<Basket />} />
+              
+              {/* <Route exact path="/checkout" element={<Checkout />}/> */}
+              <Route exact path="/checkout/confirmation" element={<Confirmation />}/>
 
         
           </Routes>

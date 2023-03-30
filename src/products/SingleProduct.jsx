@@ -130,11 +130,10 @@ const SingleProduct = () => {
       <h4>{"£" + product.price/100}</h4>
       <h4>{"Stock: " + product.quantity}</h4>
       <h4>{"Size: " + product.size}</h4>
-      {/* <Form.Group controlId="quantityInput">
+      <Form.Group controlId="quantityInput">
       <Form.Label>Quantity</Form.Label>
-        <Form.Control type="number" min="1" max={product.quantity} value={1}
-        />
-      </Form.Group> */}
+      <Form.Control type="number" min="1" max={product.quantity} value={quantity} onChange={handleQuantityChange} />
+      </Form.Group>
       <Button
       variant="primary"
       onClick={() => handleAddToCart(product.id, product.size, quantity, product.price/100)}> Add to Cart</Button>

@@ -92,7 +92,7 @@ const CategoryProducts = () => {
       </Form>
       <Row xs={2} md={5} className="g-0">
         {filteredProducts.map((product) => (
-          <Card style={{ width: "18rem", marginRight: "1rem", flexGrow: "1", marginBottom: "1rem" }}>
+          <Card style={{ width: "18rem", marginRight: "1rem",  marginBottom: "1rem" }}>
             <Card.Img
               variant="top"
               style={{ flexGrow: "inherit" }}

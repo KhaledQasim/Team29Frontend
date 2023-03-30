@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button, Modal, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./basket.css";
@@ -23,6 +23,7 @@ import {
 } from "./cartFunctions";
 
 export default function Basket({ cartData }) {
+  const navigate = useNavigate();
   const [cart, setCart] = useState(cartData);
   const [productCount, setProductCount] = useState(0);
   const [totalPrice, setTotalPrice] = useState();
@@ -35,6 +36,26 @@ export default function Basket({ cartData }) {
   const [formattedTotalPrice, setFormattedTotalPrice] = useState("");
 
   const BASE_URL = "http://localhost:8080/carts";
+
+
+  /* Commented code below sends the cart to the order DB*/
+
+  // const CartDataAsString = JSON.stringify(cartData);
+    
+  // await axios.post("/loggedUser/OrderNew", {
+  //   orderStatus: "Processing",
+  //   createdAt: "2023-03-28",
+  //   paymentType: "Card",
+  //   firstName: "bob",
+  //   lastName: "kyle",
+  //   email: "email",
+  //   address: "address",
+  //   city: "city",
+  //   postCode: "BB",
+  //   products: CartDataAsString,
+  //   userId: 1,
+  // });
+
 
   useEffect(() => {
     async function fetchData() {
@@ -86,8 +107,20 @@ export default function Basket({ cartData }) {
 
   useEffect(() => {
     async function fetchCartData() {
+      const ObjectString = String(
+        `[{productId:7,size:M,quantity:2,price:50},{productId:23,size:M,quantity:1,price:50}]`
+      );
       console.log("Fetching cart data...");
       console.log("Cart:", cart);
+      console.log("Cart as a string:", JSON.stringify(cart));
+      console.log(
+        "ObjectString using parse",
+        JSON.parse(JSON.stringify(ObjectString))
+      );
+      console.log(
+        "Cart as a string then parse:",
+        JSON.parse(JSON.stringify(cart))
+      );
       setLoading(true); // set loading state to true before fetching data
 
       if (cart) {
@@ -288,10 +321,11 @@ export default function Basket({ cartData }) {
       // Save the cart data to local storage
       localStorage.setItem("cart", JSON.stringify(cartData));
       // Navigate to the checkout page
-      window.location.href = "/checkout";
+      navigate("/checkout")
     } catch (error) {
       console.error(error);
     }
+   
   };
 
   return (
@@ -400,7 +434,7 @@ export default function Basket({ cartData }) {
               >
                 Empty cart
               </Button>
-              <Button variant="primary" onClick={handleCheckout}>
+              <Button variant="primary" onClick={() => handleCheckout(cart)}>
                 Checkout
               </Button>
             </div>

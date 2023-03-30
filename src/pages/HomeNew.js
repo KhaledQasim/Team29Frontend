@@ -296,7 +296,7 @@ export default function Home() {
                   className="col-md-6 col-lg-4 col-xl-3 p-2 new"
                 >
                   <div className="special-img collection-img position-relative">
-                    <img src={product.image} className="w-100" alt="product" />
+                    <img src={product.image} className="w-100" alt="product" onClick={()=>{navigate(`/products/${product.id}`)}}/>
                     <span className="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">
                       sale
                     </span>

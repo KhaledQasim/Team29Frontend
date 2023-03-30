@@ -7,6 +7,9 @@ import { tokens } from "../theme";
 import axios from 'axios';
 
 const GeographyChart = ({ isDashboard = false }) => {
+  useEffect(() => {
+    loadData();
+  }, [])
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
@@ -25,9 +28,7 @@ const GeographyChart = ({ isDashboard = false }) => {
      
     })
   }
-  useEffect(() => {
-    loadData();
-  }, [])
+ 
   
   return (
     <ResponsiveChoropleth
