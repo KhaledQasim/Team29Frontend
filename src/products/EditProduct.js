@@ -23,11 +23,11 @@ export default function EditProduct() {
   
   const onSubmit=async(event)=>{
     event.preventDefault();
-    await axios.put(`http://localhost:8080/product/${id}`,product);
+    await axios.put(`http://139.162.220.224:8080/product/${id}`,product);
     navigate("/homeOld");  
   }
   const loadProduct = async() => {
-    const result= await axios.get(`http://localhost:8080/product/${id}`);
+    const result= await axios.get(`http://139.162.220.224:8080/product/${id}`);
     setProduct(result.data);
   }
 

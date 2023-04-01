@@ -14,12 +14,16 @@ const CategoryProducts = () => {
 
   const loadProductsByCategory = async () => {
     await axios.get(`/productsCategory/${category}`)
-      .then((data) => setProducts(data.data));
+      .then((data) => setProducts(data.data.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        (sizeFilter === '' || product.size === sizeFilter) &&
+        (minPriceFilter === '' || product.price/100 >= minPriceFilter) &&
+        (maxPriceFilter === '' || product.price/100 <= maxPriceFilter))));
   };
 
   useEffect(() => {
     loadProductsByCategory();
-  }, []);
+  }, );
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
@@ -37,12 +41,12 @@ const CategoryProducts = () => {
     setMaxPriceFilter(event.target.value);
   };
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (sizeFilter === '' || product.size === sizeFilter) &&
-    (minPriceFilter === '' || product.price/100 >= minPriceFilter) &&
-    (maxPriceFilter === '' || product.price/100 <= maxPriceFilter)
-  );
+  // const filteredProducts = products.filter(product =>
+  //   product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+  //   (sizeFilter === '' || product.size === sizeFilter) &&
+  //   (minPriceFilter === '' || product.price/100 >= minPriceFilter) &&
+  //   (maxPriceFilter === '' || product.price/100 <= maxPriceFilter)
+  // );
 
   return (
     <div className="content-container" style={{ marginLeft: "1rem" }}>
@@ -91,7 +95,7 @@ const CategoryProducts = () => {
 
       </Form>
       <Row xs={2} md={5} className="g-0">
-        {filteredProducts.map((product) => (
+        {products.map((product) => (
           <Card style={{ width: "18rem", marginRight: "1rem",  marginBottom: "1rem" }}>
             <Card.Img
               variant="top"

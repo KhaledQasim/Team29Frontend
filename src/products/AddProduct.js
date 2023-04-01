@@ -19,7 +19,7 @@ export default function AddProduct() {
 
   const onSubmit=async(event)=>{
     event.preventDefault();
-    await axios.post("http://localhost:8080/product",product);
+    await axios.post("http://139.162.220.224:8080/product",product);
     navigate("/");  
   }
 

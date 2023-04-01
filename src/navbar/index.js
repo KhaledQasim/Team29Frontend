@@ -50,8 +50,7 @@ function Navbarr() {
       const cartData = JSON.parse(localStorage.getItem("cartData"));
       if (cartData) {
         setCartDataLength(cartData.length);
-      }
-      else{
+      } else {
         setCartDataLength(0);
       }
     }, 3000);
@@ -105,11 +104,7 @@ function Navbarr() {
             className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
             href="index.html"
           >
-            <img
-              src="/images/we_WEAR-8.png"
-              width="125px"
-              alt="site icon"
-            />
+            <img src="/images/we_WEAR-8.png" width="125px" alt="site icon" />
           </a>
           <div className="order-lg-2 nav-btns">
             <button
@@ -170,16 +165,18 @@ function Navbarr() {
                       </tr>
                     </thead>
                     <tbody>
-                      {noStocks.map((noStock, index) => (
-                        <tr key={index + 1}>
-                          <td>
-                            {noStock.name +
-                              " in category: " +
-                              noStock.category +
-                              " has no stock left!"}
-                          </td>
-                        </tr>
-                      ))}
+                      {noStocks.map((noStock, index) => {
+                        return (
+                          <tr key={index + 1}>
+                            <td>
+                              {noStock.name +
+                                " in category: " +
+                                noStock.category +
+                                " has no stock left!"}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
 
                     <thead>
@@ -192,18 +189,20 @@ function Navbarr() {
                       )}
                     </thead>
                     <tbody>
-                      {lowStocks.map((lowStock, index) => (
-                        <tr key={index + 1}>
-                          <td>
-                            {lowStock.name +
-                              " in category: " +
-                              lowStock.category +
-                              " has remaining quantity of " +
-                              lowStock.quantity +
-                              "!"}
-                          </td>
-                        </tr>
-                      ))}
+                      {lowStocks.map((lowStock, index) => {
+                        return (
+                          <tr key={index + 1}>
+                            <td>
+                              {lowStock.name +
+                                " in category: " +
+                                lowStock.category +
+                                " has remaining quantity of " +
+                                lowStock.quantity +
+                                "!"}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </Table>
                 </Popover>
@@ -285,7 +284,7 @@ function Navbarr() {
                           setJwt(null);
                           navigate("/");
                           window.location.reload();
-                          
+
                           setIsLogged(false);
                         }
                       });

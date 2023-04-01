@@ -35,7 +35,7 @@ export default function Basket({ cartData }) {
   const [cartChanged, setCartChanged] = useState(false);
   const [formattedTotalPrice, setFormattedTotalPrice] = useState("");
 
-  const BASE_URL = "http://localhost:8080/carts";
+  const BASE_URL = "http://139.162.220.224:8080/carts";
 
 
   /* Commented code below sends the cart to the order DB*/

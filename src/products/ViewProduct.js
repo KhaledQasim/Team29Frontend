@@ -17,7 +17,7 @@ export default function ViewProduct() {
   }, []);
 
   const loadProduct = async () => {
-    const result = await axios.get(`http://localhost:8080/product/${id}`);
+    const result = await axios.get(`http://139.162.220.224:8080/product/${id}`);
     setProduct(result.data);
   };
 
