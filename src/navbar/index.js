@@ -8,7 +8,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
 
-import ajax from "../services/fetchService";
 import { useAtom } from "jotai";
 import { AtomAdmin, Atomlogged, jwtAtom } from "../App";
 
@@ -107,7 +106,7 @@ function Navbarr() {
             href="index.html"
           >
             <img
-              src="images/we_WEAR-8.png"
+              src="/images/we_WEAR-8.png"
               width="125px"
               alt="site icon"
             />
