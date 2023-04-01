@@ -216,8 +216,8 @@ const initialValues = {
   price: "",
   category: "",
   description: "",
-  image:"/HTML/we-WEAR-10.png",
-  images:"/HTML/we-WEAR-13.png,/HTML/we-WEAR-12.png,/HTML/we-WEAR-12.png",
+  image:"HTML/we-WEAR-10.png",
+  images:"HTML/we-WEAR-13.png,/HTML/we-WEAR-12.png,/HTML/we-WEAR-12.png",
 };
 
 export default Form;

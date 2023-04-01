@@ -146,7 +146,7 @@ function Login() {
         <MDBRow className='g-0 d-flex align-items-center'>
 
           <MDBCol md='4'>
-            <MDBCardImage src="/images/we_WEAR-8.png" alt='logo' className='rounded-t-5 rounded-tr-lg-0' fluid />
+            <MDBCardImage src="images/we_WEAR-8.png" alt='logo' className='rounded-t-5 rounded-tr-lg-0' fluid />
           </MDBCol>
 
           <MDBCol md='8'>

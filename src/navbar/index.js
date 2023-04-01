@@ -107,7 +107,7 @@ function Navbarr() {
             href="index.html"
           >
             <img
-              src="../../images/we_WEAR-8.png"
+              src="images/we_WEAR-8.png"
               width="125px"
               alt="site icon"
             />
