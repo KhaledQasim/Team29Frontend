@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { emptyCart, getCartById } from "../basket/cartFunctions";
 
-const Confirmation = () => {
-  // Generate random order ID and set order status to "Processing"
-  const [order] = useState({
-    id: Math.floor(Math.random() * 100000000),
-    status: 'Processing',
+const Confirmation = (cartData) => {
+  useEffect(() => {
+    localStorage.removeItem("cartData");
+    localStorage.removeItem("cartId");
+    // console.log(localStorage.getItem("cartData"))
+
   });
 
-  // Set order status to "Complete" after 5 seconds
-  setTimeout(() => {
-    order.status = 'Complete';
-  }, 5000);
+  const [id, setId] = useState({});
+  const [cart, setCart] = useState(cartData);
+  const [cartChanged, setCartChanged] = useState(false);
 
+  const handleEmptyCart = async () => {
+    const cartId = localStorage.getItem("cartId");
+    try {
+      await emptyCart(cartId);
+      setCart(await getCartById(cartId));
+      localStorage.removeItem("cartData");
+      setCartChanged(true); // set cartChanged to true
+    } catch (error) {
+      console.error("Error emptying cart:", error);
+    }
+  };
   return (
-    <div className="confirmation">
+    <div className="confirmation content-container">
       <h1>Thank you for your order!</h1>
       <p>Your order has been successfully placed.</p>
-      <p>Your order ID is: {order.id}</p>
-      <p>Your order status is: {order.status}</p>
-      <p>You will receive an email confirmation with the details of your order shortly.</p>
+
+      <p>Your order status is: "Processing"</p>
+      <p>
+        You will receive an email confirmation with the details of your order
+        shortly.
+      </p>
       <Link to="/">
-        <button>Back to Home</button>
+        <Button>Back to Home</Button>
       </Link>
     </div>
   );

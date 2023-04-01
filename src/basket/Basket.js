@@ -348,13 +348,14 @@ export default function Basket({ cartData }) {
           {products.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
-            <div>
+            <div >
               {products.map((product, index) => (
-                <Card key={index}>
+                <Card key={index} >
                   <Card.Body>
-                    <div>
+                    <div >
                       <div className="product-image">
                         <Card.Img
+                          
                           variant="left"
                           src={product.image}
                           alt={product.name}
@@ -365,20 +366,20 @@ export default function Basket({ cartData }) {
                           }}
                         />
                       </div>{" "}
-                      <Card.Title>{product.name}</Card.Title>
-                      <Card.Text>{product.description}</Card.Text>
+                      <Card.Title >{product.name}</Card.Title>
+                      {/* <Card.Text>{product.description}</Card.Text> */}
                       <Card.Text>Size: {product.size}</Card.Text>
                       <Card.Text>Price: {product.price} GBP</Card.Text>
                       <label htmlFor="quantity">Quantity:</label>
-                      <div>
-                        <button
+                      <div >
+                        <button style={{ marginRight:"8px"}}
                           onClick={() =>
                             handleRemoveProduct(product.id, product.size)
                           }
                         >
                           <i className="fas fa-trash-alt"></i>
                         </button>
-                        <button
+                        <button style={{ marginRight:"8px"}}
                           onClick={() =>
                             handleRemoveFromCart(
                               product.id,
@@ -390,7 +391,7 @@ export default function Basket({ cartData }) {
                         >
                           -
                         </button>
-                        <button
+                        {/* <button
                           onClick={() =>
                             handleAddToCart(
                               product.id,
@@ -401,8 +402,8 @@ export default function Basket({ cartData }) {
                           }
                         >
                           +
-                        </button>
-                        <select
+                        </button> */}
+                        {/* <select
                           value={product.quantity}
                           onChange={(e) =>
                             handleAddToCart(
@@ -420,7 +421,11 @@ export default function Basket({ cartData }) {
                               </option>
                             )
                           )}
-                        </select>
+                        </select> */}
+                        <span style={{ marginRight:"8px"}}>
+                          {product.quantity}
+                        </span>
+                        
                       </div>
                     </div>
                   </Card.Body>

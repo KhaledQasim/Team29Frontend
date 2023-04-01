@@ -2,13 +2,84 @@ import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./Home.css";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { jwtAtom } from "../App";
 
 const Checkoutnew = () => {
+
+  
+  const [jwt, setJwt] = useAtom(jwtAtom);
+  function  getUserEmail () {
+    if (jwt) {
+      const decodedJwt = jwt_decode(jwt);
+      return JSON.stringify(decodedJwt.sub).slice(1,-1);
+    }
+    
+    return[];
+  };
   const ref = useRef();
-  const handleSubmit = (e) => {
+  const [disabled , setDisabled] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(ref.current.firstName.value);
    
+    // console.log(ref.current.firstName.value);
+    setDisabled(true);
+    const result = await axios.get(`/singleUser/getByUsername/${getUserEmail()}`,{ headers: {"Authorization" : `Bearer ${jwt}`} })
+ 
+    const data = {
+      firstName: ref.current.firstName.value,
+      lastName: ref.current.lastName.value,
+      email: result.data.email,
+      address: ref.current.address.value,
+      city: ref.current.city.value,
+      postCode: ref.current.postCode.value,
+      products: localStorage.getItem("cartData"),
+      orderStatus: "Processing",
+      paymentType: "Card",
+      userId: result.data.id,
+      totalPrice: getTotalPrice()
+    }
+    
+    await axios.post("loggedUser/OrderNew", data)
+      .then((res) => {
+    
+        
+        // setTimeout(() => { navigate("/checkout/confirmation");}, 200);
+        
+        const data = JSON.parse(localStorage.getItem("cartData"));
+       
+        const d = {id : data.map((item) => item.productId), quantity:  data.map((item) => item.quantity) }
+         axios
+          .put("api/product/reduce", d)
+          .then((res) => {
+            navigate("/checkout/confirmation");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      setTimeout(() => { setDisabled(false);}, 2000);
+    // console.log(JSON.parse('[{"productId":9,"size":"M","quantity":4,"price":50},{"productId":25,"size":"M","quantity":1,"price":50}]'));
+    // console.log(JSON.stringify('[{"productId":9,"size":"M","quantity":4,"price":50},{"productId":25,"size":"M","quantity":1,"price":50}]'))
+  };
+
+  const getTotalPrice = () => {
+    let totalPrice = 0;
+    const data = JSON.parse(localStorage.getItem("cartData"));
+    for (let i = 0; i < data.length; i++) {
+      let price = data[i].price;
+      let quantity = data[i].quantity;
+      totalPrice += price * quantity;
+     
+    }
+    return totalPrice;
   };
 
   return (
@@ -47,7 +118,8 @@ const Checkoutnew = () => {
                   Email
                   
                 </label>
-                <input type="email" className="form-control" id="email" name="email"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please enter a valid email address."
+                {/* required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please enter a valid email address." */}
+                <input type="email" className="form-control" id="email" name="email" value={getUserEmail()} readOnly 
                   
                 />
                 
@@ -107,12 +179,12 @@ const Checkoutnew = () => {
               </div>
 
              
-              <span>{localStorage.getItem("cartData")}</span>
+              {/* <span>{localStorage.getItem("cartData")}</span> */}
             </div>
           </div>
           <div className="row">
             <div className="col-md-12 text-center mt-4">
-              <button type="submit" className="btn btn-primary btn-lg">
+              <button type="submit" className="btn btn-primary btn-lg" disabled={disabled}>
                 Complete Purchase
               </button>
             </div>

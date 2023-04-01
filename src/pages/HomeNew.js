@@ -10,7 +10,7 @@ import configData from "../config.json";
 import "./Home.css";
 import { Button } from "react-bootstrap";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import $ from 'jquery';
 
 export default function Home() {
@@ -144,9 +144,9 @@ export default function Home() {
             <h1 className="text-uppercase py-2 fw-bold text-white">
               new arrivals
             </h1>
-            <a href="/products" className="btn mt-3 text-uppercase">
+            <Link to="/products" className="btn mt-3 text-uppercase">
               shop now
-            </a>
+            </Link>
           </div>
           <div className="text-center carousel-item">
             <h2 className="text-capitalize text-white">WeWear Collection</h2>
@@ -193,7 +193,7 @@ export default function Home() {
           </div>
           <div className="row g-0">
             <div className="d-flex flex-wrap justify-content-center mt-5 filter-button-group">
-              <button
+              {/* <button
                 type="button"
                 className="btn m-2 text-dark active-filter-btn"
                 data-filter="*"
@@ -213,13 +213,13 @@ export default function Home() {
                 data-filter=".feat"
               >
                 Featured
-              </button>
+              </button> */}
               <button
                 type="button"
                 className="btn m-2 text-dark"
                 data-filter=".new"
               >
-                New Arrival
+                New Arrival (created in the past 2 weeks)
               </button>
             </div>
             <div className="collection-list mt-4 row gx-0 gy-3">
@@ -534,7 +534,7 @@ export default function Home() {
       </section>
       {/* end of collection */}
       {/* special products */}
-      <section id="special" className="py-5" style={{ marginTop: "5rem" }}>
+      {/* <section id="special" className="py-5" style={{ marginTop: "5rem" }}>
         <div className="container">
           <div className="title text-center py-5">
             <h2 className="position-relative d-inline-block">
@@ -550,7 +550,7 @@ export default function Home() {
                   alt="product"
                 />
                 <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
-                  {/* <i class = "fas fa-heart"></i>//*/}
+                 
                 </span>
               </div>
               <div className="text-center">
@@ -569,7 +569,7 @@ export default function Home() {
                   alt="product"
                 />
                 <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
-                  {/* <i class = "fas fa-heart"></i>//*/}
+                
                 </span>
               </div>
               <div className="text-center">
@@ -588,7 +588,7 @@ export default function Home() {
                   alt="product"
                 />
                 <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
-                  {/* <i class = "fas fa-heart"></i>//*/}
+                
                 </span>
               </div>
               <div className="text-center">
@@ -607,7 +607,7 @@ export default function Home() {
                   alt="product"
                 />
                 <span className="position-absolute d-flex align-items-center justify-content-center text-primary fs-4">
-                  {/* <i class = "fas fa-heart"></i>//*/}
+                 
                 </span>
               </div>
               <div className="text-center">
@@ -620,7 +620,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* end of special products */}
       {/* blogs */}
       <section id="offers" className="py-5">
@@ -629,9 +629,9 @@ export default function Home() {
             <div className="offers-content">
               <span className="text-white">Discount Up To 40%</span>
               <h2 className="mt-2 mb-4 text-white">Student Offer!</h2>
-              <a href="/" className="btn">
+              <Link to="/products" className="btn">
                 Shop Now
-              </a>
+              </Link>
             </div>
           </div>
         </div>

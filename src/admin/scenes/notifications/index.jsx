@@ -48,7 +48,7 @@ const Notification = () => {
                 centered
             >
                 <Modal.Body style={{ backgroundColor: "#1f2a40" }}>
-                    <img src={modalImage} alt="product" />
+                    <img src={modalImage} style={{width:"600px",height:"600px"}} alt="product" />
                 </Modal.Body>
             </Modal>
         );

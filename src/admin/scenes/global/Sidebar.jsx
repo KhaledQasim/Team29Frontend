@@ -190,12 +190,19 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
              <Item
+              title="Manage Orders"
+              to="orders"
+              icon={<Inventory2Sharp />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             {/* <Item
               title="Upload Images"
               to="files"
               icon={<FilePresentOutlined />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -237,9 +244,9 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Charts
+              Map
             </Typography>
-            <Item
+            {/* <Item
               title="Bar Chart"
               to="bar"
               icon={<BarChartOutlinedIcon />}
@@ -259,7 +266,7 @@ const Sidebar = () => {
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Item
               title="Geography Chart"
               to="geography"

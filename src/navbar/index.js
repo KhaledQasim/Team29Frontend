@@ -52,6 +52,9 @@ function Navbarr() {
       if (cartData) {
         setCartDataLength(cartData.length);
       }
+      else{
+        setCartDataLength(0);
+      }
     }, 3000);
 
     return () => clearInterval(interval);

@@ -21,7 +21,10 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
   const [usersAmount, setUsersAmount] = useState(0);
   const [usersNew, setUsersNew] = useState(0);
-
+  const [ordersAmount, setOrdersAmount] = useState(0);
+  const [ordersNew, setOrdersNew] = useState(0);
+  const [ordersNewMonth, setOrdersNewMonth] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const getUserAmount = async () => {
     await axios.get("/api/user/number/get").then((data)=>setUsersAmount(data.data))
@@ -31,9 +34,33 @@ const Dashboard = () => {
     await axios.get("/api/user/new").then((data)=>setUsersNew(data.data))
   }
 
+  const getOrderAmount = async () => {
+    await axios.get("/api/order/number/get").then((data)=>setOrdersAmount(data.data))
+  }
+  
+  const getOrdersNew = async () => {
+    await axios.get("/api/order/new").then((data)=>setOrdersNew(data.data))
+  }
+
+  const getOrdersMonth = async () => {
+    await axios.get("/api/order/new/month").then((data)=>setOrdersNewMonth(data.data))
+  }
+
+  const loadOrders = async () => {
+    
+    await axios.get("/api/getAllOrders")
+    .then((data)=>setOrders(data.data))
+   
+  };
+
   useEffect(() => {
+    getOrdersMonth();
     getUserNew();
     getUserAmount();
+    getOrderAmount();
+    getOrdersNew();
+    
+    
   }, [])
   
   return (
@@ -94,8 +121,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Total Sales"
+            title={ordersAmount}
+            subtitle="Total Orders"
             // progress="0.50"
             // increase="+21%"
             showCircle={false}
@@ -136,10 +163,10 @@ const Dashboard = () => {
         >
           <StatBox
             showCircle={true}
-            title="1,325,134"
+            title={ordersNew}
             subtitle="Orders Today"
-            progress="0.80"
-            increase="+43%"
+            progress={ordersNew/ordersAmount}
+            increase={(ordersNew/ordersAmount*100).toFixed(2)+"%"}
             icon={
               <TrafficIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -149,7 +176,7 @@ const Dashboard = () => {
         </Box>
 
         {/* ROW 2 */}
-        <Box
+        {/* <Box
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -188,10 +215,10 @@ const Dashboard = () => {
           <Box height="250px" m="-20px 0 0 0">
             <LineChart isDashboard={true} />
           </Box>
-        </Box>
+        </Box> */}
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
+          gridColumn="span 6"
+          gridRow="span 4"
           backgroundColor={colors.primary[400]}
           overflow="auto"
         >
@@ -204,12 +231,12 @@ const Dashboard = () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
+              Recent Orders This Month
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
+          {ordersNewMonth.map((order, i) => (
             <Box
-              key={`${transaction.txId}-${i}`}
+              key={`${order.id}-${i}`}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
@@ -222,26 +249,26 @@ const Dashboard = () => {
                   variant="h5"
                   fontWeight="600"
                 >
-                  {transaction.txId}
+                  {`ID: ${order.id} . ${order.email}`}
                 </Typography>
                 <Typography color={colors.grey[100]}>
-                  {transaction.user}
+                  {`Payment Type: ${order.paymentType}`}
                 </Typography>
               </Box>
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
+              <Box color={colors.grey[100]}>{`Status: ${order.orderStatus} , Date: ${order.createdAt}`}</Box>
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
                 borderRadius="4px"
               >
-                ${transaction.cost}
+                ${order.totalPrice}
               </Box>
             </Box>
           ))}
         </Box>
 
         {/* ROW 3 */}
-        <Box
+        {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -266,8 +293,8 @@ const Dashboard = () => {
             </Typography>
             <Typography>Includes extra misc expenditures and costs</Typography>
           </Box>
-        </Box>
-        <Box
+        </Box> */}
+        {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -283,21 +310,21 @@ const Dashboard = () => {
             <BarChart isDashboard={true}
               enableLabel={false} />
           </Box>
-        </Box>
+        </Box> */}
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
+          gridColumn="span 6"
+          gridRow="span 3"
           backgroundColor={colors.primary[400]}
-          padding="30px"
+          padding="15px"
         >
           <Typography
-            variant="h5"
+            variant="h10"
             fontWeight="600"
-            sx={{ marginBottom: "15px" }}
+            sx={{ marginBottom: "5px" }}
           >
             Geography Based Traffic
           </Typography>
-          <Box height="200px">
+          <Box height="400px">
             <GeographyChart isDashboard={true} />
           </Box>
         </Box>

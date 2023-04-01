@@ -40,6 +40,7 @@ const CardImage = styled(Card.Img)`
 
 // style={{ width: "18rem", marginRight: "1rem", flex:1 }}
 export default function Products() {
+
   const navigate = useNavigate();
 
   return (

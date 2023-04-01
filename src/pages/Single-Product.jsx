@@ -27,32 +27,30 @@ const SingleProductnew = () => {
       };
 
       getCartData();
-      
     }
-   
-    
   }, []);
-  
+
+  const [avaliable, setAvaliable] = useState(false);
+
   // useEffect(() => {
   //   setMainImage(product.image);
   // }, [product]);
-  
-  setTimeout(() => { 
-    setMainImage(product.image)
-    
+
+  setTimeout(() => {
+    setMainImage(product.image);
   }, 500);
   const loadProductById = async () => {
-    await axios.get(`/product/${id}`).then((response) => {
-      setProduct(response.data);
-      setImageArray(response.data.images.split(","));
-    }).finally(() => {
-      setTimeout(() => { 
-        setMainImage(product.image)
-        
-      }, 500);
-    })
-      ;
-   
+    await axios
+      .get(`/product/${id}`)
+      .then((response) => {
+        setProduct(response.data);
+        setImageArray(response.data.images.split(","));
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setMainImage(product.image);
+        }, 500);
+      });
   };
   const { id } = useParams();
   const [imageArray, setImageArray] = useState([]);
@@ -65,11 +63,8 @@ const SingleProductnew = () => {
   const changeMainImage = (image) => {
     setMainImage(image);
   };
-  
-  
 
   const thumbnails = imageArray;
-
 
   const handleUpdateCart = async (updatedCart) => {
     const cartId = localStorage.getItem("cartId");
@@ -120,34 +115,51 @@ const SingleProductnew = () => {
   };
 
   const handleAddToCart = async (productId, size, quantity, price) => {
-    const existingCartData = JSON.parse(localStorage.getItem("cartData")) || [];
-    const existingProductIndex = existingCartData.findIndex(
-      (item) => item.productId === productId && item.size === size
-    );
-    if (existingProductIndex > -1) {
-      existingCartData[existingProductIndex].quantity += parseInt(quantity);
-    } else {
-      existingCartData.push({
-        productId,
-        size,
-        quantity: parseInt(quantity),
-        price,
-      });
-    }
-    setCartData(existingCartData);
-    localStorage.setItem("cartData", JSON.stringify(existingCartData));
-    const cartId = localStorage.getItem("cartId");
-    await addProductToCart(productId, quantity, size, price, cartId);
-    await handleUpdateCart({ product: existingCartData });
-    if (product.quantity < 5) {
-      alert(`There are only ${product.quantity} items remaining in stock.`);
-    }
     if (product.quantity === 0) {
-      const addToCartButton = document.getElementById(
-        `add-to-cart-${productId}-${size}`
+      // const addToCartButton = document.getElementById(
+      //   `add-to-cart-${productId}-${size}`
+      // );
+      // addToCartButton.disabled = true;
+      // addToCartButton.textContent = "Out of Stock";
+      window.alert("Out of Stock");
+    } else {
+      const existingCartData =
+        JSON.parse(localStorage.getItem("cartData")) || [];
+
+      if (existingCartData.quantity === 0) {
+     
+        Object.keys(localStorage)
+          .filter((x) => x.startsWith("cart"))
+          .forEach((x) => localStorage.removeItem(x));
+      }
+      const existingProductIndex = existingCartData.findIndex(
+        (item) => item.productId === productId && item.size === size
       );
-      addToCartButton.disabled = true;
-      addToCartButton.textContent = "Out of Stock";
+      if (existingProductIndex > -1) {
+        if (
+          existingCartData[existingProductIndex].quantity >= product.quantity
+        ) {
+          alert(`No more of this product can be added to cart!`);
+          return;
+        }
+        existingCartData[existingProductIndex].quantity += parseInt(1);
+      } else {
+        existingCartData.push({
+          productId,
+          size,
+          quantity: 1,
+          price,
+        });
+      }
+      setCartData(existingCartData);
+      localStorage.setItem("cartData", JSON.stringify(existingCartData));
+      const cartId = localStorage.getItem("cartId");
+
+      // if (product.quantity < 5) {
+      //   alert(`There are only ${product.quantity} items remaining in stock.`);
+      // }
+      await addProductToCart(productId, quantity, size, price, cartId);
+      await handleUpdateCart({ product: existingCartData });
     }
   };
 
@@ -222,7 +234,7 @@ const SingleProductnew = () => {
                       handleAddToCart(
                         product.id,
                         product.size,
-                        quantity,
+                        product.quantity,
                         product.price / 100
                       )
                     }

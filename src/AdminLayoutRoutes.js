@@ -24,6 +24,7 @@ import Calendar from './admin/scenes/calendar/calendar';
 import Geography from './admin/scenes/geography';
 import Sidebar from './admin/scenes/global/Sidebar';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
+import Orders from './admin/scenes/orders';
 
 
 // export const jwtAtom = atom(Cookies.get("jwt"));
@@ -50,6 +51,7 @@ function App() {
                         <Route path="users" element={<PrivateRouteAdmin><Users /></PrivateRouteAdmin>} />
                         <Route path="products" element={<PrivateRouteAdmin><Products /></PrivateRouteAdmin>} />
                         <Route path="notifications" element={<PrivateRouteAdmin><Notification /></PrivateRouteAdmin>} />
+                        <Route path="orders" element={<PrivateRouteAdmin><Orders /></PrivateRouteAdmin>} />
                         <Route path="files" element={<PrivateRouteAdmin><Files /></PrivateRouteAdmin>} />
                         {/* <Route path="contacts" element={<PrivateRouteAdmin><Contacts /></PrivateRouteAdmin>} />
                         <Route path="invoices" element={<PrivateRouteAdmin><Invoices /></PrivateRouteAdmin>} /> */}

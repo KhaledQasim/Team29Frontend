@@ -43,7 +43,7 @@ const View = () => {
         centered
       >
         <Modal.Body style={{ background: "#1f2a40" }}>
-          <img src={modalImage} alt="product" />
+          <img src={modalImage} style={{width:"600px",height:"600px"}} alt="product" />
         </Modal.Body>
       </Modal>
     );

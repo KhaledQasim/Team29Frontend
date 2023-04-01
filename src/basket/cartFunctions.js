@@ -129,7 +129,7 @@ export const addProductToCart = async (productId, quantity, size, price) => {
     const cart = await getCart(cartId);
     const cartData = {
       productId,
-      quantity,
+      quantity:1,
       size,
       price,
     };
