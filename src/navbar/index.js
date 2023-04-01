@@ -100,12 +100,12 @@ function Navbarr() {
 
       <Navbar className="navbar navbar-expand-lg navbar-light bg-white py-4 ">
         <div className="container">
-          <a
+          <Link
             className="navbar-brand d-flex justify-content-between align-items-centerorder-lg-0 "
-            href="index.html"
+            to="/"
           >
             <img src="/images/we_WEAR-8.png" width="125px" alt="site icon" />
-          </a>
+          </Link>
           <div className="order-lg-2 nav-btns">
             <button
               type="button"
