@@ -8,6 +8,11 @@ Then clone the project code
 ```
 git clone https://github.com/KhaledQasim/team29frontend
 ```
+if the above commnad does not work try
+```
+git clone https://github.com/KhaledQasim/team29frontend
+```
+
 Then make sure your working directory is inside the newly cloned "team29frontend" folder
 
 Then run 
