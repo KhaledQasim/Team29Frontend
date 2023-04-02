@@ -31,4 +31,12 @@ The Backend Java Spring Boot app is online 24/7 and so is the Database, so all i
 
 # Features
 
-## d
+### Inventory Managment View And Export
+
+The inventory managemt system will always be shown on the navbar (both admin and homepage) as a bell icon with the number of notifications displayed next to it
+
+Inventory Management System data along with Orders and Products and Users can all be exported as a csv (excel) file containing all the displayed data.
+
+This can be down as shown below:
+
+![alt text](https://github.com/KhaledQasim/Team29Backend/blob/main/ReadMeImages/Export.png?raw=true)
