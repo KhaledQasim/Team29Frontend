@@ -24,5 +24,5 @@ npm run start
 # For Mac Users
 https://dev.to/code_jedi/how-to-install-reactjs-on-macos-4hio
 
-
+# 
 The Backend Java Spring Boot app is online 24/7 and so is the Database, so all is required to use this project are the steps above.
