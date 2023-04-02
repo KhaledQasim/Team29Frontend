@@ -21,7 +21,7 @@ Then run
 npm install --legacy-peer-deps
 ```
 
-Then to start a local hosted react server  , this might take anywhere from 1 to 10 minutes
+Then to start a local hosted react server  , this might take anywhere from 1 to 5 minutes
 ```
 npm run start
 ```
@@ -52,3 +52,10 @@ This can be down as shown below:
 A world map is available to show from where our users are connecting from.
 
 ![alt text](https://github.com/KhaledQasim/Team29Backend/blob/main/ReadMeImages/WorldMap.png?raw=true)
+
+
+### Fully Working Calender App
+
+This Calendar app can be used to co-ordinate all the admin users into making sure they complete their required tasks, like ordering new stock for a specific product or hosting a team meeting
+
+![alt text](https://github.com/KhaledQasim/Team29Backend/blob/main/ReadMeImages/Calender.png?raw=true)
