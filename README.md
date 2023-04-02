@@ -40,3 +40,10 @@ Inventory Management System data along with Orders and Products and Users can al
 This can be down as shown below:
 
 ![alt text](https://github.com/KhaledQasim/Team29Backend/blob/main/ReadMeImages/Export.png?raw=true)
+
+
+### User Demograpich
+
+A world map is available to show from where our users are connecting from.
+
+![alt text](https://github.com/KhaledQasim/Team29Backend/blob/main/ReadMeImages/WorldMap.png?raw=true)
