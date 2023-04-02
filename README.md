@@ -21,7 +21,7 @@ Then run
 npm install --legacy-peer-deps
 ```
 
-Then run to start a local server  , this might take anywhere from 1 to 10 minutes
+Then to start a local hosted react server  , this might take anywhere from 1 to 10 minutes
 ```
 npm run start
 ```
