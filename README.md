@@ -56,6 +56,6 @@ A world map is available to show from where our users are connecting from.
 
 ### Fully Working Calender App
 
-This Calendar app can be used to co-ordinate all the admin users into making sure they complete their required tasks, like ordering new stock for a specific product or hosting a team meeting
+This Calendar app can be used to coordinate all the admin users into making sure they complete their required tasks, like ordering new stock for a specific product or hosting a team meeting
 
 ![alt text](https://github.com/KhaledQasim/Team29Backend/blob/main/ReadMeImages/Calender.png?raw=true)
